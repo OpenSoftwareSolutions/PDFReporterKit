@@ -21,13 +21,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		3B5424EA1D3B5D2300C2EBB0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5424E91D3B5D2300C2EBB0 /* libz.tbd */; };
+		3B1BF6561D453D8A00B07918 /* libjre_emul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1BF64F1D4531E800B07918 /* libjre_emul.a */; };
 		3B5424EC1D3B5D3100C2EBB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5424EB1D3B5D3100C2EBB0 /* Security.framework */; };
-		3B543C111D3B76EC00C2EBB0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B543C101D3B76EC00C2EBB0 /* libsqlite3.tbd */; };
-		3B543C131D3B770600C2EBB0 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B543C121D3B770600C2EBB0 /* libxml2.tbd */; };
+		3B705B461D454857005BA326 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B705B431D454857005BA326 /* libsqlite3.dylib */; };
+		3B705B491D45488D005BA326 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B705B441D454857005BA326 /* libxml2.2.dylib */; };
+		3B705B4A1D454899005BA326 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B705B451D454857005BA326 /* libz.1.dylib */; };
 		3BDF62F11D440DD200C2DF4F /* libHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF62EF1D440DD200C2DF4F /* libHaru.framework */; };
 		3BDF62F21D440DD200C2DF4F /* libPng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF62F01D440DD200C2DF4F /* libPng.framework */; };
-		3BDF62F41D44132A00C2DF4F /* JRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF62F31D44132A00C2DF4F /* JRE.framework */; };
 		3BDF6E531D441C2900C2DF4F /* PDFReporterKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF62FD1D441C2300C2DF4F /* PDFReporterKit.h */; };
 		3BDF8F3F1D441C7C00C2DF4F /* PDFReporterKit-prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF84731D441C7A00C2DF4F /* PDFReporterKit-prefix.pch */; };
 		3BDF9A931D441CD600C2DF4F /* AutoreleasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF8F451D441CCF00C2DF4F /* AutoreleasePool.h */; };
@@ -2795,14 +2795,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B1BF64F1D4531E800B07918 /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = ../j2objc/lib/libjre_emul.a; sourceTree = "<group>"; };
 		3B54140E1D3B56FB00C2EBB0 /* PDFReporterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PDFReporterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B5424E91D3B5D2300C2EBB0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		3B5424EB1D3B5D3100C2EBB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		3B543C101D3B76EC00C2EBB0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
-		3B543C121D3B770600C2EBB0 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libxml2.tbd; sourceTree = DEVELOPER_DIR; };
+		3B705B431D454857005BA326 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		3B705B441D454857005BA326 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
+		3B705B451D454857005BA326 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		3BDF62EF1D440DD200C2DF4F /* libHaru.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libHaru.framework; path = Carthage/Build/iOS/libHaru.framework; sourceTree = "<group>"; };
 		3BDF62F01D440DD200C2DF4F /* libPng.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libPng.framework; path = Carthage/Build/iOS/libPng.framework; sourceTree = "<group>"; };
-		3BDF62F31D44132A00C2DF4F /* JRE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JRE.framework; sourceTree = "<group>"; };
 		3BDF62FD1D441C2300C2DF4F /* PDFReporterKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFReporterKit.h; sourceTree = "<group>"; };
 		3BDF84721D441C7A00C2DF4F /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		3BDF84731D441C7A00C2DF4F /* PDFReporterKit-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDFReporterKit-prefix.pch"; sourceTree = "<group>"; };
@@ -5575,13 +5575,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BDF62F41D44132A00C2DF4F /* JRE.framework in Frameworks */,
+				3B705B4A1D454899005BA326 /* libz.1.dylib in Frameworks */,
+				3B705B491D45488D005BA326 /* libxml2.2.dylib in Frameworks */,
+				3B705B461D454857005BA326 /* libsqlite3.dylib in Frameworks */,
+				3B1BF6561D453D8A00B07918 /* libjre_emul.a in Frameworks */,
 				3BDF62F11D440DD200C2DF4F /* libHaru.framework in Frameworks */,
 				3BDF62F21D440DD200C2DF4F /* libPng.framework in Frameworks */,
-				3B543C131D3B770600C2EBB0 /* libxml2.tbd in Frameworks */,
-				3B543C111D3B76EC00C2EBB0 /* libsqlite3.tbd in Frameworks */,
 				3B5424EC1D3B5D3100C2EBB0 /* Security.framework in Frameworks */,
-				3B5424EA1D3B5D2300C2EBB0 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5608,12 +5608,12 @@
 		3B5424ED1D3B5D4100C2EBB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3BDF62F31D44132A00C2DF4F /* JRE.framework */,
+				3B705B431D454857005BA326 /* libsqlite3.dylib */,
+				3B705B441D454857005BA326 /* libxml2.2.dylib */,
+				3B705B451D454857005BA326 /* libz.1.dylib */,
+				3B1BF64F1D4531E800B07918 /* libjre_emul.a */,
 				3BDF62EF1D440DD200C2DF4F /* libHaru.framework */,
 				3BDF62F01D440DD200C2DF4F /* libPng.framework */,
-				3B543C121D3B770600C2EBB0 /* libxml2.tbd */,
-				3B543C101D3B76EC00C2EBB0 /* libsqlite3.tbd */,
-				3B5424E91D3B5D2300C2EBB0 /* libz.tbd */,
 				3B5424EB1D3B5D3100C2EBB0 /* Security.framework */,
 			);
 			name = Frameworks;
@@ -12426,7 +12426,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -12445,15 +12444,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/JRE.framework/Headers",
 					"$(SDKROOT)/usr/include/libxml2",
-					"$(SOURCES)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PDFReporterKit/Supporting Files/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = ../j2objc/lib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
@@ -12464,7 +12461,7 @@
 				SKIP_INSTALL = YES;
 				SOURCES = "$(SRCROOT)/PDFReporterKit/Sources";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${DERIVED_FILES_DIR} $(inherited)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SOURCES) ../j2objc/include";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -12504,7 +12501,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -12517,15 +12513,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/JRE.framework/Headers",
 					"$(SDKROOT)/usr/include/libxml2",
-					"$(SOURCES)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PDFReporterKit/Supporting Files/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = ../j2objc/lib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
@@ -12536,7 +12530,7 @@
 				SKIP_INSTALL = YES;
 				SOURCES = "$(SRCROOT)/PDFReporterKit/Sources";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${DERIVED_FILES_DIR} $(inherited)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SOURCES) ../j2objc/include";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
