@@ -30,7 +30,7 @@
 
 ## Installation
 
-1. Build or [download](https://github.com/OpenSoftwareSolutions/PDFReporterKit/releases/download/v1.0.0/PDFReporterKit-1.0.0.zip) the framework
+1. Build or [download](https://github.com/OpenSoftwareSolutions/PDFReporterKit/releases/download/v1.0.0/PDFReporterKit-1.0.0-debug.zip) the framework
 2. Embed frameworks (`PDFReporterKit`, `libHaru` and `libPng`) in your project
 3. Link with dependecies (`libxml2.dylib`, `libsqlite3.dylib` and `libz.dylib` are located in `/usr/lib`)
 4. Add following to `HEADER_SEARCH_PATHS` of your project:
