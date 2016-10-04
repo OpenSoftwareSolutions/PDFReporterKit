@@ -118,7 +118,7 @@ J2OBJC_IGNORE_DESIGNATED_END
         }
       }
       id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument> result = [function executeWithOrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgumentArray:args];
-      if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterEvaluator_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, INFO)]) {
+      if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterEvaluator_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
         NSString *message = JreStrcat("$@C@$$C", @"Evaluated: ", [((id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument>) nil_chk(result)) getValue], '[', [result getType], @"] ", [function getName], '(');
         for (jint i = 0; i < numArgs; i++) {
           (void) JreStrAppendStrong(&message, "@C@C", [((id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument>) nil_chk(IOSObjectArray_Get(args, i))) getValue], '[', [((id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument>) nil_chk(IOSObjectArray_Get(args, i))) getType], ']');
@@ -127,7 +127,7 @@ J2OBJC_IGNORE_DESIGNATED_END
           }
         }
         (void) JreStrAppendStrong(&message, "$", @")");
-        [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterEvaluator_logger)) infoWithNSString:message];
+        [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterEvaluator_logger)) finestWithNSString:message];
       }
       [stack pushWithId:result];
     }
