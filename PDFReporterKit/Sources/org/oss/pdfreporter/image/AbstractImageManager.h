@@ -24,8 +24,10 @@
 #define INCLUDE_OrgOssPdfreporterRegistryISessionListener 1
 #include "org/oss/pdfreporter/registry/ISessionListener.h"
 
+@class JavaIoInputStream;
 @protocol JavaUtilCollection;
 @protocol OrgOssPdfreporterImageIImage;
+@protocol OrgOssPdfreporterNetIURL;
 @protocol OrgOssPdfreporterRegistryISessionObject;
 
 @interface OrgOssPdfreporterImageAbstractImageManager : NSObject < OrgOssPdfreporterImageIImageManager, OrgOssPdfreporterRegistryISessionListener >
@@ -37,6 +39,18 @@
 - (void)getWithNSString:(NSString *)key;
 
 - (id<JavaUtilCollection>)getLoadedImages;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithJavaIoInputStream:(JavaIoInputStream *)image;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithJavaIoInputStream:(JavaIoInputStream *)image
+                                                         withFloat:(jfloat)quality
+                                                         withFloat:(jfloat)scale_;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)fileURL;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)urlPath
+                                                                withFloat:(jfloat)quality
+                                                                withFloat:(jfloat)scale_;
 
 - (id<OrgOssPdfreporterImageIImage>)loadImageWithNSString:(NSString *)filePath;
 
@@ -54,6 +68,14 @@ withOrgOssPdfreporterRegistryISessionObject:(id<OrgOssPdfreporterRegistryISessio
 - (instancetype)init;
 
 - (void)disposeInternal;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageInternalWithJavaIoInputStream:(JavaIoInputStream *)image
+                                                                 withFloat:(jfloat)quality
+                                                                 withFloat:(jfloat)scale_;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageInternalWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)urlPath
+                                                                        withFloat:(jfloat)quality
+                                                                        withFloat:(jfloat)scale_;
 
 - (id<OrgOssPdfreporterImageIImage>)loadImageInternalWithNSString:(NSString *)filePath
                                                         withFloat:(jfloat)quality

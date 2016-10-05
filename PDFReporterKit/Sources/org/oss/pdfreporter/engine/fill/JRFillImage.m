@@ -7,6 +7,7 @@
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/io/File.h"
+#include "java/io/IOException.h"
 #include "java/io/InputStream.h"
 #include "java/lang/Boolean.h"
 #include "java/lang/Integer.h"
@@ -57,7 +58,10 @@
 #include "org/oss/pdfreporter/engine/util/JRStyleResolver.h"
 #include "org/oss/pdfreporter/geometry/IDimension.h"
 #include "org/oss/pdfreporter/image/IImage.h"
+#include "org/oss/pdfreporter/image/IImageManager.h"
+#include "org/oss/pdfreporter/image/factory/IImageFactory.h"
 #include "org/oss/pdfreporter/net/IURL.h"
+#include "org/oss/pdfreporter/registry/ApiRegistry.h"
 #include "org/oss/pdfreporter/uses/java/util/UUID.h"
 
 @interface OrgOssPdfreporterEngineFillJRFillImage () {
@@ -310,11 +314,24 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFillJRFillImage)
         newRenderer = OrgOssPdfreporterEngineJRImageRenderer_getInstanceWithOrgOssPdfreporterImageIImage_(img);
       }
       else if ([source isKindOfClass:[JavaIoInputStream class]]) {
-        [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterEngineFillJRFillImage_logger)) warningWithNSString:@"Image from input stream is not supported."];
+        JavaIoInputStream *in = (JavaIoInputStream *) cast_chk(source, [JavaIoInputStream class]);
+        @try {
+          id<OrgOssPdfreporterImageIImage> img = [((id<OrgOssPdfreporterImageIImageManager>) nil_chk([((id<OrgOssPdfreporterImageFactoryIImageFactory>) nil_chk(OrgOssPdfreporterRegistryApiRegistry_getImageFactory())) getImageManager])) loadImageWithJavaIoInputStream:in];
+          newRenderer = OrgOssPdfreporterEngineJRImageRenderer_getInstanceWithOrgOssPdfreporterImageIImage_(img);
+        }
+        @catch (JavaIoIOException *e) {
+          @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_withNSException_(@"Exception while reading image from InputStream.", e);
+        }
       }
       else if ([OrgOssPdfreporterNetIURL_class_() isInstance:source]) {
         id<OrgOssPdfreporterNetIURL> url = (id<OrgOssPdfreporterNetIURL>) cast_check(source, OrgOssPdfreporterNetIURL_class_());
-        [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterEngineFillJRFillImage_logger)) warningWithNSString:JreStrcat("$$", @"Image from url is not supported. URL: ", [url getPath])];
+        @try {
+          id<OrgOssPdfreporterImageIImage> img = [((id<OrgOssPdfreporterImageIImageManager>) nil_chk([((id<OrgOssPdfreporterImageFactoryIImageFactory>) nil_chk(OrgOssPdfreporterRegistryApiRegistry_getImageFactory())) getImageManager])) loadImageWithOrgOssPdfreporterNetIURL:url];
+          newRenderer = OrgOssPdfreporterEngineJRImageRenderer_getInstanceWithOrgOssPdfreporterImageIImage_(img);
+        }
+        @catch (JavaIoIOException *e) {
+          @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_withNSException_(JreStrcat("$$", @"Exception while reading image from URL: ", [url getPath]), e);
+        }
       }
       else if ([source isKindOfClass:[JavaIoFile class]]) {
         JavaIoFile *file = (JavaIoFile *) cast_chk(source, [JavaIoFile class]);

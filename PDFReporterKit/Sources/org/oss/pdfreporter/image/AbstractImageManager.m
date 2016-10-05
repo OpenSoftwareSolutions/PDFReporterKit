@@ -6,13 +6,17 @@
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
 #include "java/io/IOException.h"
+#include "java/io/InputStream.h"
 #include "java/util/Collection.h"
 #include "java/util/HashMap.h"
 #include "java/util/Map.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/image/AbstractImageManager.h"
+#include "org/oss/pdfreporter/image/FileImageProxy.h"
 #include "org/oss/pdfreporter/image/IImage.h"
-#include "org/oss/pdfreporter/image/ImageProxy.h"
+#include "org/oss/pdfreporter/image/StreamImageProxy.h"
+#include "org/oss/pdfreporter/image/UrlImageProxy.h"
+#include "org/oss/pdfreporter/net/IURL.h"
 #include "org/oss/pdfreporter/registry/ISessionObject.h"
 
 @interface OrgOssPdfreporterImageAbstractImageManager () {
@@ -39,16 +43,52 @@ J2OBJC_IGNORE_DESIGNATED_END
   return [self loadImageWithNSString:filePath withFloat:0.0f withFloat:0.0f];
 }
 
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithJavaIoInputStream:(JavaIoInputStream *)image {
+  return [self loadImageWithJavaIoInputStream:image withFloat:0.0f withFloat:0.0f];
+}
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)fileURL {
+  return [self loadImageWithOrgOssPdfreporterNetIURL:fileURL withFloat:0.0f withFloat:0.0f];
+}
+
 - (id<OrgOssPdfreporterImageIImage>)loadImageWithNSString:(NSString *)filePath
                                                 withFloat:(jfloat)quality
                                                 withFloat:(jfloat)scale_ {
   NSString *key = JreStrcat("$$F$F", filePath, @" quality:", quality, @" scale:", scale_);
   if (![((id<JavaUtilMap>) nil_chk(imageCache_)) containsKeyWithId:key]) {
-    (void) [imageCache_ putWithId:key withId:new_OrgOssPdfreporterImageImageProxy_initWithOrgOssPdfreporterImageAbstractImageManager_withNSString_withFloat_withFloat_(self, filePath, quality, scale_)];
+    (void) [imageCache_ putWithId:key withId:new_OrgOssPdfreporterImageFileImageProxy_initWithOrgOssPdfreporterImageAbstractImageManager_withNSString_withFloat_withFloat_(self, filePath, quality, scale_)];
     [((JavaUtilLoggingLogger *) nil_chk(logger_)) finestWithNSString:JreStrcat("$$", @"Caching image: ", filePath)];
   }
   else {
-    [((JavaUtilLoggingLogger *) nil_chk(logger_)) finestWithNSString:JreStrcat("$$", @"Load Image from cache: ", filePath)];
+    [((JavaUtilLoggingLogger *) nil_chk(logger_)) finestWithNSString:JreStrcat("$$", @"Load Image from cache: ", key)];
+  }
+  return [imageCache_ getWithId:key];
+}
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithJavaIoInputStream:(JavaIoInputStream *)image
+                                                         withFloat:(jfloat)quality
+                                                         withFloat:(jfloat)scale_ {
+  NSString *key = JreStrcat("$@$F$F", @"InputStream@", image, @" quality:", quality, @" scale:", scale_);
+  if (![((id<JavaUtilMap>) nil_chk(imageCache_)) containsKeyWithId:key]) {
+    (void) [imageCache_ putWithId:key withId:new_OrgOssPdfreporterImageStreamImageProxy_initWithOrgOssPdfreporterImageAbstractImageManager_withJavaIoInputStream_withFloat_withFloat_(self, image, quality, scale_)];
+    [((JavaUtilLoggingLogger *) nil_chk(logger_)) finestWithNSString:JreStrcat("$@", @"Caching image: InputStream@", image)];
+  }
+  else {
+    [((JavaUtilLoggingLogger *) nil_chk(logger_)) finestWithNSString:JreStrcat("$$", @"Load Image from cache: ", key)];
+  }
+  return [imageCache_ getWithId:key];
+}
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)urlPath
+                                                                withFloat:(jfloat)quality
+                                                                withFloat:(jfloat)scale_ {
+  NSString *key = JreStrcat("$$F$F", [((id<OrgOssPdfreporterNetIURL>) nil_chk(urlPath)) getPath], @" quality:", quality, @" scale:", scale_);
+  if (![((id<JavaUtilMap>) nil_chk(imageCache_)) containsKeyWithId:key]) {
+    (void) [imageCache_ putWithId:key withId:new_OrgOssPdfreporterImageUrlImageProxy_initWithOrgOssPdfreporterImageAbstractImageManager_withOrgOssPdfreporterNetIURL_withFloat_withFloat_(self, urlPath, quality, scale_)];
+    [((JavaUtilLoggingLogger *) nil_chk(logger_)) finestWithNSString:JreStrcat("$$", @"Caching image: ", [urlPath getPath])];
+  }
+  else {
+    [((JavaUtilLoggingLogger *) nil_chk(logger_)) finestWithNSString:JreStrcat("$$", @"Load Image from cache: ", key)];
   }
   return [imageCache_ getWithId:key];
 }
@@ -80,6 +120,22 @@ withOrgOssPdfreporterRegistryISessionObject:(id<OrgOssPdfreporterRegistryISessio
   return 0;
 }
 
+- (id<OrgOssPdfreporterImageIImage>)loadImageInternalWithJavaIoInputStream:(JavaIoInputStream *)image
+                                                                 withFloat:(jfloat)quality
+                                                                 withFloat:(jfloat)scale_ {
+  // can't call an abstract method
+  [self doesNotRecognizeSelector:_cmd];
+  return 0;
+}
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageInternalWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)urlPath
+                                                                        withFloat:(jfloat)quality
+                                                                        withFloat:(jfloat)scale_ {
+  // can't call an abstract method
+  [self doesNotRecognizeSelector:_cmd];
+  return 0;
+}
+
 - (void)disposeInternal {
   // can't call an abstract method
   [self doesNotRecognizeSelector:_cmd];
@@ -89,20 +145,26 @@ withOrgOssPdfreporterRegistryISessionObject:(id<OrgOssPdfreporterRegistryISessio
   static const J2ObjcMethodInfo methods[] = {
     { "init", "AbstractImageManager", NULL, 0x0, NULL, NULL },
     { "loadImageWithNSString:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x1, "Ljava.io.IOException;", NULL },
+    { "loadImageWithJavaIoInputStream:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x1, "Ljava.io.IOException;", NULL },
+    { "loadImageWithOrgOssPdfreporterNetIURL:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x1, "Ljava.io.IOException;", NULL },
     { "loadImageWithNSString:withFloat:withFloat:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x1, "Ljava.io.IOException;", NULL },
+    { "loadImageWithJavaIoInputStream:withFloat:withFloat:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x1, "Ljava.io.IOException;", NULL },
+    { "loadImageWithOrgOssPdfreporterNetIURL:withFloat:withFloat:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x1, "Ljava.io.IOException;", NULL },
     { "dispose", NULL, "V", 0x1, NULL, NULL },
     { "getWithNSString:", "get", "V", 0x1, NULL, NULL },
     { "putWithNSString:withOrgOssPdfreporterRegistryISessionObject:", "put", "V", 0x1, NULL, NULL },
     { "removeWithNSString:", "remove", "V", 0x1, NULL, NULL },
     { "getLoadedImages", NULL, "Ljava.util.Collection;", 0x1, NULL, "()Ljava/util/Collection<Lorg/oss/pdfreporter/image/IImage;>;" },
     { "loadImageInternalWithNSString:withFloat:withFloat:", "loadImageInternal", "Lorg.oss.pdfreporter.image.IImage;", 0x400, "Ljava.io.IOException;", NULL },
+    { "loadImageInternalWithJavaIoInputStream:withFloat:withFloat:", "loadImageInternal", "Lorg.oss.pdfreporter.image.IImage;", 0x400, "Ljava.io.IOException;", NULL },
+    { "loadImageInternalWithOrgOssPdfreporterNetIURL:withFloat:withFloat:", "loadImageInternal", "Lorg.oss.pdfreporter.image.IImage;", 0x400, "Ljava.io.IOException;", NULL },
     { "disposeInternal", NULL, "V", 0x400, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
     { "logger_", NULL, 0x12, "Ljava.util.logging.Logger;", NULL, NULL, .constantValue.asLong = 0 },
     { "imageCache_", NULL, 0x12, "Ljava.util.Map;", NULL, "Ljava/util/Map<Ljava/lang/String;Lorg/oss/pdfreporter/image/IImage;>;", .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterImageAbstractImageManager = { 2, "AbstractImageManager", "org.oss.pdfreporter.image", NULL, 0x401, 10, methods, 2, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterImageAbstractImageManager = { 2, "AbstractImageManager", "org.oss.pdfreporter.image", NULL, 0x401, 16, methods, 2, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterImageAbstractImageManager;
 }
 
