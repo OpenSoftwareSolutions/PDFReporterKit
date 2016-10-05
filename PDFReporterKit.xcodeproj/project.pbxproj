@@ -2020,8 +2020,6 @@
 		3BDFA2561D441CD700C2DF4F /* ImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF97441D441CD400C2DF4F /* ImageFactory.m */; };
 		3BDFA2571D441CD700C2DF4F /* ImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF97451D441CD400C2DF4F /* ImageManager.h */; };
 		3BDFA2581D441CD700C2DF4F /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF97461D441CD400C2DF4F /* ImageManager.m */; };
-		3BDFA2591D441CD700C2DF4F /* ImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF97471D441CD400C2DF4F /* ImageProxy.h */; };
-		3BDFA25A1D441CD700C2DF4F /* ImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF97481D441CD400C2DF4F /* ImageProxy.m */; };
 		3BDFA25B1D441CD700C2DF4F /* ChartEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF974A1D441CD400C2DF4F /* ChartEntity.h */; };
 		3BDFA25C1D441CD700C2DF4F /* ChartEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF974B1D441CD400C2DF4F /* ChartEntity.m */; };
 		3BDFA25D1D441CD700C2DF4F /* Dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF974C1D441CD400C2DF4F /* Dataset.h */; };
@@ -4796,8 +4794,6 @@
 		3BDF97441D441CD400C2DF4F /* ImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFactory.m; sourceTree = "<group>"; };
 		3BDF97451D441CD400C2DF4F /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		3BDF97461D441CD400C2DF4F /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
-		3BDF97471D441CD400C2DF4F /* ImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProxy.h; sourceTree = "<group>"; };
-		3BDF97481D441CD400C2DF4F /* ImageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProxy.m; sourceTree = "<group>"; };
 		3BDF974A1D441CD400C2DF4F /* ChartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartEntity.h; sourceTree = "<group>"; };
 		3BDF974B1D441CD400C2DF4F /* ChartEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartEntity.m; sourceTree = "<group>"; };
 		3BDF974C1D441CD400C2DF4F /* Dataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dataset.h; sourceTree = "<group>"; };
@@ -8153,8 +8149,6 @@
 				3BDF97441D441CD400C2DF4F /* ImageFactory.m */,
 				3BDF97451D441CD400C2DF4F /* ImageManager.h */,
 				3BDF97461D441CD400C2DF4F /* ImageManager.m */,
-				3BDF97471D441CD400C2DF4F /* ImageProxy.h */,
-				3BDF97481D441CD400C2DF4F /* ImageProxy.m */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -9536,7 +9530,6 @@
 				3BDFA2271D441CD700C2DF4F /* TextAttribute.h in Headers */,
 				3BDF9CB51D441CD600C2DF4F /* ComponentKey.h in Headers */,
 				3BDF9C311D441CD600C2DF4F /* JRBaseComponentElement.h in Headers */,
-				3BDFA2591D441CD700C2DF4F /* ImageProxy.h in Headers */,
 				3BDF9D1D1D441CD600C2DF4F /* JRDesignField.h in Headers */,
 				3BDFA50D1D441CD700C2DF4F /* Node.h in Headers */,
 				3BDF9C031D441CD600C2DF4F /* JRCrosstabFactory.h in Headers */,
@@ -11809,7 +11802,6 @@
 				3BDFA4DE1D441CD700C2DF4F /* NumberFormat.m in Sources */,
 				3BDFA3EE1D441CD700C2DF4F /* SubtractionOperator.m in Sources */,
 				3BDFA1601D441CD700C2DF4F /* JRGenericElementFactory.m in Sources */,
-				3BDFA25A1D441CD700C2DF4F /* ImageProxy.m in Sources */,
 				3BDFA24A1D441CD700C2DF4F /* AbstractImageManager.m in Sources */,
 				3BDFA36A1D441CD700C2DF4F /* ExpressionTree.m in Sources */,
 				3BDFA15C1D441CD700C2DF4F /* JRFontFactory.m in Sources */,
