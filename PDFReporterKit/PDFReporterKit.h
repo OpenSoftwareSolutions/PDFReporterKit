@@ -1002,6 +1002,10 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #import <PDFReporterKit/org/oss/pdfreporter/image/Image.h>
 #import <PDFReporterKit/org/oss/pdfreporter/image/ImageBox.h>
 #include <PDFReporterKit/org/oss/pdfreporter/image/ImageFactory.h>
+#include <PDFReporterKit/org/oss/pdfreporter/image/AbstractImageProxy.h>
+#include <PDFReporterKit/org/oss/pdfreporter/image/FileImageProxy.h>
+#include <PDFReporterKit/org/oss/pdfreporter/image/StreamImageProxy.h>
+#include <PDFReporterKit/org/oss/pdfreporter/image/URLImageProxy.h>
 #import <PDFReporterKit/org/oss/pdfreporter/image/ImageManager.h>
 #include <PDFReporterKit/org/oss/pdfreporter/jfree/ChartEntity.h>
 #include <PDFReporterKit/org/oss/pdfreporter/jfree/Dataset.h>
