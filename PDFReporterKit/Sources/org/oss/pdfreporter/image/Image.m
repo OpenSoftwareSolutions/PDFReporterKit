@@ -120,8 +120,6 @@
 
 @end
 
-
-
 @implementation InputStreamImage
 
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is manager:(OrgOssPdfreporterImageImageManager *)manager
