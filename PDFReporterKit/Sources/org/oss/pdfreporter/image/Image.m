@@ -18,10 +18,10 @@
 - (id)initWithFile:(NSString*)filename manager:(OrgOssPdfreporterImageImageManager*)manager {
     self = [super init];
     if (self) {
-        mManager = manager;
         _resourcePath = filename;
         _scale = 1;
         _quality = 1;
+        _manager = manager;
     }
     return self;
 }
@@ -29,17 +29,17 @@
 - (id)initWithRecompressedFile:(NSString*)filename quality:(float)quality scale:(float)scale manager:(OrgOssPdfreporterImageImageManager*)manager {
     self = [super init];
     if (self) {
-        mManager = manager;
         _resourcePath = filename;
         _scale = quality;
         _quality = scale;
+        _manager = manager;
     }
     return self;
 }
 
 -(id<OrgOssPdfreporterImageIImageManager>)getImageManager
 {
-    return mManager;
+    return _manager;
 }
 
 - (void)loadImage {
