@@ -30,4 +30,6 @@
 @interface InputStreamImage : Image {
     JavaIoInputStream *_is;
 }
+
+- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is manager:(OrgOssPdfreporterImageImageManager *)manager;
 @end
