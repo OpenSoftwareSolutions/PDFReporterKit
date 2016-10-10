@@ -12,6 +12,8 @@
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
 #include "org/oss/pdfreporter/image/ImageFactory.h"
 #import <UIKit/UIKit.h>
+#import "InputStreamMarshaller.h"
+
 
 @implementation Image
 
@@ -116,6 +118,8 @@
 
 @end
 
+
+
 @implementation InputStreamImage
 
 - (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is manager:(OrgOssPdfreporterImageImageManager *)manager
@@ -127,6 +131,34 @@
         _hpdf_Image = nil;
     }
     return self;
+}
+
+- (void)loadImage
+{
+    HpdfDocBox *docBox = [HpdfDocBox GetDocBoxFromSession:[[OrgOssPdfreporterRegistryApiRegistry getImageFactory] getSession]];
+    NSData *data = [InputStreamMarshaller convertJavaIoInputStreamToNSData:_is];
+    uint8_t c;
+    const unsigned char *cData = [data bytes];
+    unsigned int size = (unsigned int)([data length] / sizeof(unsigned char));
+    [data getBytes:&c length:1];
+
+    if (c == 0xFF) // JPEG
+    {
+        _hpdf_Image = HPDF_LoadJpegImageFromMem([docBox getHpdfDoc], cData , size);
+    }
+    else if (c == 0x89 || c == 0x47) // PNG or GIF
+    {
+        _hpdf_Image = HPDF_LoadPngImageFromMem([docBox getHpdfDoc], cData, size);
+    }
+    else
+    {
+        @throw [NSException exceptionWithName:@"Image" reason:@"Unsupported image format. (Only jpeg, png or gif is supported!)" userInfo:nil];
+    }
+
+    if(!_hpdf_Image)
+    {
+       @throw [NSException exceptionWithName:@"Image" reason:@"mHpdf_Image is null" userInfo:nil];
+    }
 }
 
 @end
