@@ -12,6 +12,7 @@
 #import <libHaru/libHaru.h>
 
 @class OrgOssPdfreporterImageImageManager;
+@class JavaIoInputStream;
 
 @interface Image : NSObject <OrgOssPdfreporterImageIImage>
 {
@@ -24,4 +25,9 @@
 
 - (id)initWithFile:(NSString*)filename manager:(OrgOssPdfreporterImageImageManager*)manager;
 - (id)initWithRecompressedFile:(NSString*)filename quality:(float)quality scale:(float)scale manager:(OrgOssPdfreporterImageImageManager*)manager;
+@end
+
+@interface InputStreamImage : Image {
+    JavaIoInputStream *_is;
+}
 @end

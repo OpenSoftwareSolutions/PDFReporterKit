@@ -115,3 +115,18 @@
 
 
 @end
+
+@implementation InputStreamImage
+
+- (instancetype)initWithJavaIoInputStream:(JavaIoInputStream *)is manager:(OrgOssPdfreporterImageImageManager *)manager
+{
+    if (self = [super init])
+    {
+        _is = is;
+        _manager = manager;
+        _hpdf_Image = nil;
+    }
+    return self;
+}
+
+@end
