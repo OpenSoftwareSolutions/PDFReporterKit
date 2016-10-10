@@ -15,11 +15,11 @@
 
 @interface Image : NSObject <OrgOssPdfreporterImageIImage>
 {
-    HPDF_Image mHpdf_Image;
     float mScale;
     float mQuality;
     OrgOssPdfreporterImageImageManager *mManager;
     NSString *_resourcePath;
+    HPDF_Image _hpdf_Image;
 }
 
 - (id)initWithFile:(NSString*)filename manager:(OrgOssPdfreporterImageImageManager*)manager;

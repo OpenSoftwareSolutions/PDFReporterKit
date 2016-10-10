@@ -53,7 +53,7 @@
         NSData *data = UIImageJPEGRepresentation(image, mQuality);
         const unsigned char *cData = [data bytes];
         unsigned int size = (unsigned int)([data length] / sizeof(unsigned char));
-        mHpdf_Image = HPDF_LoadJpegImageFromMem([docBox getHpdfDoc], cData , size);
+        _hpdf_Image = HPDF_LoadJpegImageFromMem([docBox getHpdfDoc], cData , size);
     }
     else
     {
@@ -62,11 +62,11 @@
         
         if([ext compare:@"png"] == NSOrderedSame)
         {
-            mHpdf_Image = HPDF_LoadPngImageFromFile([docBox getHpdfDoc], cPath);
+            _hpdf_Image = HPDF_LoadPngImageFromFile([docBox getHpdfDoc], cPath);
         }
         else if ( [ext compare:@"jpg"] == NSOrderedSame || [ext compare:@"jpeg"] == NSOrderedSame )
         {
-            mHpdf_Image = HPDF_LoadJpegImageFromFile([docBox getHpdfDoc], cPath);
+            _hpdf_Image = HPDF_LoadJpegImageFromFile([docBox getHpdfDoc], cPath);
         }
         else if ( [ext compare:@"gif"] == NSOrderedSame )
         {
@@ -74,7 +74,7 @@
             NSData *data = UIImagePNGRepresentation(image);
             const unsigned char *cData = [data bytes];
             unsigned int size = (unsigned int)([data length] / sizeof(unsigned char));
-            mHpdf_Image = HPDF_LoadPngImageFromMem([docBox getHpdfDoc], cData , size);
+            _hpdf_Image = HPDF_LoadPngImageFromMem([docBox getHpdfDoc], cData , size);
         }
         else
         {
@@ -82,13 +82,13 @@
         }
     }
     
-    if(mHpdf_Image == NULL)
+    if(_hpdf_Image == NULL)
         @throw [NSException exceptionWithName:@"Image" reason:@"mHpdf_Image is null" userInfo:nil];
     
 }
 
 -(void)checkImage {
-    if(mHpdf_Image == nil)
+    if(_hpdf_Image == nil)
     {
         [self loadImage];
     }
@@ -96,12 +96,12 @@
 
 - (int)getWidth {
     [self checkImage];
-    return HPDF_Image_GetWidth(mHpdf_Image);
+    return HPDF_Image_GetWidth(_hpdf_Image);
 }
 
 - (int)getHeight {
     [self checkImage];
-    return HPDF_Image_GetHeight(mHpdf_Image);
+    return HPDF_Image_GetHeight(_hpdf_Image);
 }
 
 - (NSString *)getResourcePath {
@@ -110,7 +110,7 @@
 
 - (id)getPeer {
     [self checkImage];
-    return [[ImageBox alloc] initWithHpdfImage:mHpdf_Image];;
+    return [[ImageBox alloc] initWithHpdfImage:_hpdf_Image];;
 }
 
 
