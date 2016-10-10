@@ -18,10 +18,10 @@
 - (id)initWithFile:(NSString*)filename manager:(OrgOssPdfreporterImageImageManager*)manager {
     self = [super init];
     if (self) {
-        mScale = 1;
-        mQuality = 1;
         mManager = manager;
         _resourcePath = filename;
+        _scale = 1;
+        _quality = 1;
     }
     return self;
 }
@@ -29,10 +29,10 @@
 - (id)initWithRecompressedFile:(NSString*)filename quality:(float)quality scale:(float)scale manager:(OrgOssPdfreporterImageImageManager*)manager {
     self = [super init];
     if (self) {
-        mScale = quality;
-        mQuality = scale;
         mManager = manager;
         _resourcePath = filename;
+        _scale = quality;
+        _quality = scale;
     }
     return self;
 }
@@ -44,13 +44,13 @@
 
 - (void)loadImage {
     HpdfDocBox *docBox = [HpdfDocBox GetDocBoxFromSession:[[OrgOssPdfreporterRegistryApiRegistry getImageFactory] getSession]];
-    if(mScale!=1 || mQuality != 1)
+    if(_scale!=1 || _quality != 1)
     {
-        if(mScale != 1){
-            image = [[UIImage alloc] initWithCGImage:[image CGImage] scale:mScale orientation:UIImageOrientationUp];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:_resourcePath];
+        if(_scale != 1){
+            image = [[UIImage alloc] initWithCGImage:[image CGImage] scale:_scale orientation:UIImageOrientationUp];
         }
-        NSData *data = UIImageJPEGRepresentation(image, mQuality);
+        NSData *data = UIImageJPEGRepresentation(image, _quality);
         const unsigned char *cData = [data bytes];
         unsigned int size = (unsigned int)([data length] / sizeof(unsigned char));
         _hpdf_Image = HPDF_LoadJpegImageFromMem([docBox getHpdfDoc], cData , size);
