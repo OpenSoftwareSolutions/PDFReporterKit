@@ -18,10 +18,10 @@
 - (id)initWithFile:(NSString*)filename manager:(OrgOssPdfreporterImageImageManager*)manager {
     self = [super init];
     if (self) {
-        mResourcePath = filename;
         mScale = 1;
         mQuality = 1;
         mManager = manager;
+        _resourcePath = filename;
     }
     return self;
 }
@@ -29,10 +29,10 @@
 - (id)initWithRecompressedFile:(NSString*)filename quality:(float)quality scale:(float)scale manager:(OrgOssPdfreporterImageImageManager*)manager {
     self = [super init];
     if (self) {
-        mResourcePath = filename;
         mScale = quality;
         mQuality = scale;
         mManager = manager;
+        _resourcePath = filename;
     }
     return self;
 }
@@ -46,9 +46,9 @@
     HpdfDocBox *docBox = [HpdfDocBox GetDocBoxFromSession:[[OrgOssPdfreporterRegistryApiRegistry getImageFactory] getSession]];
     if(mScale!=1 || mQuality != 1)
     {
-        UIImage *image = [[UIImage alloc] initWithContentsOfFile:mResourcePath];
         if(mScale != 1){
             image = [[UIImage alloc] initWithCGImage:[image CGImage] scale:mScale orientation:UIImageOrientationUp];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:_resourcePath];
         }
         NSData *data = UIImageJPEGRepresentation(image, mQuality);
         const unsigned char *cData = [data bytes];
@@ -57,8 +57,8 @@
     }
     else
     {
-        NSString *ext = [mResourcePath pathExtension];
-        const char *cPath = [mResourcePath UTF8String];
+        NSString *ext = [_resourcePath pathExtension];
+        const char *cPath = [_resourcePath UTF8String];
         
         if([ext compare:@"png"] == NSOrderedSame)
         {
@@ -70,7 +70,7 @@
         }
         else if ( [ext compare:@"gif"] == NSOrderedSame )
         {
-            UIImage *image = [[UIImage alloc] initWithContentsOfFile:mResourcePath];
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:_resourcePath];
             NSData *data = UIImagePNGRepresentation(image);
             const unsigned char *cData = [data bytes];
             unsigned int size = (unsigned int)([data length] / sizeof(unsigned char));
@@ -105,7 +105,7 @@
 }
 
 - (NSString *)getResourcePath {
-    return mResourcePath;
+    return _resourcePath;
 }
 
 - (id)getPeer {
