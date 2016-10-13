@@ -36,7 +36,7 @@
 		3B705B4A1D454899005BA326 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B705B451D454857005BA326 /* libz.1.dylib */; };
 		3BDF62F11D440DD200C2DF4F /* libHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF62EF1D440DD200C2DF4F /* libHaru.framework */; };
 		3BDF62F21D440DD200C2DF4F /* libPng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF62F01D440DD200C2DF4F /* libPng.framework */; };
-		3BDF6E531D441C2900C2DF4F /* PDFReporterKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF62FD1D441C2300C2DF4F /* PDFReporterKit.h */; };
+		3BDF6E531D441C2900C2DF4F /* PDFReporterKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF62FD1D441C2300C2DF4F /* PDFReporterKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BDF8F3F1D441C7C00C2DF4F /* PDFReporterKit-prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF84731D441C7A00C2DF4F /* PDFReporterKit-prefix.pch */; };
 		3BDF9A931D441CD600C2DF4F /* AutoreleasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF8F451D441CCF00C2DF4F /* AutoreleasePool.h */; };
 		3BDF9A941D441CD600C2DF4F /* AutoreleasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8F461D441CCF00C2DF4F /* AutoreleasePool.m */; };
