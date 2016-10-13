@@ -12,7 +12,9 @@
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
 #include "org/oss/pdfreporter/image/ImageFactory.h"
 #import <UIKit/UIKit.h>
-#import "InputStreamMarshaller.h"
+
+#import "IOSPrimitiveArray.h"
+#include "java/io/InputStream.h"
 
 
 @implementation Image
@@ -136,11 +138,15 @@
 - (void)loadImage
 {
     HpdfDocBox *docBox = [HpdfDocBox GetDocBoxFromSession:[[OrgOssPdfreporterRegistryApiRegistry getImageFactory] getSession]];
-    NSData *data = [InputStreamMarshaller convertJavaIoInputStreamToNSData:_is];
+    
+    int available = [_is available];
+    IOSByteArray *data = [IOSByteArray newArrayWithLength:available];
+    [_is readWithByteArray:data];
+    NSData *nsData = [data toNSData];
     uint8_t c;
-    const unsigned char *cData = [data bytes];
+    const unsigned char *cData = [nsData bytes];
     unsigned int size = (unsigned int)([data length] / sizeof(unsigned char));
-    [data getBytes:&c length:1];
+    [nsData getBytes:&c length:1];
 
     if (c == 0xFF) // JPEG
     {
