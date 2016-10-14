@@ -16,9 +16,13 @@
   static const J2ObjcMethodInfo methods[] = {
     { "getLoadedImages", NULL, "Ljava.util.Collection;", 0x401, NULL, "()Ljava/util/Collection<Lorg/oss/pdfreporter/image/IImage;>;" },
     { "loadImageWithNSString:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x401, "Ljava.io.IOException;", NULL },
+    { "loadImageWithJavaIoInputStream:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x401, "Ljava.io.IOException;", NULL },
+    { "loadImageWithOrgOssPdfreporterNetIURL:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x401, "Ljava.io.IOException;", NULL },
     { "loadImageWithNSString:withFloat:withFloat:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x401, "Ljava.io.IOException;", NULL },
+    { "loadImageWithJavaIoInputStream:withFloat:withFloat:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x401, "Ljava.io.IOException;", NULL },
+    { "loadImageWithOrgOssPdfreporterNetIURL:withFloat:withFloat:", "loadImage", "Lorg.oss.pdfreporter.image.IImage;", 0x401, "Ljava.io.IOException;", NULL },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterImageIImageManager = { 2, "IImageManager", "org.oss.pdfreporter.image", NULL, 0x609, 3, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterImageIImageManager = { 2, "IImageManager", "org.oss.pdfreporter.image", NULL, 0x609, 7, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterImageIImageManager;
 }
 

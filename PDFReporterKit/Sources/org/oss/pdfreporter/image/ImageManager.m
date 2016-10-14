@@ -9,6 +9,7 @@
 #import "ImageManager.h"
 #import "Image.h"
 #include "J2ObjC_source.h"
+#include "org/oss/pdfreporter/net/IURL.h"
 
 @implementation OrgOssPdfreporterImageImageManager
 
@@ -30,6 +31,15 @@ J2OBJC_IGNORE_DESIGNATED_END
         image = [[Image alloc] initWithFile:filePath manager:self];
     }
     return image;
+}
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithJavaIoInputStream:(JavaIoInputStream *)imageStream {
+  	return [[InputStreamImage alloc] initWithJavaIoInputStream:imageStream manager:self];
+}
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)fileURL {
+    JavaIoInputStream *is = [fileURL openStream];
+    return [self loadImageWithJavaIoInputStream:is];
 }
 
 - (void)disposeInternal {

@@ -23,12 +23,20 @@
 /* Begin PBXBuildFile section */
 		3B1BF6561D453D8A00B07918 /* libjre_emul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1BF64F1D4531E800B07918 /* libjre_emul.a */; };
 		3B5424EC1D3B5D3100C2EBB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5424EB1D3B5D3100C2EBB0 /* Security.framework */; };
+		3B6B130C1DA5953700543E67 /* AbstractImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6B130A1DA5953700543E67 /* AbstractImageProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B6B130D1DA5953700543E67 /* AbstractImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B130B1DA5953700543E67 /* AbstractImageProxy.m */; };
+		3B6B13101DA595F600543E67 /* FileImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6B130E1DA595F600543E67 /* FileImageProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B6B13111DA595F600543E67 /* FileImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B130F1DA595F600543E67 /* FileImageProxy.m */; };
+		3B6B13141DA5962B00543E67 /* StreamImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6B13121DA5962B00543E67 /* StreamImageProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B6B13151DA5962B00543E67 /* StreamImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B13131DA5962B00543E67 /* StreamImageProxy.m */; };
+		3B6B13181DA5967800543E67 /* UrlImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6B13161DA5967800543E67 /* UrlImageProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B6B13191DA5967800543E67 /* UrlImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B13171DA5967800543E67 /* UrlImageProxy.m */; };
 		3B705B461D454857005BA326 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B705B431D454857005BA326 /* libsqlite3.dylib */; };
 		3B705B491D45488D005BA326 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B705B441D454857005BA326 /* libxml2.2.dylib */; };
 		3B705B4A1D454899005BA326 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B705B451D454857005BA326 /* libz.1.dylib */; };
 		3BDF62F11D440DD200C2DF4F /* libHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF62EF1D440DD200C2DF4F /* libHaru.framework */; };
 		3BDF62F21D440DD200C2DF4F /* libPng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF62F01D440DD200C2DF4F /* libPng.framework */; };
-		3BDF6E531D441C2900C2DF4F /* PDFReporterKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF62FD1D441C2300C2DF4F /* PDFReporterKit.h */; };
+		3BDF6E531D441C2900C2DF4F /* PDFReporterKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF62FD1D441C2300C2DF4F /* PDFReporterKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BDF8F3F1D441C7C00C2DF4F /* PDFReporterKit-prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF84731D441C7A00C2DF4F /* PDFReporterKit-prefix.pch */; };
 		3BDF9A931D441CD600C2DF4F /* AutoreleasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF8F451D441CCF00C2DF4F /* AutoreleasePool.h */; };
 		3BDF9A941D441CD600C2DF4F /* AutoreleasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF8F461D441CCF00C2DF4F /* AutoreleasePool.m */; };
@@ -2020,8 +2028,6 @@
 		3BDFA2561D441CD700C2DF4F /* ImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF97441D441CD400C2DF4F /* ImageFactory.m */; };
 		3BDFA2571D441CD700C2DF4F /* ImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF97451D441CD400C2DF4F /* ImageManager.h */; };
 		3BDFA2581D441CD700C2DF4F /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF97461D441CD400C2DF4F /* ImageManager.m */; };
-		3BDFA2591D441CD700C2DF4F /* ImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF97471D441CD400C2DF4F /* ImageProxy.h */; };
-		3BDFA25A1D441CD700C2DF4F /* ImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF97481D441CD400C2DF4F /* ImageProxy.m */; };
 		3BDFA25B1D441CD700C2DF4F /* ChartEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF974A1D441CD400C2DF4F /* ChartEntity.h */; };
 		3BDFA25C1D441CD700C2DF4F /* ChartEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF974B1D441CD400C2DF4F /* ChartEntity.m */; };
 		3BDFA25D1D441CD700C2DF4F /* Dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDF974C1D441CD400C2DF4F /* Dataset.h */; };
@@ -2798,6 +2804,14 @@
 		3B1BF64F1D4531E800B07918 /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = ../j2objc/lib/libjre_emul.a; sourceTree = "<group>"; };
 		3B54140E1D3B56FB00C2EBB0 /* PDFReporterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PDFReporterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5424EB1D3B5D3100C2EBB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		3B6B130A1DA5953700543E67 /* AbstractImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractImageProxy.h; sourceTree = "<group>"; };
+		3B6B130B1DA5953700543E67 /* AbstractImageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractImageProxy.m; sourceTree = "<group>"; };
+		3B6B130E1DA595F600543E67 /* FileImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileImageProxy.h; sourceTree = "<group>"; };
+		3B6B130F1DA595F600543E67 /* FileImageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileImageProxy.m; sourceTree = "<group>"; };
+		3B6B13121DA5962B00543E67 /* StreamImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamImageProxy.h; sourceTree = "<group>"; };
+		3B6B13131DA5962B00543E67 /* StreamImageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamImageProxy.m; sourceTree = "<group>"; };
+		3B6B13161DA5967800543E67 /* UrlImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlImageProxy.h; sourceTree = "<group>"; };
+		3B6B13171DA5967800543E67 /* UrlImageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlImageProxy.m; sourceTree = "<group>"; };
 		3B705B431D454857005BA326 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		3B705B441D454857005BA326 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
 		3B705B451D454857005BA326 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
@@ -4796,8 +4810,6 @@
 		3BDF97441D441CD400C2DF4F /* ImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFactory.m; sourceTree = "<group>"; };
 		3BDF97451D441CD400C2DF4F /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		3BDF97461D441CD400C2DF4F /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
-		3BDF97471D441CD400C2DF4F /* ImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProxy.h; sourceTree = "<group>"; };
-		3BDF97481D441CD400C2DF4F /* ImageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProxy.m; sourceTree = "<group>"; };
 		3BDF974A1D441CD400C2DF4F /* ChartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartEntity.h; sourceTree = "<group>"; };
 		3BDF974B1D441CD400C2DF4F /* ChartEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartEntity.m; sourceTree = "<group>"; };
 		3BDF974C1D441CD400C2DF4F /* Dataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dataset.h; sourceTree = "<group>"; };
@@ -8136,6 +8148,14 @@
 		3BDF97331D441CD400C2DF4F /* image */ = {
 			isa = PBXGroup;
 			children = (
+				3B6B13161DA5967800543E67 /* UrlImageProxy.h */,
+				3B6B13171DA5967800543E67 /* UrlImageProxy.m */,
+				3B6B13121DA5962B00543E67 /* StreamImageProxy.h */,
+				3B6B13131DA5962B00543E67 /* StreamImageProxy.m */,
+				3B6B130E1DA595F600543E67 /* FileImageProxy.h */,
+				3B6B130F1DA595F600543E67 /* FileImageProxy.m */,
+				3B6B130A1DA5953700543E67 /* AbstractImageProxy.h */,
+				3B6B130B1DA5953700543E67 /* AbstractImageProxy.m */,
 				3BDF97341D441CD400C2DF4F /* AbstractImageFactory.h */,
 				3BDF97351D441CD400C2DF4F /* AbstractImageFactory.m */,
 				3BDF97361D441CD400C2DF4F /* AbstractImageManager.h */,
@@ -8153,8 +8173,6 @@
 				3BDF97441D441CD400C2DF4F /* ImageFactory.m */,
 				3BDF97451D441CD400C2DF4F /* ImageManager.h */,
 				3BDF97461D441CD400C2DF4F /* ImageManager.m */,
-				3BDF97471D441CD400C2DF4F /* ImageProxy.h */,
-				3BDF97481D441CD400C2DF4F /* ImageProxy.m */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -9536,7 +9554,6 @@
 				3BDFA2271D441CD700C2DF4F /* TextAttribute.h in Headers */,
 				3BDF9CB51D441CD600C2DF4F /* ComponentKey.h in Headers */,
 				3BDF9C311D441CD600C2DF4F /* JRBaseComponentElement.h in Headers */,
-				3BDFA2591D441CD700C2DF4F /* ImageProxy.h in Headers */,
 				3BDF9D1D1D441CD600C2DF4F /* JRDesignField.h in Headers */,
 				3BDFA50D1D441CD700C2DF4F /* Node.h in Headers */,
 				3BDF9C031D441CD600C2DF4F /* JRCrosstabFactory.h in Headers */,
@@ -9730,6 +9747,7 @@
 				3BDFA1C31D441CD700C2DF4F /* JRXmlDigester.h in Headers */,
 				3BDFA1651D441CD700C2DF4F /* JRGenericPrintElementFactory.h in Headers */,
 				3BDF9F911D441CD600C2DF4F /* JRReportTemplate.h in Headers */,
+				3B6B13101DA595F600543E67 /* FileImageProxy.h in Headers */,
 				3BDFA0431D441CD700C2DF4F /* LineSpacingEnum.h in Headers */,
 				3BDF9C851D441CD600C2DF4F /* JRBaseReport.h in Headers */,
 				3BDF9B8D1D441CD600C2DF4F /* JRBaseCellContents.h in Headers */,
@@ -10225,6 +10243,7 @@
 				3BDFA30F1D441CD700C2DF4F /* Chunk.h in Headers */,
 				3BDFA2E51D441CD700C2DF4F /* ISqlFactory.h in Headers */,
 				3BDFA50B1D441CD700C2DF4F /* NamedNodeMap.h in Headers */,
+				3B6B13181DA5967800543E67 /* UrlImageProxy.h in Headers */,
 				3BDFA2B91D441CD700C2DF4F /* FileSystemResource.h in Headers */,
 				3BDFA4051D441CD700C2DF4F /* IDigesterFactory.h in Headers */,
 				3BDF9C8B1D441CD600C2DF4F /* JRBaseSection.h in Headers */,
@@ -10363,6 +10382,7 @@
 				3BDF9C9D1D441CD600C2DF4F /* JRBaseVariable.h in Headers */,
 				3BDFA4431D441CD700C2DF4F /* DoubleArgument.h in Headers */,
 				3BDF9FE11D441CD600C2DF4F /* JREmptyQueryExecuter.h in Headers */,
+				3B6B130C1DA5953700543E67 /* AbstractImageProxy.h in Headers */,
 				3BDFA46F1D441CD700C2DF4F /* OrOperator.h in Headers */,
 				3BDFA1951D441CD700C2DF4F /* JRPrintStyleFactory.h in Headers */,
 				3BDF9D7D1D441CD600C2DF4F /* ExporterFilter.h in Headers */,
@@ -10547,6 +10567,7 @@
 				3BDFA3631D441CD700C2DF4F /* Evaluator.h in Headers */,
 				3BDF9B591D441CD600C2DF4F /* FillColumn.h in Headers */,
 				3BDFA33F1D441CD700C2DF4F /* Annotation.h in Headers */,
+				3B6B13141DA5962B00543E67 /* StreamImageProxy.h in Headers */,
 				3BDF9AA71D441CD600C2DF4F /* AbstractExpressionElement.h in Headers */,
 				3BDF9B291D441CD600C2DF4F /* DesignListContents.h in Headers */,
 				3BDFA4531D441CD700C2DF4F /* ExpressionElement.h in Headers */,
@@ -11410,6 +11431,7 @@
 				3BDFA14C1D441CD700C2DF4F /* JRDatasetRunParameterFactory.m in Sources */,
 				3BDF9C5A1D441CD600C2DF4F /* JRBaseHyperlinkParameter.m in Sources */,
 				3BDFA1B01D441CD700C2DF4F /* JRSubreportExpressionFactory.m in Sources */,
+				3B6B130D1DA5953700543E67 /* AbstractImageProxy.m in Sources */,
 				3BDF9BC01D441CD600C2DF4F /* CrosstabBucketingService.m in Sources */,
 				3BDF9C441D441CD600C2DF4F /* JRBaseExpression.m in Sources */,
 				3BDF9DD21D441CD600C2DF4F /* JRAbstractFillObjectFactory.m in Sources */,
@@ -11726,6 +11748,7 @@
 				3BDFA4E81D441CD700C2DF4F /* ToUpperCase.m in Sources */,
 				3BDFA4CE1D441CD700C2DF4F /* EndsWith.m in Sources */,
 				3BDF9FD41D441CD600C2DF4F /* ClauseFunctionParameterHandler.m in Sources */,
+				3B6B13191DA5967800543E67 /* UrlImageProxy.m in Sources */,
 				3BDF9B121D441CD600C2DF4F /* SingleChunkExpressionFactory.m in Sources */,
 				3BDF9E9A1D441CD600C2DF4F /* LineHeightCalculator.m in Sources */,
 				3BDFA28C1D441CD700C2DF4F /* AbstractDocument.m in Sources */,
@@ -11809,7 +11832,6 @@
 				3BDFA4DE1D441CD700C2DF4F /* NumberFormat.m in Sources */,
 				3BDFA3EE1D441CD700C2DF4F /* SubtractionOperator.m in Sources */,
 				3BDFA1601D441CD700C2DF4F /* JRGenericElementFactory.m in Sources */,
-				3BDFA25A1D441CD700C2DF4F /* ImageProxy.m in Sources */,
 				3BDFA24A1D441CD700C2DF4F /* AbstractImageManager.m in Sources */,
 				3BDFA36A1D441CD700C2DF4F /* ExpressionTree.m in Sources */,
 				3BDFA15C1D441CD700C2DF4F /* JRFontFactory.m in Sources */,
@@ -12047,6 +12069,7 @@
 				3BDFA4521D441CD700C2DF4F /* Expression.m in Sources */,
 				3BDF9BFE1D441CD600C2DF4F /* JRCrosstabCellFactory.m in Sources */,
 				3BDFA54C1D441CD700C2DF4F /* XMLParseException.m in Sources */,
+				3B6B13111DA595F600543E67 /* FileImageProxy.m in Sources */,
 				3BDF9FA01D441CD600C2DF4F /* JRSimpleTemplate.m in Sources */,
 				3BDF9E861D441CD600C2DF4F /* JRTemplatePrintRectangle.m in Sources */,
 				3BDFA1921D441CD700C2DF4F /* JRPrintPageFactory.m in Sources */,
@@ -12112,6 +12135,7 @@
 				3BDF9B1A1D441CD600C2DF4F /* ResultUtil.m in Sources */,
 				3BDFA1F41D441CD700C2DF4F /* ListExtensionRegistry.m in Sources */,
 				3BDFA5561D441CD700C2DF4F /* PDFReporter.m in Sources */,
+				3B6B13151DA5962B00543E67 /* StreamImageProxy.m in Sources */,
 				3BDFA33C1D441CD700C2DF4F /* PositionedLined.m in Sources */,
 				3BDFA2021D441CD700C2DF4F /* DecoratedFont.m in Sources */,
 				3BDFA2801D441CD700C2DF4F /* NetFactory.m in Sources */,
@@ -12415,11 +12439,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 67;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1.0.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -12490,11 +12514,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 67;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1.0.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

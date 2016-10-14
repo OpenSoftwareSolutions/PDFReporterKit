@@ -20,8 +20,10 @@
 #define INCLUDE_OrgOssPdfreporterRegistryISessionListener 1
 #include "org/oss/pdfreporter/registry/ISessionListener.h"
 
+@class JavaIoInputStream;
 @protocol JavaUtilCollection;
 @protocol OrgOssPdfreporterImageIImage;
+@protocol OrgOssPdfreporterNetIURL;
 
 @protocol OrgOssPdfreporterImageIImageManager < OrgOssPdfreporterRegistryISessionListener, NSObject, JavaObject >
 
@@ -29,9 +31,21 @@
 
 - (id<OrgOssPdfreporterImageIImage>)loadImageWithNSString:(NSString *)filePath;
 
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithJavaIoInputStream:(JavaIoInputStream *)image;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)fileURL;
+
 - (id<OrgOssPdfreporterImageIImage>)loadImageWithNSString:(NSString *)filePath
                                                 withFloat:(jfloat)quality
                                                 withFloat:(jfloat)scale_;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithJavaIoInputStream:(JavaIoInputStream *)image
+                                                         withFloat:(jfloat)quality
+                                                         withFloat:(jfloat)scale_;
+
+- (id<OrgOssPdfreporterImageIImage>)loadImageWithOrgOssPdfreporterNetIURL:(id<OrgOssPdfreporterNetIURL>)fileUrl
+                                                                withFloat:(jfloat)quality
+                                                                withFloat:(jfloat)scale_;
 
 @end
 

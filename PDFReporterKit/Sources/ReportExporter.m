@@ -105,7 +105,13 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 +(void)phaseExportReportToPdf:(NSString*)pdfPath
 {
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:nil];
+    [self phaseExportReportToPdf:pdfPath fillWithParameters:nil];
+}
+
++(void)phaseExportReportToPdf:(NSString*)pdfPath fillWithParameters:(NSDictionary *)parameters;
+{
+    NSDictionaryMap *parametersMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:parametersMap];
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
     phaseReport = nil;

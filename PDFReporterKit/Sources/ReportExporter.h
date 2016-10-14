@@ -16,6 +16,7 @@
 
 +(void)phaseLoadReportWithJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders;
 +(void)phaseExportReportToPdf:(NSString*)pdfPath;
++(void)phaseExportReportToPdf:(NSString*)pdfPath fillWithParameters:(NSDictionary *)parameters;
 +(void)phaseExportReportToPdf:(NSString*)pdfPath withXml:(NSString*)xmlFile andXPath:(NSString*)xPath;
 +(void)phaseExportReportToPdf:(NSString*)pdfPath andSqlite3:(NSString*)sqlite3;
 @end

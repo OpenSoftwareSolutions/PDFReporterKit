@@ -12,5 +12,6 @@
 #include "org/oss/pdfreporter/xml/parsers/IInputSource.h"
 
 @interface InputStreamMarshaller : NSObject
++(NSData *)convertJavaIoInputStreamToNSData:(JavaIoInputStream *)is;
 +(NSData *)convertInputSourceToNSData:(id<OrgOssPdfreporterXmlParsersIInputSource>)input;
 @end
