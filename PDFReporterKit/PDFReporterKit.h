@@ -66,6 +66,9 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/SubDataSource.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/ToMilliseconds.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/TruncateDateTo.h>
+#include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/BytesAsStream.h>
+#include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/DecodeBase64Bytes.h>
+#include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/DecodeBase64String.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/JSHuntingYardCompiler.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/JSHuntingYardExpression.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/JSHuntingYardExpressionEvaluator.h>
@@ -1335,9 +1338,6 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/Substring.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/ToLowerCase.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/ToUpperCase.h>
-#include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/BytesAsStream.h>
-#include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/DecodeBase64Bytes.h>
-#include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/DecodeBase64String.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/VariableArgument.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/lexer/ExpressionToken.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/lexer/ExpressionTokenizer.h>
