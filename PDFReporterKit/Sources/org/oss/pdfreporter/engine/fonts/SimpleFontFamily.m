@@ -5,7 +5,6 @@
 
 #include "J2ObjC_source.h"
 #include "java/lang/Boolean.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/Set.h"
 #include "org/oss/pdfreporter/engine/DefaultJasperReportsContext.h"
@@ -15,10 +14,10 @@
 #include "org/oss/pdfreporter/engine/fonts/SimpleFontFamily.h"
 #include "org/oss/pdfreporter/engine/util/JRDataUtils.h"
 #include "org/oss/pdfreporter/font/IFont.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineFontsSimpleFontFamily () {
  @public
-  id<OrgOssPdfreporterEngineJasperReportsContext> jasperReportsContext_;
   NSString *name_;
   id<OrgOssPdfreporterEngineFontsFontFace> normalFace_;
   id<OrgOssPdfreporterEngineFontsFontFace> boldFace_;
@@ -37,7 +36,6 @@
 
 @end
 
-J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFontsSimpleFontFamily, jasperReportsContext_, id<OrgOssPdfreporterEngineJasperReportsContext>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFontsSimpleFontFamily, name_, NSString *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFontsSimpleFontFamily, normalFace_, id<OrgOssPdfreporterEngineFontsFontFace>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFontsSimpleFontFamily, boldFace_, id<OrgOssPdfreporterEngineFontsFontFace>)
@@ -184,8 +182,8 @@ J2OBJC_IGNORE_DESIGNATED_END
   self->locales_ = locales;
 }
 
-- (jboolean)supportsLocaleWithJavaUtilLocale:(JavaUtilLocale *)locale {
-  return locales_ == nil || [locales_ isEmpty] || [((id<JavaUtilSet>) nil_chk(locales_)) containsWithId:OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithJavaUtilLocale_(locale)];
+- (jboolean)supportsLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  return locales_ == nil || [locales_ isEmpty] || [((id<JavaUtilSet>) nil_chk(locales_)) containsWithId:OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale_(locale)];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -221,10 +219,9 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "getExportFontWithNSString:", "getExportFont", "Ljava.lang.String;", 0x1, NULL, NULL },
     { "getLocales", NULL, "Ljava.util.Set;", 0x1, NULL, "()Ljava/util/Set<Ljava/lang/String;>;" },
     { "setLocalesWithJavaUtilSet:", "setLocales", "V", 0x1, NULL, "(Ljava/util/Set<Ljava/lang/String;>;)V" },
-    { "supportsLocaleWithJavaUtilLocale:", "supportsLocale", "Z", 0x1, NULL, NULL },
+    { "supportsLocaleWithOrgOssPdfreporterTextBundleStringLocale:", "supportsLocale", "Z", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "jasperReportsContext_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.JasperReportsContext;", NULL, NULL, .constantValue.asLong = 0 },
     { "name_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "normalFace_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fonts.FontFace;", NULL, NULL, .constantValue.asLong = 0 },
     { "boldFace_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fonts.FontFace;", NULL, NULL, .constantValue.asLong = 0 },
@@ -240,7 +237,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "exportFonts_", NULL, 0x2, "Ljava.util.Map;", NULL, "Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;", .constantValue.asLong = 0 },
     { "locales_", NULL, 0x2, "Ljava.util.Set;", NULL, "Ljava/util/Set<Ljava/lang/String;>;", .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFontsSimpleFontFamily = { 2, "SimpleFontFamily", "org.oss.pdfreporter.engine.fonts", NULL, 0x1, 32, methods, 15, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFontsSimpleFontFamily = { 2, "SimpleFontFamily", "org.oss.pdfreporter.engine.fonts", NULL, 0x1, 32, methods, 14, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineFontsSimpleFontFamily;
 }
 
@@ -260,7 +257,6 @@ OrgOssPdfreporterEngineFontsSimpleFontFamily *create_OrgOssPdfreporterEngineFont
 
 void OrgOssPdfreporterEngineFontsSimpleFontFamily_initWithOrgOssPdfreporterEngineJasperReportsContext_(OrgOssPdfreporterEngineFontsSimpleFontFamily *self, id<OrgOssPdfreporterEngineJasperReportsContext> jasperReportsContext) {
   NSObject_init(self);
-  self->jasperReportsContext_ = jasperReportsContext;
 }
 
 OrgOssPdfreporterEngineFontsSimpleFontFamily *new_OrgOssPdfreporterEngineFontsSimpleFontFamily_initWithOrgOssPdfreporterEngineJasperReportsContext_(id<OrgOssPdfreporterEngineJasperReportsContext> jasperReportsContext) {

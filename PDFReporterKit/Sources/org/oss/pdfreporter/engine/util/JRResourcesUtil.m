@@ -6,28 +6,21 @@
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
 #include "java/io/File.h"
-#include "java/lang/ClassLoader.h"
-#include "java/util/Locale.h"
-#include "java/util/ResourceBundle.h"
 #include "org/oss/pdfreporter/engine/util/FileResolver.h"
-#include "org/oss/pdfreporter/engine/util/JRClassLoader.h"
 #include "org/oss/pdfreporter/engine/util/JRResourcesUtil.h"
 #include "org/oss/pdfreporter/net/IURL.h"
 #include "org/oss/pdfreporter/net/MalformedURLException.h"
 #include "org/oss/pdfreporter/net/factory/INetFactory.h"
 #include "org/oss/pdfreporter/registry/IRegistry.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
+#include "org/oss/pdfreporter/text/bundle/TextBundle.h"
 
 @interface OrgOssPdfreporterEngineUtilJRResourcesUtil ()
-
-+ (JavaUtilResourceBundle *)loadResourceBundleWithNSString:(NSString *)baseName
-                                        withJavaUtilLocale:(JavaUtilLocale *)locale
-                                   withJavaLangClassLoader:(JavaLangClassLoader *)clsLoader;
 
 - (instancetype)init;
 
 @end
-
-__attribute__((unused)) static JavaUtilResourceBundle *OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_withJavaLangClassLoader_(NSString *baseName, JavaUtilLocale *locale, JavaLangClassLoader *clsLoader);
 
 __attribute__((unused)) static void OrgOssPdfreporterEngineUtilJRResourcesUtil_init(OrgOssPdfreporterEngineUtilJRResourcesUtil *self);
 
@@ -46,15 +39,9 @@ withOrgOssPdfreporterEngineUtilFileResolver:(id<OrgOssPdfreporterEngineUtilFileR
   return OrgOssPdfreporterEngineUtilJRResourcesUtil_resolveFileWithNSString_withOrgOssPdfreporterEngineUtilFileResolver_(location, fileRes);
 }
 
-+ (JavaUtilResourceBundle *)loadResourceBundleWithNSString:(NSString *)baseName
-                                        withJavaUtilLocale:(JavaUtilLocale *)locale {
-  return OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_(baseName, locale);
-}
-
-+ (JavaUtilResourceBundle *)loadResourceBundleWithNSString:(NSString *)baseName
-                                        withJavaUtilLocale:(JavaUtilLocale *)locale
-                                   withJavaLangClassLoader:(JavaLangClassLoader *)clsLoader {
-  return OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_withJavaLangClassLoader_(baseName, locale, clsLoader);
++ (id<OrgOssPdfreporterTextBundleITextBundle>)loadResourceBundleWithNSString:(NSString *)baseName
+                                 withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  return OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withOrgOssPdfreporterTextBundleStringLocale_(baseName, locale);
 }
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
@@ -68,11 +55,10 @@ J2OBJC_IGNORE_DESIGNATED_END
   static const J2ObjcMethodInfo methods[] = {
     { "createURLWithNSString:", "createURL", "Lorg.oss.pdfreporter.net.IURL;", 0x9, NULL, NULL },
     { "resolveFileWithNSString:withOrgOssPdfreporterEngineUtilFileResolver:", "resolveFile", "Ljava.io.File;", 0x9, NULL, NULL },
-    { "loadResourceBundleWithNSString:withJavaUtilLocale:", "loadResourceBundle", "Ljava.util.ResourceBundle;", 0x9, NULL, NULL },
-    { "loadResourceBundleWithNSString:withJavaUtilLocale:withJavaLangClassLoader:", "loadResourceBundle", "Ljava.util.ResourceBundle;", 0xa, NULL, NULL },
+    { "loadResourceBundleWithNSString:withOrgOssPdfreporterTextBundleStringLocale:", "loadResourceBundle", "Lorg.oss.pdfreporter.text.bundle.ITextBundle;", 0x9, NULL, NULL },
     { "init", "JRResourcesUtil", NULL, 0x2, NULL, NULL },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineUtilJRResourcesUtil = { 2, "JRResourcesUtil", "org.oss.pdfreporter.engine.util", NULL, 0x11, 5, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineUtilJRResourcesUtil = { 2, "JRResourcesUtil", "org.oss.pdfreporter.engine.util", NULL, 0x11, 4, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineUtilJRResourcesUtil;
 }
 
@@ -103,25 +89,9 @@ JavaIoFile *OrgOssPdfreporterEngineUtilJRResourcesUtil_resolveFileWithNSString_w
   return nil;
 }
 
-JavaUtilResourceBundle *OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_(NSString *baseName, JavaUtilLocale *locale) {
+id<OrgOssPdfreporterTextBundleITextBundle> OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withOrgOssPdfreporterTextBundleStringLocale_(NSString *baseName, OrgOssPdfreporterTextBundleStringLocale *locale) {
   OrgOssPdfreporterEngineUtilJRResourcesUtil_initialize();
-  return OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_withJavaLangClassLoader_(baseName, locale, nil);
-}
-
-JavaUtilResourceBundle *OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_withJavaLangClassLoader_(NSString *baseName, JavaUtilLocale *locale, JavaLangClassLoader *clsLoader) {
-  OrgOssPdfreporterEngineUtilJRResourcesUtil_initialize();
-  JavaUtilResourceBundle *resourceBundle = nil;
-  JavaLangClassLoader *classLoader = clsLoader;
-  if (resourceBundle == nil) {
-    classLoader = [OrgOssPdfreporterEngineUtilJRClassLoader_class_() getClassLoader];
-    if (classLoader == nil) {
-      resourceBundle = JavaUtilResourceBundle_getBundleWithNSString_withJavaUtilLocale_(baseName, locale);
-    }
-    else {
-      resourceBundle = JavaUtilResourceBundle_getBundleWithNSString_withJavaUtilLocale_withJavaLangClassLoader_(baseName, locale, classLoader);
-    }
-  }
-  return resourceBundle;
+  return OrgOssPdfreporterTextBundleTextBundle_getInstanceWithNSString_withOrgOssPdfreporterTextBundleStringLocale_(baseName, locale);
 }
 
 void OrgOssPdfreporterEngineUtilJRResourcesUtil_init(OrgOssPdfreporterEngineUtilJRResourcesUtil *self) {

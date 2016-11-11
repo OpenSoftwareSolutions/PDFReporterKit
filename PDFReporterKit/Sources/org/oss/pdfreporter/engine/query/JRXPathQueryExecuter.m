@@ -7,7 +7,6 @@
 #include "J2ObjC_source.h"
 #include "java/io/File.h"
 #include "java/io/InputStream.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/TimeZone.h"
 #include "org/oss/pdfreporter/engine/DefaultJasperReportsContext.h"
@@ -19,6 +18,7 @@
 #include "org/oss/pdfreporter/engine/query/JRAbstractQueryExecuter.h"
 #include "org/oss/pdfreporter/engine/query/JRXPathQueryExecuter.h"
 #include "org/oss/pdfreporter/engine/query/JRXPathQueryExecuterFactory.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/uses/org/w3c/dom/Document.h"
 
 @interface OrgOssPdfreporterEngineQueryJRXPathQueryExecuter () {
@@ -88,7 +88,7 @@ NSString *OrgOssPdfreporterEngineQueryJRXPathQueryExecuter_CANONICAL_LANGUAGE = 
       }
     }
     if (datasource != nil) {
-      [datasource setLocaleWithJavaUtilLocale:(JavaUtilLocale *) cast_chk([self getParameterValueWithNSString:OrgOssPdfreporterEngineQueryJRXPathQueryExecuterFactory_XML_LOCALE withBoolean:true], [JavaUtilLocale class])];
+      [datasource setLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *) cast_chk([self getParameterValueWithNSString:OrgOssPdfreporterEngineQueryJRXPathQueryExecuterFactory_XML_LOCALE withBoolean:true], [OrgOssPdfreporterTextBundleStringLocale class])];
       [datasource setDatePatternWithNSString:[self getStringParameterWithNSString:OrgOssPdfreporterEngineQueryJRXPathQueryExecuterFactory_XML_DATE_PATTERN withNSString:OrgOssPdfreporterEngineQueryJRXPathQueryExecuterFactory_PROPERTY_XML_DATE_PATTERN]];
       [datasource setNumberPatternWithNSString:[self getStringParameterWithNSString:OrgOssPdfreporterEngineQueryJRXPathQueryExecuterFactory_XML_NUMBER_PATTERN withNSString:OrgOssPdfreporterEngineQueryJRXPathQueryExecuterFactory_PROPERTY_XML_NUMBER_PATTERN]];
       [datasource setTimeZoneWithJavaUtilTimeZone:(JavaUtilTimeZone *) cast_chk([self getParameterValueWithNSString:OrgOssPdfreporterEngineQueryJRXPathQueryExecuterFactory_XML_TIME_ZONE withBoolean:true], [JavaUtilTimeZone class])];

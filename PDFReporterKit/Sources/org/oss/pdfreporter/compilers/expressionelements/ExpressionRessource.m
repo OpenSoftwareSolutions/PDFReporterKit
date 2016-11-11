@@ -3,14 +3,15 @@
 //  source: ../pdfreporter-core/src/org/oss/pdfreporter/compilers/expressionelements/ExpressionRessource.java
 //
 
+#include "IOSClass.h"
 #include "J2ObjC_source.h"
-#include "java/util/ResourceBundle.h"
 #include "org/oss/pdfreporter/compilers/IDataHolder.h"
 #include "org/oss/pdfreporter/compilers/IExpressionChunk.h"
 #include "org/oss/pdfreporter/compilers/expressionelements/AbstractExpressionElement.h"
 #include "org/oss/pdfreporter/compilers/expressionelements/ExpressionRessource.h"
 #include "org/oss/pdfreporter/engine/JRParameter.h"
 #include "org/oss/pdfreporter/engine/JRValueParameter.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
 
 @interface OrgOssPdfreporterCompilersExpressionelementsExpressionRessource () {
  @public
@@ -37,7 +38,7 @@ __attribute__((unused)) static id<OrgOssPdfreporterEngineJRValueParameter> OrgOs
 
 - (id)getValue {
   id<OrgOssPdfreporterEngineJRValueParameter> parameter = OrgOssPdfreporterCompilersExpressionelementsExpressionRessource_getParameter(self);
-  JavaUtilResourceBundle *resourceBundle = (JavaUtilResourceBundle *) cast_chk([((id<OrgOssPdfreporterEngineJRValueParameter>) nil_chk(parameter)) getValue], [JavaUtilResourceBundle class]);
+  id<OrgOssPdfreporterTextBundleITextBundle> resourceBundle = (id<OrgOssPdfreporterTextBundleITextBundle>) cast_check([((id<OrgOssPdfreporterEngineJRValueParameter>) nil_chk(parameter)) getValue], OrgOssPdfreporterTextBundleITextBundle_class_());
   return resourceBundle == nil ? nil : [resourceBundle getStringWithNSString:[self getName]];
 }
 

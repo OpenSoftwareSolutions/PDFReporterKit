@@ -5,7 +5,6 @@
 
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
-#include "java/util/ResourceBundle.h"
 #include "org/oss/pdfreporter/compilers/ExpressionEvaluationException.h"
 #include "org/oss/pdfreporter/compilers/ExpressionParseException.h"
 #include "org/oss/pdfreporter/compilers/IDataHolder.h"
@@ -17,6 +16,7 @@
 #include "org/oss/pdfreporter/engine/JRValueParameter.h"
 #include "org/oss/pdfreporter/engine/fill/JRFillField.h"
 #include "org/oss/pdfreporter/engine/fill/JRFillVariable.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
 
 #pragma clang diagnostic ignored "-Wprotocol"
 
@@ -290,8 +290,8 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(OrgOssPdfreporterCompilersSingleChunkExpression
 
 - (id)getValue {
   id<OrgOssPdfreporterEngineJRValueParameter> parameter = [((id<OrgOssPdfreporterCompilersIDataHolder>) nil_chk(dataholder_)) getParameterWithNSString:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE];
-  JavaUtilResourceBundle *resourceBundle = (JavaUtilResourceBundle *) cast_chk([((id<OrgOssPdfreporterEngineJRValueParameter>) nil_chk(parameter)) getValue], [JavaUtilResourceBundle class]);
-  return [((JavaUtilResourceBundle *) nil_chk(resourceBundle)) getStringWithNSString:key_];
+  id<OrgOssPdfreporterTextBundleITextBundle> resourceBundle = (id<OrgOssPdfreporterTextBundleITextBundle>) cast_check([((id<OrgOssPdfreporterEngineJRValueParameter>) nil_chk(parameter)) getValue], OrgOssPdfreporterTextBundleITextBundle_class_());
+  return [((id<OrgOssPdfreporterTextBundleITextBundle>) nil_chk(resourceBundle)) getStringWithNSString:key_];
 }
 
 - (id)getOldValue {

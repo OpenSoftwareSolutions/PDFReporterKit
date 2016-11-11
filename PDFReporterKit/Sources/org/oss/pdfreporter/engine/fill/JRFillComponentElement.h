@@ -28,8 +28,6 @@
 #define INCLUDE_OrgOssPdfreporterEngineComponentFillContext 1
 #include "org/oss/pdfreporter/engine/component/FillContext.h"
 
-@class JavaUtilLocale;
-@class JavaUtilResourceBundle;
 @class JavaUtilTimeZone;
 @class OrgOssPdfreporterEngineComponentComponentKey;
 @class OrgOssPdfreporterEngineFillJRBaseFiller;
@@ -41,6 +39,7 @@
 @class OrgOssPdfreporterEngineJRExpressionCollector;
 @class OrgOssPdfreporterEngineJROrigin;
 @class OrgOssPdfreporterEngineTypeEvaluationTimeEnum;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterEngineComponentComponent;
 @protocol OrgOssPdfreporterEngineFillFillContainerContext;
 @protocol OrgOssPdfreporterEngineFillJRFillCloneable;
@@ -48,6 +47,7 @@
 @protocol OrgOssPdfreporterEngineJRPrintElement;
 @protocol OrgOssPdfreporterEngineJRStyle;
 @protocol OrgOssPdfreporterEngineJRVisitor;
+@protocol OrgOssPdfreporterTextBundleITextBundle;
 
 @interface OrgOssPdfreporterEngineFillJRFillComponentElement : OrgOssPdfreporterEngineFillJRFillElement < OrgOssPdfreporterEngineJRComponentElement, OrgOssPdfreporterEngineComponentFillContext >
 
@@ -87,9 +87,9 @@
 
 - (OrgOssPdfreporterEngineFillJRBaseFiller *)getFiller;
 
-- (JavaUtilLocale *)getReportLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getReportLocale;
 
-- (JavaUtilResourceBundle *)getReportResourceBundle;
+- (id<OrgOssPdfreporterTextBundleITextBundle>)getReportResourceBundle;
 
 - (JavaUtilTimeZone *)getReportTimezone;
 

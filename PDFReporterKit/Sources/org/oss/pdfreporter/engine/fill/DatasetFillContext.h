@@ -16,8 +16,8 @@
 #if !defined (OrgOssPdfreporterEngineFillDatasetFillContext_) && (INCLUDE_ALL_OrgOssPdfreporterEngineFillDatasetFillContext || defined(INCLUDE_OrgOssPdfreporterEngineFillDatasetFillContext))
 #define OrgOssPdfreporterEngineFillDatasetFillContext_
 
-@class JavaUtilLocale;
 @class OrgOssPdfreporterEngineEvaluationType;
+@class OrgOssPdfreporterTextBundleStringLocale;
 
 @protocol OrgOssPdfreporterEngineFillDatasetFillContext < NSObject, JavaObject >
 
@@ -29,7 +29,7 @@ withOrgOssPdfreporterEngineEvaluationType:(OrgOssPdfreporterEngineEvaluationType
 - (id)getVariableValueWithNSString:(NSString *)variable
 withOrgOssPdfreporterEngineEvaluationType:(OrgOssPdfreporterEngineEvaluationType *)evaluation;
 
-- (JavaUtilLocale *)getLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 @end
 

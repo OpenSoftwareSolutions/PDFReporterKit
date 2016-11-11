@@ -5,41 +5,41 @@
 
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
-#include "java/util/Locale.h"
 #include "org/oss/pdfreporter/engine/util/LocalizedMessageProvider.h"
 #include "org/oss/pdfreporter/engine/util/MessageProvider.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineUtilLocalizedMessageProvider () {
  @public
   id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider_;
-  JavaUtilLocale *locale_;
+  OrgOssPdfreporterTextBundleStringLocale *locale_;
 }
 
 @end
 
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, messageProvider_, id<OrgOssPdfreporterEngineUtilMessageProvider>)
-J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, locale_, JavaUtilLocale *)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, locale_, OrgOssPdfreporterTextBundleStringLocale *)
 
 @implementation OrgOssPdfreporterEngineUtilLocalizedMessageProvider
 
 - (instancetype)initWithOrgOssPdfreporterEngineUtilMessageProvider:(id<OrgOssPdfreporterEngineUtilMessageProvider>)messageProvider
-                                                withJavaUtilLocale:(JavaUtilLocale *)locale {
-  OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_(self, messageProvider, locale);
+                       withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_(self, messageProvider, locale);
   return self;
 }
 
 - (NSString *)getMessageWithNSString:(NSString *)code {
-  return [((id<OrgOssPdfreporterEngineUtilMessageProvider>) nil_chk(messageProvider_)) getMessageWithNSString:code withNSObjectArray:nil withJavaUtilLocale:locale_];
+  return [((id<OrgOssPdfreporterEngineUtilMessageProvider>) nil_chk(messageProvider_)) getMessageWithNSString:code withNSObjectArray:nil withOrgOssPdfreporterTextBundleStringLocale:locale_];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
-    { "initWithOrgOssPdfreporterEngineUtilMessageProvider:withJavaUtilLocale:", "LocalizedMessageProvider", NULL, 0x1, NULL, NULL },
+    { "initWithOrgOssPdfreporterEngineUtilMessageProvider:withOrgOssPdfreporterTextBundleStringLocale:", "LocalizedMessageProvider", NULL, 0x1, NULL, NULL },
     { "getMessageWithNSString:", "getMessage", "Ljava.lang.String;", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
     { "messageProvider_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.util.MessageProvider;", NULL, NULL, .constantValue.asLong = 0 },
-    { "locale_", NULL, 0x2, "Ljava.util.Locale;", NULL, NULL, .constantValue.asLong = 0 },
+    { "locale_", NULL, 0x2, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineUtilLocalizedMessageProvider = { 2, "LocalizedMessageProvider", "org.oss.pdfreporter.engine.util", NULL, 0x1, 2, methods, 2, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineUtilLocalizedMessageProvider;
@@ -47,18 +47,18 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, locale_
 
 @end
 
-void OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_(OrgOssPdfreporterEngineUtilLocalizedMessageProvider *self, id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, JavaUtilLocale *locale) {
+void OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterEngineUtilLocalizedMessageProvider *self, id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, OrgOssPdfreporterTextBundleStringLocale *locale) {
   NSObject_init(self);
   self->messageProvider_ = messageProvider;
   self->locale_ = locale;
 }
 
-OrgOssPdfreporterEngineUtilLocalizedMessageProvider *new_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, JavaUtilLocale *locale) {
-  J2OBJC_NEW_IMPL(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_, messageProvider, locale)
+OrgOssPdfreporterEngineUtilLocalizedMessageProvider *new_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, OrgOssPdfreporterTextBundleStringLocale *locale) {
+  J2OBJC_NEW_IMPL(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_, messageProvider, locale)
 }
 
-OrgOssPdfreporterEngineUtilLocalizedMessageProvider *create_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, JavaUtilLocale *locale) {
-  J2OBJC_CREATE_IMPL(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_, messageProvider, locale)
+OrgOssPdfreporterEngineUtilLocalizedMessageProvider *create_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, OrgOssPdfreporterTextBundleStringLocale *locale) {
+  J2OBJC_CREATE_IMPL(OrgOssPdfreporterEngineUtilLocalizedMessageProvider, initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_, messageProvider, locale)
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(OrgOssPdfreporterEngineUtilLocalizedMessageProvider)

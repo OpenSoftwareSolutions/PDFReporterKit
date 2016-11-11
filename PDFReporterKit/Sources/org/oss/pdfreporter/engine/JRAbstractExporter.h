@@ -29,7 +29,6 @@
 @class IOSClass;
 @class IOSObjectArray;
 @class JavaLangCharacter;
-@class JavaUtilLocale;
 @class JavaUtilTimeZone;
 @class OrgOssPdfreporterEngineExportDataTextValue;
 @class OrgOssPdfreporterEngineExportJRHyperlinkProducerFactory;
@@ -39,6 +38,7 @@
 @class OrgOssPdfreporterEngineJasperPrint;
 @class OrgOssPdfreporterEngineUtilJRStyledText;
 @class OrgOssPdfreporterEngineUtilJRStyledTextUtil;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
 @protocol OrgOssPdfreporterEngineExportExporterFilter;
@@ -149,21 +149,21 @@
 
 - (id<OrgOssPdfreporterTextFormatIDateFormat>)getDateFormatWithNSString:(NSString *)formatFactoryClass
                                                            withNSString:(NSString *)pattern
-                                                     withJavaUtilLocale:(JavaUtilLocale *)lc
+                            withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)lc
                                                    withJavaUtilTimeZone:(JavaUtilTimeZone *)tz;
 
 - (NSString *)getExporterKey;
 
 - (id<OrgOssPdfreporterEngineExportJRHyperlinkProducer>)getHyperlinkProducerWithOrgOssPdfreporterEngineJRPrintHyperlink:(id<OrgOssPdfreporterEngineJRPrintHyperlink>)link;
 
-- (JavaUtilLocale *)getLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 - (OrgOssPdfreporterEngineExportDataTextValue *)getNumberCellValueWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)text
                                                                                             withNSString:(NSString *)textStr;
 
 - (id<OrgOssPdfreporterTextFormatINumberFormat>)getNumberFormatWithNSString:(NSString *)formatFactoryClass
                                                                withNSString:(NSString *)pattern
-                                                         withJavaUtilLocale:(JavaUtilLocale *)lc;
+                                withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)lc;
 
 - (jint)getOffsetX;
 
@@ -178,7 +178,7 @@
 
 - (NSString *)getTextFormatFactoryClassWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)text;
 
-- (JavaUtilLocale *)getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)text;
+- (OrgOssPdfreporterTextBundleStringLocale *)getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)text;
 
 - (JavaUtilTimeZone *)getTextTimeZoneWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)text;
 

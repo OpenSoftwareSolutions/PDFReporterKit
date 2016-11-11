@@ -8,6 +8,7 @@
 #include "java/lang/IllegalArgumentException.h"
 #include "java/util/Locale.h"
 #include "org/oss/pdfreporter/compilers/jshuntingyard/functions/DisplayName.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/AbstractOneArgFunctionElement.h"
 #include "org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/FunctionArgumentFactory.h"
 #include "org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/FunctionElement.h"
@@ -27,17 +28,18 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 - (id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument>)executeWithOrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument:(id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument>)a {
-  return OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionArgumentFactory_createStringWithNSString_([((JavaUtilLocale *) nil_chk([((id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument>) nil_chk(a)) getValue])) getDisplayName]);
+  JavaUtilLocale *locale = [((OrgOssPdfreporterTextBundleStringLocale *) nil_chk([((id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument>) nil_chk(a)) getValue])) toLocale];
+  return OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionArgumentFactory_createStringWithNSString_([((JavaUtilLocale *) nil_chk(locale)) getDisplayNameWithJavaUtilLocale:locale]);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "init", "DisplayName", NULL, 0x1, NULL, NULL },
     { "isUserFunction", NULL, "Z", 0x1, NULL, NULL },
-    { "executeWithOrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument:", "execute", "Lorg.oss.pdfreporter.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;", 0x4, "Ljava.lang.IllegalArgumentException;", "(Lorg/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/FunctionElementArgument<Ljava/util/Locale;>;)Lorg/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/FunctionElementArgument<Ljava/lang/String;>;" },
+    { "executeWithOrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorFunctionElementArgument:", "execute", "Lorg.oss.pdfreporter.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;", 0x4, "Ljava.lang.IllegalArgumentException;", "(Lorg/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/FunctionElementArgument<Lorg/oss/pdfreporter/text/bundle/StringLocale;>;)Lorg/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/FunctionElementArgument<Ljava/lang/String;>;" },
   };
-  static const char *superclass_type_args[] = {"Ljava.lang.String;", "Ljava.util.Locale;"};
-  static const J2ObjcClassInfo _OrgOssPdfreporterCompilersJshuntingyardFunctionsDisplayName = { 2, "DisplayName", "org.oss.pdfreporter.compilers.jshuntingyard.functions", NULL, 0x1, 3, methods, 0, NULL, 2, superclass_type_args, 0, NULL, NULL, "Lorg/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/AbstractOneArgFunctionElement<Ljava/lang/String;Ljava/util/Locale;>;" };
+  static const char *superclass_type_args[] = {"Ljava.lang.String;", "Lorg.oss.pdfreporter.text.bundle.StringLocale;"};
+  static const J2ObjcClassInfo _OrgOssPdfreporterCompilersJshuntingyardFunctionsDisplayName = { 2, "DisplayName", "org.oss.pdfreporter.compilers.jshuntingyard.functions", NULL, 0x1, 3, methods, 0, NULL, 2, superclass_type_args, 0, NULL, NULL, "Lorg/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/AbstractOneArgFunctionElement<Ljava/lang/String;Lorg/oss/pdfreporter/text/bundle/StringLocale;>;" };
   return &_OrgOssPdfreporterCompilersJshuntingyardFunctionsDisplayName;
 }
 

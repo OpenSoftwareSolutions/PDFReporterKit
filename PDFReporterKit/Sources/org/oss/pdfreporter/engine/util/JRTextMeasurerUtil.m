@@ -5,7 +5,6 @@
 
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "org/oss/pdfreporter/engine/JRCommonText.h"
 #include "org/oss/pdfreporter/engine/JRException.h"
@@ -24,6 +23,7 @@
 #include "org/oss/pdfreporter/engine/util/JRStyledTextUtil.h"
 #include "org/oss/pdfreporter/engine/util/JRTextMeasurerFactory.h"
 #include "org/oss/pdfreporter/engine/util/JRTextMeasurerUtil.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineUtilJRTextMeasurerUtil () {
  @public
@@ -123,7 +123,7 @@ NSString *OrgOssPdfreporterEngineUtilJRTextMeasurerUtil_PROPERTY_TEXT_MEASURER_F
   if (text == nil) {
     text = @"";
   }
-  OrgOssPdfreporterEngineUtilJRStyledText *styledText = [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk(OrgOssPdfreporterEngineUtilJRStyledTextParser_getInstance())) getStyledTextWithJavaUtilMap:[((OrgOssPdfreporterEngineJRStyledTextAttributeSelector *) nil_chk(noBackcolorSelector_)) getStyledTextAttributesWithOrgOssPdfreporterEngineJRPrintText:printText] withNSString:text withBoolean:[((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_STYLED_TEXT)) isEqual:[((id<OrgOssPdfreporterEngineJRPrintText>) nil_chk(printText)) getMarkup]] withJavaUtilLocale:OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(printText)];
+  OrgOssPdfreporterEngineUtilJRStyledText *styledText = [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk(OrgOssPdfreporterEngineUtilJRStyledTextParser_getInstance())) getStyledTextWithJavaUtilMap:[((OrgOssPdfreporterEngineJRStyledTextAttributeSelector *) nil_chk(noBackcolorSelector_)) getStyledTextAttributesWithOrgOssPdfreporterEngineJRPrintText:printText] withNSString:text withBoolean:[((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_STYLED_TEXT)) isEqual:[((id<OrgOssPdfreporterEngineJRPrintText>) nil_chk(printText)) getMarkup]] withOrgOssPdfreporterTextBundleStringLocale:OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(printText)];
   id<OrgOssPdfreporterEngineFillJRMeasuredText> measuredText = [((id<OrgOssPdfreporterEngineFillJRTextMeasurer>) nil_chk(textMeasurer)) measureWithOrgOssPdfreporterEngineUtilJRStyledText:styledText withInt:0 withInt:0 withBoolean:false];
   [printText setTextHeightWithFloat:[((id<OrgOssPdfreporterEngineFillJRMeasuredText>) nil_chk(measuredText)) getTextHeight] < [printText getHeight] ? [measuredText getTextHeight] : [printText getHeight]];
   [printText setLeadingOffsetWithFloat:[measuredText getLeadingOffset]];

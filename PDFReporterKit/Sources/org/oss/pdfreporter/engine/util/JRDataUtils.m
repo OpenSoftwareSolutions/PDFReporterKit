@@ -11,6 +11,7 @@
 #include "java/util/Locale.h"
 #include "java/util/TimeZone.h"
 #include "org/oss/pdfreporter/engine/util/JRDataUtils.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineUtilJRDataUtils ()
 
@@ -34,11 +35,11 @@ __attribute__((unused)) static OrgOssPdfreporterEngineUtilJRDataUtils *create_Or
   return OrgOssPdfreporterEngineUtilJRDataUtils_JULIAN_1900;
 }
 
-+ (NSString *)getLocaleCodeWithJavaUtilLocale:(JavaUtilLocale *)locale {
-  return OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithJavaUtilLocale_(locale);
++ (NSString *)getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  return OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale_(locale);
 }
 
-+ (JavaUtilLocale *)getLocaleWithNSString:(NSString *)code {
++ (OrgOssPdfreporterTextBundleStringLocale *)getLocaleWithNSString:(NSString *)code {
   return OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(code);
 }
 
@@ -51,9 +52,9 @@ __attribute__((unused)) static OrgOssPdfreporterEngineUtilJRDataUtils *create_Or
 }
 
 + (jdouble)getExcelSerialDayNumberWithJavaUtilDate:(JavaUtilDate *)date
-                                withJavaUtilLocale:(JavaUtilLocale *)locale
+       withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale
                               withJavaUtilTimeZone:(JavaUtilTimeZone *)timeZone {
-  return OrgOssPdfreporterEngineUtilJRDataUtils_getExcelSerialDayNumberWithJavaUtilDate_withJavaUtilLocale_withJavaUtilTimeZone_(date, locale, timeZone);
+  return OrgOssPdfreporterEngineUtilJRDataUtils_getExcelSerialDayNumberWithJavaUtilDate_withOrgOssPdfreporterTextBundleStringLocale_withJavaUtilTimeZone_(date, locale, timeZone);
 }
 
 + (jdouble)getGregorianToJulianDayWithInt:(jint)year
@@ -80,11 +81,11 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
-    { "getLocaleCodeWithJavaUtilLocale:", "getLocaleCode", "Ljava.lang.String;", 0x9, NULL, NULL },
-    { "getLocaleWithNSString:", "getLocale", "Ljava.util.Locale;", 0x9, NULL, NULL },
+    { "getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale:", "getLocaleCode", "Ljava.lang.String;", 0x9, NULL, NULL },
+    { "getLocaleWithNSString:", "getLocale", "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x9, NULL, NULL },
     { "getTimeZoneIdWithJavaUtilTimeZone:", "getTimeZoneId", "Ljava.lang.String;", 0x9, NULL, NULL },
     { "getTimeZoneWithNSString:", "getTimeZone", "Ljava.util.TimeZone;", 0x9, NULL, NULL },
-    { "getExcelSerialDayNumberWithJavaUtilDate:withJavaUtilLocale:withJavaUtilTimeZone:", "getExcelSerialDayNumber", "D", 0x9, NULL, NULL },
+    { "getExcelSerialDayNumberWithJavaUtilDate:withOrgOssPdfreporterTextBundleStringLocale:withJavaUtilTimeZone:", "getExcelSerialDayNumber", "D", 0x9, NULL, NULL },
     { "getGregorianToJulianDayWithInt:withInt:withInt:", "getGregorianToJulianDay", "D", 0x9, NULL, NULL },
     { "isLeapYearWithInt:", "isLeapYear", "Z", 0x9, NULL, NULL },
     { "translateToTimezoneWithJavaUtilDate:withJavaUtilTimeZone:", "translateToTimezone", "Ljava.util.Date;", 0x9, NULL, NULL },
@@ -100,34 +101,14 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 @end
 
-NSString *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithJavaUtilLocale_(JavaUtilLocale *locale) {
+NSString *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterTextBundleStringLocale *locale) {
   OrgOssPdfreporterEngineUtilJRDataUtils_initialize();
-  return [((JavaUtilLocale *) nil_chk(locale)) description];
+  return [((OrgOssPdfreporterTextBundleStringLocale *) nil_chk(locale)) getLocaleString];
 }
 
-JavaUtilLocale *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(NSString *code) {
+OrgOssPdfreporterTextBundleStringLocale *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(NSString *code) {
   OrgOssPdfreporterEngineUtilJRDataUtils_initialize();
-  NSString *language;
-  NSString *country;
-  NSString *variant;
-  jint firstSep = [((NSString *) nil_chk(code)) indexOf:'_'];
-  if (firstSep < 0) {
-    language = code;
-    country = variant = @"";
-  }
-  else {
-    language = [code substring:0 endIndex:firstSep];
-    jint secondSep = [code indexOf:'_' fromIndex:firstSep + 1];
-    if (secondSep < 0) {
-      country = [code substring:firstSep + 1];
-      variant = @"";
-    }
-    else {
-      country = [code substring:firstSep + 1 endIndex:secondSep];
-      variant = [code substring:secondSep + 1];
-    }
-  }
-  return new_JavaUtilLocale_initWithNSString_withNSString_withNSString_(language, country, variant);
+  return OrgOssPdfreporterTextBundleStringLocale_fromLocaleStringWithNSString_(code);
 }
 
 NSString *OrgOssPdfreporterEngineUtilJRDataUtils_getTimeZoneIdWithJavaUtilTimeZone_(JavaUtilTimeZone *tz) {
@@ -140,9 +121,9 @@ JavaUtilTimeZone *OrgOssPdfreporterEngineUtilJRDataUtils_getTimeZoneWithNSString
   return JavaUtilTimeZone_getTimeZoneWithNSString_(id_);
 }
 
-jdouble OrgOssPdfreporterEngineUtilJRDataUtils_getExcelSerialDayNumberWithJavaUtilDate_withJavaUtilLocale_withJavaUtilTimeZone_(JavaUtilDate *date, JavaUtilLocale *locale, JavaUtilTimeZone *timeZone) {
+jdouble OrgOssPdfreporterEngineUtilJRDataUtils_getExcelSerialDayNumberWithJavaUtilDate_withOrgOssPdfreporterTextBundleStringLocale_withJavaUtilTimeZone_(JavaUtilDate *date, OrgOssPdfreporterTextBundleStringLocale *locale, JavaUtilTimeZone *timeZone) {
   OrgOssPdfreporterEngineUtilJRDataUtils_initialize();
-  JavaUtilGregorianCalendar *calendar = new_JavaUtilGregorianCalendar_initWithJavaUtilTimeZone_withJavaUtilLocale_(timeZone, locale);
+  JavaUtilGregorianCalendar *calendar = new_JavaUtilGregorianCalendar_initWithJavaUtilTimeZone_withJavaUtilLocale_(timeZone, [((OrgOssPdfreporterTextBundleStringLocale *) nil_chk(locale)) toLocale]);
   [calendar setTimeWithJavaUtilDate:date];
   jint year = [calendar getWithInt:JavaUtilCalendar_YEAR];
   jint month = [calendar getWithInt:JavaUtilCalendar_MONTH];

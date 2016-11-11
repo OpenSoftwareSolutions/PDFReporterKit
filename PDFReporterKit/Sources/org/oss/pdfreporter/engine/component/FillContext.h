@@ -20,11 +20,10 @@
 #define INCLUDE_OrgOssPdfreporterEngineFillIJRFillExpressionEvaluator 1
 #include "org/oss/pdfreporter/engine/fill/IJRFillExpressionEvaluator.h"
 
-@class JavaUtilLocale;
-@class JavaUtilResourceBundle;
 @class JavaUtilTimeZone;
 @class OrgOssPdfreporterEngineJROrigin;
 @class OrgOssPdfreporterEngineTypeEvaluationTimeEnum;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterEngineFillFillContainerContext;
 @protocol OrgOssPdfreporterEngineFillIJRBaseFiller;
 @protocol OrgOssPdfreporterEngineJRComponentElement;
@@ -32,6 +31,7 @@
 @protocol OrgOssPdfreporterEngineJRExpression;
 @protocol OrgOssPdfreporterEngineJRPrintElement;
 @protocol OrgOssPdfreporterEngineJRStyle;
+@protocol OrgOssPdfreporterTextBundleITextBundle;
 
 @protocol OrgOssPdfreporterEngineComponentFillContext < OrgOssPdfreporterEngineFillIJRFillExpressionEvaluator, NSObject, JavaObject >
 
@@ -54,9 +54,9 @@
                          withOrgOssPdfreporterEngineTypeEvaluationTimeEnum:(OrgOssPdfreporterEngineTypeEvaluationTimeEnum *)evaluationTime
                                                               withNSString:(NSString *)evaluationGroup;
 
-- (JavaUtilResourceBundle *)getReportResourceBundle;
+- (id<OrgOssPdfreporterTextBundleITextBundle>)getReportResourceBundle;
 
-- (JavaUtilLocale *)getReportLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getReportLocale;
 
 - (JavaUtilTimeZone *)getReportTimezone;
 

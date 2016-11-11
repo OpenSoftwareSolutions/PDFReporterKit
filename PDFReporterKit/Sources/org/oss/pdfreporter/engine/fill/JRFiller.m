@@ -8,6 +8,7 @@
 #include "java/util/Map.h"
 #include "org/oss/pdfreporter/engine/JRDataSource.h"
 #include "org/oss/pdfreporter/engine/JRException.h"
+#include "org/oss/pdfreporter/engine/JRParameter.h"
 #include "org/oss/pdfreporter/engine/JasperPrint.h"
 #include "org/oss/pdfreporter/engine/JasperReport.h"
 #include "org/oss/pdfreporter/engine/JasperReportsContext.h"
@@ -18,12 +19,19 @@
 #include "org/oss/pdfreporter/engine/fill/JRVerticalFiller.h"
 #include "org/oss/pdfreporter/engine/type/PrintOrderEnum.h"
 #include "org/oss/pdfreporter/sql/IConnection.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
+#include "org/oss/pdfreporter/text/bundle/TextBundle.h"
 
 @interface OrgOssPdfreporterEngineFillJRFiller ()
+
++ (void)translateLanguageToLocaleAndTextBundleWithJavaUtilMap:(id<JavaUtilMap>)parameters;
 
 - (instancetype)init;
 
 @end
+
+__attribute__((unused)) static void OrgOssPdfreporterEngineFillJRFiller_translateLanguageToLocaleAndTextBundleWithJavaUtilMap_(id<JavaUtilMap> parameters);
 
 __attribute__((unused)) static void OrgOssPdfreporterEngineFillJRFiller_init(OrgOssPdfreporterEngineFillJRFiller *self);
 
@@ -53,6 +61,10 @@ __attribute__((unused)) static OrgOssPdfreporterEngineFillJRFiller *create_OrgOs
   return OrgOssPdfreporterEngineFillJRFiller_fillWithOrgOssPdfreporterEngineJasperReportsContext_withOrgOssPdfreporterEngineJasperReport_withJavaUtilMap_(jasperReportsContext, jasperReport, parameters);
 }
 
++ (void)translateLanguageToLocaleAndTextBundleWithJavaUtilMap:(id<JavaUtilMap>)parameters {
+  OrgOssPdfreporterEngineFillJRFiller_translateLanguageToLocaleAndTextBundleWithJavaUtilMap_(parameters);
+}
+
 + (OrgOssPdfreporterEngineFillJRBaseFiller *)createFillerWithOrgOssPdfreporterEngineJasperReportsContext:(id<OrgOssPdfreporterEngineJasperReportsContext>)jasperReportsContext
                                                                  withOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)jasperReport {
   return OrgOssPdfreporterEngineFillJRFiller_createFillerWithOrgOssPdfreporterEngineJasperReportsContext_withOrgOssPdfreporterEngineJasperReport_(jasperReportsContext, jasperReport);
@@ -70,10 +82,11 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "fillWithOrgOssPdfreporterEngineJasperReportsContext:withOrgOssPdfreporterEngineJasperReport:withJavaUtilMap:withOrgOssPdfreporterSqlIConnection:", "fill", "Lorg.oss.pdfreporter.engine.JasperPrint;", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", "(Lorg/oss/pdfreporter/engine/JasperReportsContext;Lorg/oss/pdfreporter/engine/JasperReport;Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;Lorg/oss/pdfreporter/sql/IConnection;)Lorg/oss/pdfreporter/engine/JasperPrint;" },
     { "fillWithOrgOssPdfreporterEngineJasperReportsContext:withOrgOssPdfreporterEngineJasperReport:withJavaUtilMap:withOrgOssPdfreporterEngineJRDataSource:", "fill", "Lorg.oss.pdfreporter.engine.JasperPrint;", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", "(Lorg/oss/pdfreporter/engine/JasperReportsContext;Lorg/oss/pdfreporter/engine/JasperReport;Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;Lorg/oss/pdfreporter/engine/JRDataSource;)Lorg/oss/pdfreporter/engine/JasperPrint;" },
     { "fillWithOrgOssPdfreporterEngineJasperReportsContext:withOrgOssPdfreporterEngineJasperReport:withJavaUtilMap:", "fill", "Lorg.oss.pdfreporter.engine.JasperPrint;", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", "(Lorg/oss/pdfreporter/engine/JasperReportsContext;Lorg/oss/pdfreporter/engine/JasperReport;Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)Lorg/oss/pdfreporter/engine/JasperPrint;" },
+    { "translateLanguageToLocaleAndTextBundleWithJavaUtilMap:", "translateLanguageToLocaleAndTextBundle", "V", 0xa, NULL, "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V" },
     { "createFillerWithOrgOssPdfreporterEngineJasperReportsContext:withOrgOssPdfreporterEngineJasperReport:", "createFiller", "Lorg.oss.pdfreporter.engine.fill.JRBaseFiller;", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "init", "JRFiller", NULL, 0x2, NULL, NULL },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillJRFiller = { 2, "JRFiller", "org.oss.pdfreporter.engine.fill", NULL, 0x11, 5, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillJRFiller = { 2, "JRFiller", "org.oss.pdfreporter.engine.fill", NULL, 0x11, 6, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineFillJRFiller;
 }
 
@@ -84,6 +97,7 @@ OrgOssPdfreporterEngineJasperPrint *OrgOssPdfreporterEngineFillJRFiller_fillWith
   OrgOssPdfreporterEngineFillJRBaseFiller *filler = OrgOssPdfreporterEngineFillJRFiller_createFillerWithOrgOssPdfreporterEngineJasperReportsContext_withOrgOssPdfreporterEngineJasperReport_(jasperReportsContext, jasperReport);
   OrgOssPdfreporterEngineJasperPrint *jasperPrint = nil;
   @try {
+    OrgOssPdfreporterEngineFillJRFiller_translateLanguageToLocaleAndTextBundleWithJavaUtilMap_(parameters);
     jasperPrint = [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler)) fillWithJavaUtilMap:parameters withOrgOssPdfreporterSqlIConnection:conn];
   }
   @catch (OrgOssPdfreporterEngineFillJRFillInterruptedException *e) {
@@ -97,6 +111,7 @@ OrgOssPdfreporterEngineJasperPrint *OrgOssPdfreporterEngineFillJRFiller_fillWith
   OrgOssPdfreporterEngineFillJRBaseFiller *filler = OrgOssPdfreporterEngineFillJRFiller_createFillerWithOrgOssPdfreporterEngineJasperReportsContext_withOrgOssPdfreporterEngineJasperReport_(jasperReportsContext, jasperReport);
   OrgOssPdfreporterEngineJasperPrint *jasperPrint = nil;
   @try {
+    OrgOssPdfreporterEngineFillJRFiller_translateLanguageToLocaleAndTextBundleWithJavaUtilMap_(parameters);
     jasperPrint = [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler)) fillWithJavaUtilMap:parameters withOrgOssPdfreporterEngineJRDataSource:dataSource];
   }
   @catch (OrgOssPdfreporterEngineFillJRFillInterruptedException *e) {
@@ -109,11 +124,30 @@ OrgOssPdfreporterEngineJasperPrint *OrgOssPdfreporterEngineFillJRFiller_fillWith
   OrgOssPdfreporterEngineFillJRFiller_initialize();
   OrgOssPdfreporterEngineFillJRBaseFiller *filler = OrgOssPdfreporterEngineFillJRFiller_createFillerWithOrgOssPdfreporterEngineJasperReportsContext_withOrgOssPdfreporterEngineJasperReport_(jasperReportsContext, jasperReport);
   @try {
+    OrgOssPdfreporterEngineFillJRFiller_translateLanguageToLocaleAndTextBundleWithJavaUtilMap_(parameters);
     OrgOssPdfreporterEngineJasperPrint *jasperPrint = [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler)) fillWithJavaUtilMap:parameters];
     return jasperPrint;
   }
   @catch (OrgOssPdfreporterEngineFillJRFillInterruptedException *e) {
     @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_withNSException_(@"The report filling thread was interrupted.", e);
+  }
+}
+
+void OrgOssPdfreporterEngineFillJRFiller_translateLanguageToLocaleAndTextBundleWithJavaUtilMap_(id<JavaUtilMap> parameters) {
+  OrgOssPdfreporterEngineFillJRFiller_initialize();
+  if ([((id<JavaUtilMap>) nil_chk(parameters)) containsKeyWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LANGUAGE]) {
+    NSString *language = (NSString *) cast_chk([parameters getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LANGUAGE], [NSString class]);
+    OrgOssPdfreporterTextBundleStringLocale *locale = OrgOssPdfreporterTextBundleStringLocale_fromLocaleStringWithNSString_(language);
+    (void) [parameters putWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE withId:locale];
+    id<OrgOssPdfreporterTextBundleITextBundle> bundle;
+    if ([parameters containsKeyWithId:OrgOssPdfreporterEngineJRParameter_REPORT_ENCODING]) {
+      NSString *charset = (NSString *) cast_chk([parameters getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_ENCODING], [NSString class]);
+      bundle = OrgOssPdfreporterTextBundleTextBundle_getInstanceWithNSString_withOrgOssPdfreporterTextBundleStringLocale_withNSString_(@"translation", locale, charset);
+    }
+    else {
+      bundle = OrgOssPdfreporterTextBundleTextBundle_getInstanceWithNSString_withOrgOssPdfreporterTextBundleStringLocale_(@"translation", locale);
+    }
+    (void) [parameters putWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE withId:bundle];
   }
 }
 

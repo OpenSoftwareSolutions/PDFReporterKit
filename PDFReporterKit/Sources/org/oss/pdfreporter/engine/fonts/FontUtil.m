@@ -12,7 +12,6 @@
 #include "java/util/HashMap.h"
 #include "java/util/Iterator.h"
 #include "java/util/List.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/TreeSet.h"
 #include "java/util/logging/Logger.h"
@@ -31,6 +30,7 @@
 #include "org/oss/pdfreporter/font/factory/IFontFactory.h"
 #include "org/oss/pdfreporter/font/text/TextAttribute.h"
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineFontsFontUtil () {
  @public
@@ -104,11 +104,11 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFontsFontUtil)
 }
 
 - (OrgOssPdfreporterEngineFontsFontInfo *)getFontInfoWithNSString:(NSString *)name
-                                               withJavaUtilLocale:(JavaUtilLocale *)locale {
+                      withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
   id<JavaUtilList> families = [((id<OrgOssPdfreporterEngineJasperReportsContext>) nil_chk(jasperReportsContext_)) getExtensionsWithIOSClass:OrgOssPdfreporterEngineFontsFontFamily_class_()];
   for (id<JavaUtilIterator> itf = [((id<JavaUtilList>) nil_chk(families)) iterator]; [((id<JavaUtilIterator>) nil_chk(itf)) hasNext]; ) {
     id<OrgOssPdfreporterEngineFontsFontFamily> family = [itf next];
-    if (locale == nil || [((id<OrgOssPdfreporterEngineFontsFontFamily>) nil_chk(family)) supportsLocaleWithJavaUtilLocale:locale]) {
+    if (locale == nil || [((id<OrgOssPdfreporterEngineFontsFontFamily>) nil_chk(family)) supportsLocaleWithOrgOssPdfreporterTextBundleStringLocale:locale]) {
       if ([((NSString *) nil_chk(name)) isEqual:[((id<OrgOssPdfreporterEngineFontsFontFamily>) nil_chk(family)) getName]]) {
         return new_OrgOssPdfreporterEngineFontsFontInfo_initWithOrgOssPdfreporterEngineFontsFontFamily_withOrgOssPdfreporterEngineFontsFontFace_withOrgOssPdfreporterFontIFont_FontStyle_(family, nil, JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, PLAIN));
       }
@@ -146,10 +146,10 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFontsFontUtil)
 - (id<OrgOssPdfreporterFontIFont>)getAwtFontFromBundlesWithNSString:(NSString *)name
                            withOrgOssPdfreporterFontIFont_FontStyle:(OrgOssPdfreporterFontIFont_FontStyle *)style
                                                             withInt:(jint)size
-                                                 withJavaUtilLocale:(JavaUtilLocale *)locale
+                        withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale
                                                         withBoolean:(jboolean)ignoreMissingFont {
   id<OrgOssPdfreporterFontIFont> awtFont = nil;
-  OrgOssPdfreporterEngineFontsFontInfo *fontInfo = [self getFontInfoWithNSString:name withJavaUtilLocale:locale];
+  OrgOssPdfreporterEngineFontsFontInfo *fontInfo = [self getFontInfoWithNSString:name withOrgOssPdfreporterTextBundleStringLocale:locale];
   if (fontInfo != nil) {
     id<OrgOssPdfreporterEngineFontsFontFamily> family = [fontInfo getFontFamily];
     id<OrgOssPdfreporterEngineFontsFontFace> face = [fontInfo getFontFace];
@@ -203,11 +203,11 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFontsFontUtil)
 }
 
 - (id<OrgOssPdfreporterFontIFont>)getAwtFontWithOrgOssPdfreporterEngineJRFont:(id<OrgOssPdfreporterEngineJRFont>)font
-                                                           withJavaUtilLocale:(JavaUtilLocale *)locale {
+                                  withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
   if (font == nil) {
     return nil;
   }
-  id<OrgOssPdfreporterFontIFont> awtFont = [self getAwtFontFromBundlesWithNSString:[font getFontName] withOrgOssPdfreporterFontIFont_FontStyle:[font isBold] && [font isItalic] ? JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, BOLD_OBLIQUE) : [font isBold] ? JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, BOLD) : [font isItalic] ? JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, OBLIQUE) : JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, PLAIN) withInt:[font getFontSize] withJavaUtilLocale:locale withBoolean:true];
+  id<OrgOssPdfreporterFontIFont> awtFont = [self getAwtFontFromBundlesWithNSString:[font getFontName] withOrgOssPdfreporterFontIFont_FontStyle:[font isBold] && [font isItalic] ? JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, BOLD_OBLIQUE) : [font isBold] ? JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, BOLD) : [font isItalic] ? JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, OBLIQUE) : JreLoadEnum(OrgOssPdfreporterFontIFont_FontStyle, PLAIN) withInt:[font getFontSize] withOrgOssPdfreporterTextBundleStringLocale:locale withBoolean:true];
   if (awtFont == nil) {
     @throw new_OrgOssPdfreporterEngineJRRuntimeException_initWithNSString_(JreStrcat("$$$", @"The '", [font getFontName], @" returns a null font."));
   }
@@ -246,11 +246,11 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "getInstanceWithOrgOssPdfreporterEngineJasperReportsContext:", "getInstance", "Lorg.oss.pdfreporter.engine.fonts.FontUtil;", 0x9, NULL, NULL },
     { "copyNonNullOwnPropertiesWithOrgOssPdfreporterEngineJRFont:withOrgOssPdfreporterEngineJRFont:", "copyNonNullOwnProperties", "V", 0x9, NULL, NULL },
     { "getAttributesWithoutAwtFontWithJavaUtilMap:withOrgOssPdfreporterEngineJRFont:", "getAttributesWithoutAwtFont", "Ljava.util.Map;", 0x1, NULL, "(Ljava/util/Map<Lorg/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator$Attribute;Ljava/lang/Object;>;Lorg/oss/pdfreporter/engine/JRFont;)Ljava/util/Map<Lorg/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator$Attribute;Ljava/lang/Object;>;" },
-    { "getFontInfoWithNSString:withJavaUtilLocale:", "getFontInfo", "Lorg.oss.pdfreporter.engine.fonts.FontInfo;", 0x1, NULL, NULL },
+    { "getFontInfoWithNSString:withOrgOssPdfreporterTextBundleStringLocale:", "getFontInfo", "Lorg.oss.pdfreporter.engine.fonts.FontInfo;", 0x1, NULL, NULL },
     { "getFontFamilyNames", NULL, "Ljava.util.Collection;", 0x1, NULL, "()Ljava/util/Collection<Ljava/lang/String;>;" },
-    { "getAwtFontFromBundlesWithNSString:withOrgOssPdfreporterFontIFont_FontStyle:withInt:withJavaUtilLocale:withBoolean:", "getAwtFontFromBundles", "Lorg.oss.pdfreporter.font.IFont;", 0x1, NULL, NULL },
+    { "getAwtFontFromBundlesWithNSString:withOrgOssPdfreporterFontIFont_FontStyle:withInt:withOrgOssPdfreporterTextBundleStringLocale:withBoolean:", "getAwtFontFromBundles", "Lorg.oss.pdfreporter.font.IFont;", 0x1, NULL, NULL },
     { "checkAwtFontWithNSString:withBoolean:", "checkAwtFont", "V", 0x1, NULL, NULL },
-    { "getAwtFontWithOrgOssPdfreporterEngineJRFont:withJavaUtilLocale:", "getAwtFont", "Lorg.oss.pdfreporter.font.IFont;", 0x1, NULL, NULL },
+    { "getAwtFontWithOrgOssPdfreporterEngineJRFont:withOrgOssPdfreporterTextBundleStringLocale:", "getAwtFont", "Lorg.oss.pdfreporter.font.IFont;", 0x1, NULL, NULL },
     { "init", "FontUtil", NULL, 0x2, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {

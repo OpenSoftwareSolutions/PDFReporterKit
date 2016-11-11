@@ -21,8 +21,8 @@
 #include "org/oss/pdfreporter/xml/parsers/XMLErrorHandler.h"
 
 @class JavaLangStringBuffer;
-@class JavaUtilLocale;
 @class OrgOssPdfreporterEngineUtilJRStyledText;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @class OrgOssPdfreporterXmlParsersXMLParseException;
 @protocol JavaUtilMap;
 @protocol OrgOssPdfreporterUsesJavaAwtTextIAttributedCharacterIterator;
@@ -37,18 +37,18 @@
 
 + (OrgOssPdfreporterEngineUtilJRStyledTextParser *)getInstance;
 
-+ (JavaUtilLocale *)getLocale;
++ (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 - (OrgOssPdfreporterEngineUtilJRStyledText *)getStyledTextWithJavaUtilMap:(id<JavaUtilMap>)parentAttributes
                                                              withNSString:(NSString *)text
                                                               withBoolean:(jboolean)isStyledText
-                                                       withJavaUtilLocale:(JavaUtilLocale *)locale;
+                              withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (OrgOssPdfreporterEngineUtilJRStyledText *)parseWithJavaUtilMap:(id<JavaUtilMap>)attributes
                                                      withNSString:(NSString *)text
-                                               withJavaUtilLocale:(JavaUtilLocale *)locale;
+                      withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
-+ (void)setLocaleWithJavaUtilLocale:(JavaUtilLocale *)locale;
++ (void)setLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (void)warningWithOrgOssPdfreporterXmlParsersXMLParseException:(OrgOssPdfreporterXmlParsersXMLParseException *)e;
 
@@ -73,9 +73,9 @@ J2OBJC_STATIC_INIT(OrgOssPdfreporterEngineUtilJRStyledTextParser)
 
 FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilJRStyledTextParser *OrgOssPdfreporterEngineUtilJRStyledTextParser_getInstance();
 
-FOUNDATION_EXPORT void OrgOssPdfreporterEngineUtilJRStyledTextParser_setLocaleWithJavaUtilLocale_(JavaUtilLocale *locale);
+FOUNDATION_EXPORT void OrgOssPdfreporterEngineUtilJRStyledTextParser_setLocaleWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterTextBundleStringLocale *locale);
 
-FOUNDATION_EXPORT JavaUtilLocale *OrgOssPdfreporterEngineUtilJRStyledTextParser_getLocale();
+FOUNDATION_EXPORT OrgOssPdfreporterTextBundleStringLocale *OrgOssPdfreporterEngineUtilJRStyledTextParser_getLocale();
 
 J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineUtilJRStyledTextParser)
 

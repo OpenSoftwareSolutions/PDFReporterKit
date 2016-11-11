@@ -22,8 +22,8 @@
 
 @class IOSClass;
 @class JavaUtilDate;
-@class JavaUtilLocale;
 @class JavaUtilTimeZone;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterTextFormatIDateFormat;
 @protocol OrgOssPdfreporterTextFormatINumberFormat;
 
@@ -35,7 +35,7 @@
 
 - (NSString *)getDatePattern;
 
-- (JavaUtilLocale *)getLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 - (NSString *)getNumberPattern;
 
@@ -43,9 +43,9 @@
 
 - (void)setDatePatternWithNSString:(NSString *)datePattern;
 
-- (void)setLocaleWithJavaUtilLocale:(JavaUtilLocale *)locale;
-
 - (void)setLocaleWithNSString:(NSString *)locale;
+
+- (void)setLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (void)setNumberPatternWithNSString:(NSString *)numberPattern;
 

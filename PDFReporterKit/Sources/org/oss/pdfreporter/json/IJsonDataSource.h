@@ -24,8 +24,8 @@
 #define INCLUDE_JavaIoCloseable 1
 #include "java/io/Closeable.h"
 
-@class JavaUtilLocale;
 @class JavaUtilTimeZone;
+@class OrgOssPdfreporterTextBundleStringLocale;
 
 @protocol OrgOssPdfreporterJsonIJsonDataSource < OrgOssPdfreporterEngineJRRewindableDataSource, JavaIoCloseable, NSObject, JavaObject >
 
@@ -33,7 +33,7 @@
 
 - (void)setNumberPatternWithNSString:(NSString *)numberFormatPattern;
 
-- (void)setLocaleWithJavaUtilLocale:(JavaUtilLocale *)jsonLocale;
+- (void)setLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)jsonLocale;
 
 - (void)setLocaleWithNSString:(NSString *)jsonLocale;
 

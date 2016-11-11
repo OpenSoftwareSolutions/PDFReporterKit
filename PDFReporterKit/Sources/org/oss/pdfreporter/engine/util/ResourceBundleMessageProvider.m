@@ -7,9 +7,10 @@
 #include "J2ObjC_source.h"
 #include "java/text/MessageFormat.h"
 #include "java/util/HashMap.h"
-#include "java/util/Locale.h"
-#include "java/util/ResourceBundle.h"
 #include "org/oss/pdfreporter/engine/util/ResourceBundleMessageProvider.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
+#include "org/oss/pdfreporter/text/bundle/TextBundle.h"
 
 @interface OrgOssPdfreporterEngineUtilResourceBundleMessageProvider () {
  @public
@@ -31,30 +32,30 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilResourceBundleMessageProvider, bu
 
 - (NSString *)getMessageWithNSString:(NSString *)code
                    withNSObjectArray:(IOSObjectArray *)args
-                  withJavaUtilLocale:(JavaUtilLocale *)locale {
-  NSString *pattern = [self getMessageWithNSString:code withJavaUtilLocale:locale];
+withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  NSString *pattern = [self getMessageWithNSString:code withOrgOssPdfreporterTextBundleStringLocale:locale];
   return JavaTextMessageFormat_formatWithNSString_withNSObjectArray_(pattern, args);
 }
 
 - (NSString *)getMessageWithNSString:(NSString *)code
-                  withJavaUtilLocale:(JavaUtilLocale *)locale {
-  JavaUtilResourceBundle *bundle = [((JavaUtilHashMap *) nil_chk(bundles_)) getWithId:locale];
+withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  id<OrgOssPdfreporterTextBundleITextBundle> bundle = [((JavaUtilHashMap *) nil_chk(bundles_)) getWithId:locale];
   if (bundle == nil) {
-    bundle = JavaUtilResourceBundle_getBundleWithNSString_withJavaUtilLocale_(baseName_, locale);
+    bundle = OrgOssPdfreporterTextBundleTextBundle_getInstanceWithNSString_withOrgOssPdfreporterTextBundleStringLocale_(baseName_, locale);
     (void) [bundles_ putWithId:locale withId:bundle];
   }
-  return [((JavaUtilResourceBundle *) nil_chk(bundle)) getStringWithNSString:code];
+  return [((id<OrgOssPdfreporterTextBundleITextBundle>) nil_chk(bundle)) getStringWithNSString:code];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithNSString:", "ResourceBundleMessageProvider", NULL, 0x1, NULL, NULL },
-    { "getMessageWithNSString:withNSObjectArray:withJavaUtilLocale:", "getMessage", "Ljava.lang.String;", 0x1, NULL, NULL },
-    { "getMessageWithNSString:withJavaUtilLocale:", "getMessage", "Ljava.lang.String;", 0x1, NULL, NULL },
+    { "getMessageWithNSString:withNSObjectArray:withOrgOssPdfreporterTextBundleStringLocale:", "getMessage", "Ljava.lang.String;", 0x1, NULL, NULL },
+    { "getMessageWithNSString:withOrgOssPdfreporterTextBundleStringLocale:", "getMessage", "Ljava.lang.String;", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
     { "baseName_", NULL, 0x12, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
-    { "bundles_", NULL, 0x12, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Ljava/util/Locale;Ljava/util/ResourceBundle;>;", .constantValue.asLong = 0 },
+    { "bundles_", NULL, 0x12, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Lorg/oss/pdfreporter/text/bundle/StringLocale;Lorg/oss/pdfreporter/text/bundle/ITextBundle;>;", .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineUtilResourceBundleMessageProvider = { 2, "ResourceBundleMessageProvider", "org.oss.pdfreporter.engine.util", NULL, 0x1, 3, methods, 2, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineUtilResourceBundleMessageProvider;

@@ -16,7 +16,7 @@
 #if !defined (OrgOssPdfreporterEngineUtilLocalizedMessageProvider_) && (INCLUDE_ALL_OrgOssPdfreporterEngineUtilLocalizedMessageProvider || defined(INCLUDE_OrgOssPdfreporterEngineUtilLocalizedMessageProvider))
 #define OrgOssPdfreporterEngineUtilLocalizedMessageProvider_
 
-@class JavaUtilLocale;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterEngineUtilMessageProvider;
 
 @interface OrgOssPdfreporterEngineUtilLocalizedMessageProvider : NSObject
@@ -24,7 +24,7 @@
 #pragma mark Public
 
 - (instancetype)initWithOrgOssPdfreporterEngineUtilMessageProvider:(id<OrgOssPdfreporterEngineUtilMessageProvider>)messageProvider
-                                                withJavaUtilLocale:(JavaUtilLocale *)locale;
+                       withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (NSString *)getMessageWithNSString:(NSString *)code;
 
@@ -32,11 +32,11 @@
 
 J2OBJC_EMPTY_STATIC_INIT(OrgOssPdfreporterEngineUtilLocalizedMessageProvider)
 
-FOUNDATION_EXPORT void OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_(OrgOssPdfreporterEngineUtilLocalizedMessageProvider *self, id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, JavaUtilLocale *locale);
+FOUNDATION_EXPORT void OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterEngineUtilLocalizedMessageProvider *self, id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, OrgOssPdfreporterTextBundleStringLocale *locale);
 
-FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilLocalizedMessageProvider *new_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, JavaUtilLocale *locale) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilLocalizedMessageProvider *new_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, OrgOssPdfreporterTextBundleStringLocale *locale) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilLocalizedMessageProvider *create_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, JavaUtilLocale *locale);
+FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilLocalizedMessageProvider *create_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_(id<OrgOssPdfreporterEngineUtilMessageProvider> messageProvider, OrgOssPdfreporterTextBundleStringLocale *locale);
 
 J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineUtilLocalizedMessageProvider)
 

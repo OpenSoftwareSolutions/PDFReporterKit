@@ -16,7 +16,7 @@
   static const J2ObjcMethodInfo methods[] = {
     { "setDatePatternWithNSString:", "setDatePattern", "V", 0x401, NULL, NULL },
     { "setNumberPatternWithNSString:", "setNumberPattern", "V", 0x401, NULL, NULL },
-    { "setLocaleWithJavaUtilLocale:", "setLocale", "V", 0x401, NULL, NULL },
+    { "setLocaleWithOrgOssPdfreporterTextBundleStringLocale:", "setLocale", "V", 0x401, NULL, NULL },
     { "setLocaleWithNSString:", "setLocale", "V", 0x401, NULL, NULL },
     { "setTimeZoneWithJavaUtilTimeZone:", "setTimeZone", "V", 0x401, NULL, NULL },
     { "setTimeZoneWithNSString:", "setTimeZone", "V", 0x401, NULL, NULL },

@@ -18,6 +18,7 @@
 #include "org/oss/pdfreporter/exception/ConversionException.h"
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
 #include "org/oss/pdfreporter/text/ParseException.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/IDateFormat.h"
 #include "org/oss/pdfreporter/text/format/INumberFormat.h"
 #include "org/oss/pdfreporter/text/format/LocaleConverter.h"
@@ -36,9 +37,9 @@ __attribute__((unused)) static NSNumber *OrgOssPdfreporterTextFormatLocaleConver
 
 + (id)convertWithNSString:(NSString *)valueString
              withIOSClass:(IOSClass *)valueClass
-       withJavaUtilLocale:(JavaUtilLocale *)locale
+withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)localestring
              withNSString:(NSString *)pattern {
-  return OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withJavaUtilLocale_withNSString_(valueString, valueClass, locale, pattern);
+  return OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withOrgOssPdfreporterTextBundleStringLocale_withNSString_(valueString, valueClass, localestring, pattern);
 }
 
 + (NSNumber *)getNumberWithNSNumber:(NSNumber *)number
@@ -55,7 +56,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
-    { "convertWithNSString:withIOSClass:withJavaUtilLocale:withNSString:", "convert", "Ljava.lang.Object;", 0x9, NULL, "(Ljava/lang/String;Ljava/lang/Class<*>;Ljava/util/Locale;Ljava/lang/String;)Ljava/lang/Object;" },
+    { "convertWithNSString:withIOSClass:withOrgOssPdfreporterTextBundleStringLocale:withNSString:", "convert", "Ljava.lang.Object;", 0x9, NULL, "(Ljava/lang/String;Ljava/lang/Class<*>;Lorg/oss/pdfreporter/text/bundle/StringLocale;Ljava/lang/String;)Ljava/lang/Object;" },
     { "getNumberWithNSNumber:withIOSClass:", "getNumber", "Ljava.lang.Number;", 0xa, NULL, "(Ljava/lang/Number;Ljava/lang/Class<*>;)Ljava/lang/Number;" },
     { "init", "LocaleConverter", NULL, 0x1, NULL, NULL },
   };
@@ -65,8 +66,9 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 @end
 
-id OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withJavaUtilLocale_withNSString_(NSString *valueString, IOSClass *valueClass, JavaUtilLocale *locale, NSString *pattern) {
+id OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withOrgOssPdfreporterTextBundleStringLocale_withNSString_(NSString *valueString, IOSClass *valueClass, OrgOssPdfreporterTextBundleStringLocale *localestring, NSString *pattern) {
   OrgOssPdfreporterTextFormatLocaleConverter_initialize();
+  JavaUtilLocale *locale = localestring == nil ? nil : [localestring toLocale];
   @try {
     id<OrgOssPdfreporterTextFormatFactoryIFormatFactory> factory = OrgOssPdfreporterRegistryApiRegistry_getIFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType_(JreLoadEnum(OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType, SIMPLE));
     if ([((IOSClass *) nil_chk(valueClass)) isAssignableFrom:JavaUtilDate_class_()]) {

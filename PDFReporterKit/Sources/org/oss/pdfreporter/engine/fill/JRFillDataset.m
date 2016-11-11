@@ -15,9 +15,7 @@
 #include "java/util/HashSet.h"
 #include "java/util/Iterator.h"
 #include "java/util/List.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
-#include "java/util/ResourceBundle.h"
 #include "java/util/Set.h"
 #include "java/util/TimeZone.h"
 #include "org/oss/pdfreporter/data/cache/CachedDataset.h"
@@ -83,6 +81,8 @@
 #include "org/oss/pdfreporter/engine/util/JRResourcesUtil.h"
 #include "org/oss/pdfreporter/engine/util/MD5Digest.h"
 #include "org/oss/pdfreporter/sql/IConnection.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/uses/java/util/UUID.h"
 
 @interface OrgOssPdfreporterEngineFillJRFillDataset () {
@@ -312,13 +312,13 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset_CacheRecordIndexCha
   }
 }
 
-- (JavaUtilResourceBundle *)loadResourceBundle {
-  JavaUtilResourceBundle *loadedBundle;
+- (id<OrgOssPdfreporterTextBundleITextBundle>)loadResourceBundle {
+  id<OrgOssPdfreporterTextBundleITextBundle> loadedBundle;
   if (resourceBundleBaseName_ == nil) {
     loadedBundle = nil;
   }
   else {
-    loadedBundle = OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_(resourceBundleBaseName_, locale_);
+    loadedBundle = OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withOrgOssPdfreporterTextBundleStringLocale_(resourceBundleBaseName_, locale_);
   }
   return loadedBundle;
 }
@@ -329,16 +329,16 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset_CacheRecordIndexCha
     (void) [parameterValues putWithId:OrgOssPdfreporterEngineJRParameter_JASPER_REPORT withId:[filler_ getJasperReport]];
   }
   reportMaxCount_ = (JavaLangInteger *) cast_chk([parameterValues getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_MAX_COUNT], [JavaLangInteger class]);
-  locale_ = (JavaUtilLocale *) cast_chk([parameterValues getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE], [JavaUtilLocale class]);
+  locale_ = (OrgOssPdfreporterTextBundleStringLocale *) cast_chk([parameterValues getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE], [OrgOssPdfreporterTextBundleStringLocale class]);
   if (locale_ == nil) {
-    locale_ = JavaUtilLocale_getDefault();
+    locale_ = OrgOssPdfreporterTextBundleStringLocale_getDefault();
     (void) [parameterValues putWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE withId:locale_];
   }
-  resourceBundle_ = (JavaUtilResourceBundle *) cast_chk([parameterValues getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE], [JavaUtilResourceBundle class]);
-  if (resourceBundle_ == nil) {
-    resourceBundle_ = [self loadResourceBundle];
-    if (resourceBundle_ != nil) {
-      (void) [parameterValues putWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE withId:resourceBundle_];
+  textBundle_ = (id<OrgOssPdfreporterTextBundleITextBundle>) cast_check([parameterValues getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE], OrgOssPdfreporterTextBundleITextBundle_class_());
+  if (textBundle_ == nil) {
+    textBundle_ = [self loadResourceBundle];
+    if (textBundle_ != nil) {
+      (void) [parameterValues putWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE withId:textBundle_];
     }
   }
   timeZone_ = (JavaUtilTimeZone *) cast_chk([parameterValues getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_TIME_ZONE], [JavaUtilTimeZone class]);
@@ -372,7 +372,7 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset_CacheRecordIndexCha
     }
   }
   if (OrgOssPdfreporterEngineFillDatasetSortUtil_needSortingWithOrgOssPdfreporterEngineFillJRFillDataset_(self)) {
-    dataSource_ = OrgOssPdfreporterEngineFillDatasetSortUtil_getSortedDataSourceWithOrgOssPdfreporterEngineFillJRBaseFiller_withOrgOssPdfreporterEngineFillJRFillDataset_withJavaUtilLocale_(filler_, self, locale_);
+    dataSource_ = OrgOssPdfreporterEngineFillDatasetSortUtil_getSortedDataSourceWithOrgOssPdfreporterEngineFillJRBaseFiller_withOrgOssPdfreporterEngineFillJRFillDataset_withOrgOssPdfreporterTextBundleStringLocale_(filler_, self, locale_);
     [self setParameterWithNSString:OrgOssPdfreporterEngineJRParameter_REPORT_DATA_SOURCE withId:dataSource_];
     sortedDataSource_ = true;
   }
@@ -905,7 +905,7 @@ withOrgOssPdfreporterEngineTypeCalculationEnum:(OrgOssPdfreporterEngineTypeCalcu
   return [((OrgOssPdfreporterEngineFillJRCalculator *) nil_chk(calculator_)) evaluateWithOrgOssPdfreporterEngineJRExpression:expression withByte:evaluation];
 }
 
-- (JavaUtilLocale *)getLocale {
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale {
   return locale_;
 }
 
@@ -969,7 +969,7 @@ withOrgOssPdfreporterEngineFillJRFillDataset_CacheRecordIndexCallback:(id<OrgOss
     { "initElementDatasetsWithOrgOssPdfreporterEngineFillJRFillObjectFactory:", "initElementDatasets", "V", 0x4, NULL, NULL },
     { "filterElementDatasetsWithOrgOssPdfreporterEngineFillJRFillElementDataset:", "filterElementDatasets", "V", 0x4, NULL, NULL },
     { "restoreElementDatasets", NULL, "V", 0x4, NULL, NULL },
-    { "loadResourceBundle", NULL, "Ljava.util.ResourceBundle;", 0x4, NULL, NULL },
+    { "loadResourceBundle", NULL, "Lorg.oss.pdfreporter.text.bundle.ITextBundle;", 0x4, NULL, NULL },
     { "setParameterValuesWithJavaUtilMap:", "setParameterValues", "V", 0x1, "Lorg.oss.pdfreporter.engine.JRException;", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V" },
     { "initDatasource", NULL, "V", 0x1, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "setFillPositionWithOrgOssPdfreporterEngineFillFillDatasetPosition:", "setFillPosition", "V", 0x1, NULL, NULL },
@@ -1036,7 +1036,7 @@ withOrgOssPdfreporterEngineFillJRFillDataset_CacheRecordIndexCallback:(id<OrgOss
     { "getFilterExpression", NULL, "Lorg.oss.pdfreporter.engine.JRExpression;", 0x1, NULL, NULL },
     { "clone", NULL, "Ljava.lang.Object;", 0x1, NULL, NULL },
     { "evaluateExpressionWithOrgOssPdfreporterEngineJRExpression:withByte:", "evaluateExpression", "Ljava.lang.Object;", 0x1, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
-    { "getLocale", NULL, "Ljava.util.Locale;", 0x1, NULL, NULL },
+    { "getLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x1, NULL, NULL },
     { "getDatasetPosition", NULL, "Lorg.oss.pdfreporter.engine.fill.FillDatasetPosition;", 0x1, NULL, NULL },
     { "addCacheRecordIndexCallbackWithInt:withOrgOssPdfreporterEngineFillJRFillDataset_CacheRecordIndexCallback:", "addCacheRecordIndexCallback", "V", 0x4, NULL, NULL },
     { "setCacheRecordIndexWithOrgOssPdfreporterEngineFillFillDatasetPosition:withByte:", "setCacheRecordIndex", "V", 0x1, NULL, NULL },
@@ -1065,8 +1065,8 @@ withOrgOssPdfreporterEngineFillJRFillDataset_CacheRecordIndexCallback:(id<OrgOss
     { "scriptlets_", NULL, 0x4, "Ljava.util.List;", NULL, "Ljava/util/List<Lorg/oss/pdfreporter/engine/JRAbstractScriptlet;>;", .constantValue.asLong = 0 },
     { "delegateScriptlet_", NULL, 0x4, "Lorg.oss.pdfreporter.engine.JRAbstractScriptlet;", NULL, NULL, .constantValue.asLong = 0 },
     { "dataSource_", NULL, 0x4, "Lorg.oss.pdfreporter.engine.JRDataSource;", NULL, NULL, .constantValue.asLong = 0 },
-    { "locale_", NULL, 0x4, "Ljava.util.Locale;", NULL, NULL, .constantValue.asLong = 0 },
-    { "resourceBundle_", NULL, 0x4, "Ljava.util.ResourceBundle;", NULL, NULL, .constantValue.asLong = 0 },
+    { "locale_", NULL, 0x4, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", NULL, NULL, .constantValue.asLong = 0 },
+    { "textBundle_", NULL, 0x4, "Lorg.oss.pdfreporter.text.bundle.ITextBundle;", NULL, NULL, .constantValue.asLong = 0 },
     { "timeZone_", NULL, 0x4, "Ljava.util.TimeZone;", NULL, NULL, .constantValue.asLong = 0 },
     { "reportCount_", NULL, 0x4, "Ljava.lang.Integer;", NULL, NULL, .constantValue.asLong = 0 },
     { "calculator_", NULL, 0x4, "Lorg.oss.pdfreporter.engine.fill.JRCalculator;", NULL, NULL, .constantValue.asLong = 0 },

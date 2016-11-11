@@ -9,7 +9,6 @@
 #include "java/util/Collection.h"
 #include "java/util/List.h"
 #include "java/util/Map.h"
-#include "java/util/ResourceBundle.h"
 #include "org/oss/pdfreporter/components/table/fill/BuiltinExpressionEvaluatorDecorator.h"
 #include "org/oss/pdfreporter/components/table/fill/FillTableSubreport.h"
 #include "org/oss/pdfreporter/engine/JRException.h"
@@ -28,6 +27,7 @@
 #include "org/oss/pdfreporter/engine/fill/JRFillElement.h"
 #include "org/oss/pdfreporter/engine/fill/JRFillObjectFactory.h"
 #include "org/oss/pdfreporter/engine/fill/JRFillSubreport.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
 
 @interface OrgOssPdfreporterComponentsTableFillFillTableSubreport () {
  @public
@@ -92,7 +92,7 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterComponentsTableFillFillTableSubreport, buil
 
 - (void)copyResourceBundleParameterWithJavaUtilMap:(id<JavaUtilMap>)parameterValues {
   if (![((id<JavaUtilMap>) nil_chk(parameterValues)) containsKeyWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE] && [((OrgOssPdfreporterEngineJasperReport *) nil_chk(tableReport_)) getResourceBundle] == nil) {
-    JavaUtilResourceBundle *resourceBundle = (JavaUtilResourceBundle *) cast_chk([((id<JavaUtilMap>) nil_chk([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getParameterValuesMap])) getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE], [JavaUtilResourceBundle class]);
+    id<OrgOssPdfreporterTextBundleITextBundle> resourceBundle = (id<OrgOssPdfreporterTextBundleITextBundle>) cast_check([((id<JavaUtilMap>) nil_chk([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getParameterValuesMap])) getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE], OrgOssPdfreporterTextBundleITextBundle_class_());
     if (resourceBundle != nil) {
       (void) [parameterValues putWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE withId:resourceBundle];
     }

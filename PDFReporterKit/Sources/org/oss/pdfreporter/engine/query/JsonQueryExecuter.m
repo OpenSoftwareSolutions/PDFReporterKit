@@ -7,7 +7,6 @@
 #include "J2ObjC_source.h"
 #include "java/io/IOException.h"
 #include "java/io/InputStream.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/TimeZone.h"
 #include "java/util/logging/Level.h"
@@ -23,6 +22,7 @@
 #include "org/oss/pdfreporter/json/IJsonDataSource.h"
 #include "org/oss/pdfreporter/json/factory/IJsonDataSourceFactory.h"
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineQueryJsonQueryExecuter () {
  @public
@@ -94,9 +94,9 @@ NSString *OrgOssPdfreporterEngineQueryJsonQueryExecuter_CANONICAL_LANGUAGE = @"J
     if (numberFormatPattern != nil) {
       [((id<OrgOssPdfreporterJsonIJsonDataSource>) nil_chk(datasource_)) setNumberPatternWithNSString:numberFormatPattern];
     }
-    JavaUtilLocale *jsonLocale = (JavaUtilLocale *) cast_chk([self getParameterValueWithNSString:OrgOssPdfreporterEngineQueryJsonQueryExecuterFactory_JSON_LOCALE withBoolean:true], [JavaUtilLocale class]);
+    OrgOssPdfreporterTextBundleStringLocale *jsonLocale = (OrgOssPdfreporterTextBundleStringLocale *) cast_chk([self getParameterValueWithNSString:OrgOssPdfreporterEngineQueryJsonQueryExecuterFactory_JSON_LOCALE withBoolean:true], [OrgOssPdfreporterTextBundleStringLocale class]);
     if (jsonLocale != nil) {
-      [((id<OrgOssPdfreporterJsonIJsonDataSource>) nil_chk(datasource_)) setLocaleWithJavaUtilLocale:jsonLocale];
+      [((id<OrgOssPdfreporterJsonIJsonDataSource>) nil_chk(datasource_)) setLocaleWithOrgOssPdfreporterTextBundleStringLocale:jsonLocale];
     }
     else {
       NSString *jsonLocaleCode = [self getStringParameterOrPropertyWithNSString:OrgOssPdfreporterEngineQueryJsonQueryExecuterFactory_JSON_LOCALE_CODE];

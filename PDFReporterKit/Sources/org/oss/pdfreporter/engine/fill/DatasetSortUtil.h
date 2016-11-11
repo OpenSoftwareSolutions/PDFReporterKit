@@ -17,10 +17,10 @@
 #define OrgOssPdfreporterEngineFillDatasetSortUtil_
 
 @class IOSObjectArray;
-@class JavaUtilLocale;
 @class OrgOssPdfreporterEngineFillJRBaseFiller;
 @class OrgOssPdfreporterEngineFillJRFillDataset;
 @class OrgOssPdfreporterEngineFillSortedDataSource;
+@class OrgOssPdfreporterTextBundleStringLocale;
 
 @interface OrgOssPdfreporterEngineFillDatasetSortUtil : NSObject
 
@@ -32,7 +32,7 @@
 
 + (OrgOssPdfreporterEngineFillSortedDataSource *)getSortedDataSourceWithOrgOssPdfreporterEngineFillJRBaseFiller:(OrgOssPdfreporterEngineFillJRBaseFiller *)filler
                                                                    withOrgOssPdfreporterEngineFillJRFillDataset:(OrgOssPdfreporterEngineFillJRFillDataset *)dataset
-                                                                                             withJavaUtilLocale:(JavaUtilLocale *)locale;
+                                                                    withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 + (jboolean)needSortingWithOrgOssPdfreporterEngineFillJRFillDataset:(OrgOssPdfreporterEngineFillJRFillDataset *)dataset;
 
@@ -44,7 +44,7 @@ FOUNDATION_EXPORT IOSObjectArray *OrgOssPdfreporterEngineFillDatasetSortUtil_get
 
 FOUNDATION_EXPORT jboolean OrgOssPdfreporterEngineFillDatasetSortUtil_needSortingWithOrgOssPdfreporterEngineFillJRFillDataset_(OrgOssPdfreporterEngineFillJRFillDataset *dataset);
 
-FOUNDATION_EXPORT OrgOssPdfreporterEngineFillSortedDataSource *OrgOssPdfreporterEngineFillDatasetSortUtil_getSortedDataSourceWithOrgOssPdfreporterEngineFillJRBaseFiller_withOrgOssPdfreporterEngineFillJRFillDataset_withJavaUtilLocale_(OrgOssPdfreporterEngineFillJRBaseFiller *filler, OrgOssPdfreporterEngineFillJRFillDataset *dataset, JavaUtilLocale *locale);
+FOUNDATION_EXPORT OrgOssPdfreporterEngineFillSortedDataSource *OrgOssPdfreporterEngineFillDatasetSortUtil_getSortedDataSourceWithOrgOssPdfreporterEngineFillJRBaseFiller_withOrgOssPdfreporterEngineFillJRFillDataset_withOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterEngineFillJRBaseFiller *filler, OrgOssPdfreporterEngineFillJRFillDataset *dataset, OrgOssPdfreporterTextBundleStringLocale *locale);
 
 FOUNDATION_EXPORT void OrgOssPdfreporterEngineFillDatasetSortUtil_init(OrgOssPdfreporterEngineFillDatasetSortUtil *self);
 
@@ -65,7 +65,7 @@ J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineFillDatasetSortUtil)
 
 @class IOSObjectArray;
 @class JavaLangInteger;
-@class JavaUtilLocale;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol JavaUtilList;
 
 @interface OrgOssPdfreporterEngineFillDataSourceComparator : NSObject < JavaUtilComparator > {
@@ -76,7 +76,7 @@ J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineFillDatasetSortUtil)
 #pragma mark Public
 
 - (instancetype)initWithOrgOssPdfreporterEngineFillSortFieldInfoArray:(IOSObjectArray *)sortFieldInfo
-                                                   withJavaUtilLocale:(JavaUtilLocale *)locale
+                          withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale
                                                      withJavaUtilList:(id<JavaUtilList>)records;
 
 - (jint)compareWithId:(JavaLangInteger *)idx1
@@ -88,11 +88,11 @@ J2OBJC_STATIC_INIT(OrgOssPdfreporterEngineFillDataSourceComparator)
 
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillDataSourceComparator, sortFieldInfo_, IOSObjectArray *)
 
-FOUNDATION_EXPORT void OrgOssPdfreporterEngineFillDataSourceComparator_initWithOrgOssPdfreporterEngineFillSortFieldInfoArray_withJavaUtilLocale_withJavaUtilList_(OrgOssPdfreporterEngineFillDataSourceComparator *self, IOSObjectArray *sortFieldInfo, JavaUtilLocale *locale, id<JavaUtilList> records);
+FOUNDATION_EXPORT void OrgOssPdfreporterEngineFillDataSourceComparator_initWithOrgOssPdfreporterEngineFillSortFieldInfoArray_withOrgOssPdfreporterTextBundleStringLocale_withJavaUtilList_(OrgOssPdfreporterEngineFillDataSourceComparator *self, IOSObjectArray *sortFieldInfo, OrgOssPdfreporterTextBundleStringLocale *locale, id<JavaUtilList> records);
 
-FOUNDATION_EXPORT OrgOssPdfreporterEngineFillDataSourceComparator *new_OrgOssPdfreporterEngineFillDataSourceComparator_initWithOrgOssPdfreporterEngineFillSortFieldInfoArray_withJavaUtilLocale_withJavaUtilList_(IOSObjectArray *sortFieldInfo, JavaUtilLocale *locale, id<JavaUtilList> records) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT OrgOssPdfreporterEngineFillDataSourceComparator *new_OrgOssPdfreporterEngineFillDataSourceComparator_initWithOrgOssPdfreporterEngineFillSortFieldInfoArray_withOrgOssPdfreporterTextBundleStringLocale_withJavaUtilList_(IOSObjectArray *sortFieldInfo, OrgOssPdfreporterTextBundleStringLocale *locale, id<JavaUtilList> records) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT OrgOssPdfreporterEngineFillDataSourceComparator *create_OrgOssPdfreporterEngineFillDataSourceComparator_initWithOrgOssPdfreporterEngineFillSortFieldInfoArray_withJavaUtilLocale_withJavaUtilList_(IOSObjectArray *sortFieldInfo, JavaUtilLocale *locale, id<JavaUtilList> records);
+FOUNDATION_EXPORT OrgOssPdfreporterEngineFillDataSourceComparator *create_OrgOssPdfreporterEngineFillDataSourceComparator_initWithOrgOssPdfreporterEngineFillSortFieldInfoArray_withOrgOssPdfreporterTextBundleStringLocale_withJavaUtilList_(IOSObjectArray *sortFieldInfo, OrgOssPdfreporterTextBundleStringLocale *locale, id<JavaUtilList> records);
 
 J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineFillDataSourceComparator)
 

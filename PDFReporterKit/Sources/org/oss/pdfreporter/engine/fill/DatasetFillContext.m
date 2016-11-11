@@ -17,7 +17,7 @@
     { "getParameterValueWithNSString:", "getParameterValue", "Ljava.lang.Object;", 0x401, NULL, NULL },
     { "getFieldValueWithNSString:withOrgOssPdfreporterEngineEvaluationType:", "getFieldValue", "Ljava.lang.Object;", 0x401, NULL, NULL },
     { "getVariableValueWithNSString:withOrgOssPdfreporterEngineEvaluationType:", "getVariableValue", "Ljava.lang.Object;", 0x401, NULL, NULL },
-    { "getLocale", NULL, "Ljava.util.Locale;", 0x401, NULL, NULL },
+    { "getLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x401, NULL, NULL },
   };
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillDatasetFillContext = { 2, "DatasetFillContext", "org.oss.pdfreporter.engine.fill", NULL, 0x609, 4, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineFillDatasetFillContext;

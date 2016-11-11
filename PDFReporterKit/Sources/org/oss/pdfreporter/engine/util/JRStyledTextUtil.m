@@ -5,7 +5,6 @@
 
 #include "J2ObjC_source.h"
 #include "java/lang/Integer.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "org/oss/pdfreporter/engine/JRCommonText.h"
 #include "org/oss/pdfreporter/engine/JRPrintText.h"
@@ -14,6 +13,7 @@
 #include "org/oss/pdfreporter/engine/util/JRStyledText.h"
 #include "org/oss/pdfreporter/engine/util/JRStyledTextParser.h"
 #include "org/oss/pdfreporter/engine/util/JRStyledTextUtil.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineUtilJRStyledTextUtil () {
  @public
@@ -72,7 +72,7 @@ __attribute__((unused)) static OrgOssPdfreporterEngineUtilJRStyledTextUtil *crea
   if (truncatedText == nil) {
     return nil;
   }
-  return [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk(OrgOssPdfreporterEngineUtilJRStyledTextParser_getInstance())) getStyledTextWithJavaUtilMap:[((OrgOssPdfreporterEngineJRStyledTextAttributeSelector *) nil_chk(attributeSelector)) getStyledTextAttributesWithOrgOssPdfreporterEngineJRPrintText:printText] withNSString:truncatedText withBoolean:![((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_NONE)) isEqual:[((id<OrgOssPdfreporterEngineJRPrintText>) nil_chk(printText)) getMarkup]] withJavaUtilLocale:OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(printText)];
+  return [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk(OrgOssPdfreporterEngineUtilJRStyledTextParser_getInstance())) getStyledTextWithJavaUtilMap:[((OrgOssPdfreporterEngineJRStyledTextAttributeSelector *) nil_chk(attributeSelector)) getStyledTextAttributesWithOrgOssPdfreporterEngineJRPrintText:printText] withNSString:truncatedText withBoolean:![((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_NONE)) isEqual:[((id<OrgOssPdfreporterEngineJRPrintText>) nil_chk(printText)) getMarkup]] withOrgOssPdfreporterTextBundleStringLocale:OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(printText)];
 }
 
 + (const J2ObjcClassInfo *)__metadata {

@@ -9,7 +9,6 @@
 #include "java/lang/Boolean.h"
 #include "java/lang/Integer.h"
 #include "java/util/Date.h"
-#include "java/util/Locale.h"
 #include "java/util/TimeZone.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/engine/JRDefaultStyleProvider.h"
@@ -52,6 +51,7 @@
 #include "org/oss/pdfreporter/engine/type/RunDirectionEnum.h"
 #include "org/oss/pdfreporter/engine/util/JRDataUtils.h"
 #include "org/oss/pdfreporter/engine/util/JRStyleResolver.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/IFormat.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
 #include "org/oss/pdfreporter/uses/java/util/UUID.h"
@@ -239,7 +239,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFillJRFillTextField)
         [simpleTextFormat setFormatFactoryClassWithNSString:[[((id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>) nil_chk([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getFormatFactory])) getClass] getName]];
       }
       if (![((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) hasMasterLocale]) {
-        [simpleTextFormat setLocaleCodeWithNSString:OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithJavaUtilLocale_([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getLocale])];
+        [simpleTextFormat setLocaleCodeWithNSString:OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale_([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getLocale])];
       }
       if ([value isKindOfClass:[JavaUtilDate class]]) {
         JavaUtilTimeZone *formatTimeZone = ownTimeZone == nil ? [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getTimeZone] : ownTimeZone;

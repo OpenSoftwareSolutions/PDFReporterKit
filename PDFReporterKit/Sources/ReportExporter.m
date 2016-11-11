@@ -18,18 +18,30 @@
 #import "NSDictionaryMap.h"
 #include "org/oss/pdfreporter/repo/SubreportUtil.h"
 
+#include "org/oss/pdfreporter/engine/JRParameter.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
+
 static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 @implementation ReportExporter
 
-+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders withParameters:(NSDictionary *)parameters withSubreports:(NSDictionary *)subreports
++(void)exportReportToPdf:(NSString*)pdfPath
+               withJrxml:(NSString*)jrxmlPath
+     withResourceFolders:(NSArray*)resourceFolders
+          withParameters:(NSDictionary *)parameters
+          withSubreports:(NSDictionary *)subreports
+                language:(NSString *)language
 {
     [OrgOssPdfreporterRegistryApiRegistry initSession];
     NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
     
     OrgOssPdfreporterEngineJasperReport *report = [ReportExporter loadReport:jrxmlFile];
-    
-    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
+
+
+    NSDictionary *languageParams = [self parametersForLanguage:language];
+    NSMutableDictionary *allParams = [languageParams mutableCopy];
+    [allParams addEntriesFromDictionary:parameters];
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:allParams];
     
     if ([[subreports allKeys] count] > 0) {
         [subreports enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
@@ -44,7 +56,13 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
     [OrgOssPdfreporterRegistryApiRegistry dispose];
 }
 
-+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders andSqlite3:(NSString*)sqlite3 withParameters:(NSDictionary *)parameters withSubreports:(NSDictionary *)subreports
++(void)exportReportToPdf:(NSString*)pdfPath
+               withJrxml:(NSString*)jrxmlPath
+     withResourceFolders:(NSArray*)resourceFolders
+              andSqlite3:(NSString*)sqlite3
+          withParameters:(NSDictionary *)parameters
+          withSubreports:(NSDictionary *)subreports
+                language:(NSString *)language
 {
     [OrgOssPdfreporterRegistryApiRegistry initSession];
     NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
@@ -55,8 +73,11 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
         id<OrgOssPdfreporterNetIURL> sqlUrl = OrgOssPdfreporterRepoFileResourceLoader_getURLWithNSString_(sqlite3);
             sqlite3 = [sqlUrl getPath];
     }
-    
-    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
+
+    NSDictionary *languageParams = [self parametersForLanguage:language];
+    NSMutableDictionary *allParams = [languageParams mutableCopy];
+    [allParams addEntriesFromDictionary:parameters];
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:allParams];
     
     if ([[subreports allKeys] count] > 0) {
         [subreports enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
@@ -71,13 +92,24 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
     [OrgOssPdfreporterRegistryApiRegistry dispose];
 }
 
-+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders withXml:(NSString*)xmlFile andXPath:(NSString*)xPath withParameters:(NSDictionary *)parameters withSubreports:(NSDictionary *)subreports
++(void)exportReportToPdf:(NSString*)pdfPath
+               withJrxml:(NSString*)jrxmlPath
+     withResourceFolders:(NSArray*)resourceFolders
+                 withXml:(NSString*)xmlFile
+                andXPath:(NSString*)xPath
+          withParameters:(NSDictionary *)parameters
+          withSubreports:(NSDictionary *)subreports
+                language:(NSString *)language
 {
     [OrgOssPdfreporterRegistryApiRegistry initSession];
     NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
     
     OrgOssPdfreporterEngineJasperReport *report = [ReportExporter loadReport:jrxmlFile];
-    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
+    NSDictionary *languageParams = [self parametersForLanguage:language];
+    NSMutableDictionary *allParams = [languageParams mutableCopy];
+    [allParams addEntriesFromDictionary:parameters];
+
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:allParams];
     
     if ([[subreports allKeys] count] > 0) {
         [subreports enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
@@ -95,7 +127,8 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 #pragma mark - phased export
 
-+(void)phaseLoadReportWithJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders
++(void)phaseLoadReportWithJrxml:(NSString *)jrxmlPath
+            withResourceFolders:(NSArray *)resourceFolders
 {
     if(phaseReport) [OrgOssPdfreporterRegistryApiRegistry dispose];
     [OrgOssPdfreporterRegistryApiRegistry initSession];
@@ -103,37 +136,53 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
     phaseReport = [ReportExporter loadReport:jrxmlFile];
 }
 
-+(void)phaseExportReportToPdf:(NSString*)pdfPath
++(void)phaseExportReportToPdf:(NSString *)pdfPath
+                     language:(NSString *)language
 {
-    [self phaseExportReportToPdf:pdfPath fillWithParameters:nil];
+    [self phaseExportReportToPdf:pdfPath fillWithParameters:nil language:language];
 }
 
-+(void)phaseExportReportToPdf:(NSString*)pdfPath fillWithParameters:(NSDictionary *)parameters;
++(void)phaseExportReportToPdf:(NSString *)pdfPath
+           fillWithParameters:(NSDictionary *)parameters
+                     language:(NSString *)language
 {
-    NSDictionaryMap *parametersMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:parametersMap];
+    NSDictionary *languageParameters = [self parametersForLanguage:language];
+    NSMutableDictionary *params = [@{} mutableCopy];
+    [params addEntriesFromDictionary:languageParameters];
+    [params addEntriesFromDictionary:parameters];
+
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:params];
+
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:parameterMap];
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
     phaseReport = nil;
 }
 
-+(void)phaseExportReportToPdf:(NSString*)pdfPath withXml:(NSString*)xmlFile andXPath:(NSString*)xPath
++(void)phaseExportReportToPdf:(NSString *)pdfPath
+                      withXml:(NSString *)xmlFile
+                     andXPath:(NSString *)xPath
+                     language:(NSString *)language
 {
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:nil withXml:xmlFile andXPath:xPath];
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:[self parametersForLanguage:language]];
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:parameterMap withXml:xmlFile andXPath:xPath];
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
     phaseReport = nil;
 }
 
-+(void)phaseExportReportToPdf:(NSString*)pdfPath andSqlite3:(NSString*)sqlite3
++(void)phaseExportReportToPdf:(NSString *)pdfPath
+                   andSqlite3:(NSString *)sqlite3
+                     language:(NSString *)language
 {
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:nil withSqlite3:sqlite3];
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:[self parametersForLanguage:language]];
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:parameterMap withSqlite3:sqlite3];
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
     phaseReport = nil;
 }
 
-+(OrgOssPdfreporterEngineJasperReport*)loadReport:(NSString*)jrxmlFile
++(OrgOssPdfreporterEngineJasperReport *)loadReport:(NSString *)jrxmlFile
 {
     JavaIoInputStream *isReport = [OrgOssPdfreporterRepoFileResourceLoader getInputStreamWithNSString:jrxmlFile];
     OrgOssPdfreporterEngineDesignJasperDesign *design = [OrgOssPdfreporterEngineXmlJRXmlLoader load__WithJavaIoInputStream:isReport];
@@ -141,7 +190,7 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
     return [OrgOssPdfreporterEngineJasperCompileManager compileReportWithOrgOssPdfreporterEngineDesignJasperDesign:design];
 }
 
-+(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withParameters:(id<JavaUtilMap>)parameters
++(OrgOssPdfreporterEngineJasperPrint *)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withParameters:(id<JavaUtilMap>)parameters
 {
     return [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:parameters withOrgOssPdfreporterEngineJRDataSource:[[OrgOssPdfreporterEngineJREmptyDataSource alloc] init]];
 }
@@ -193,6 +242,19 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
         }
     }
     return [jrxmlPath lastPathComponent];
+}
+
++ (NSDictionary *)parametersForLanguage:(NSString *)language
+{
+    if (!language || language.length < 2)
+    {
+        return nil;
+    }
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    id locale = OrgOssPdfreporterTextBundleStringLocale_fromLocaleStringWithNSString_(language);
+    params[OrgOssPdfreporterEngineJRParameter_get_REPORT_LOCALE()] = locale;
+    return params;
 }
 
 @end

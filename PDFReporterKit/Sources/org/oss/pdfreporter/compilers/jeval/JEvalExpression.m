@@ -14,7 +14,6 @@
 #include "java/util/Date.h"
 #include "java/util/HashMap.h"
 #include "java/util/List.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/logging/Level.h"
 #include "java/util/logging/Logger.h"
@@ -38,6 +37,7 @@
 #include "org/oss/pdfreporter/compilers/jeval/functions/NullValue.h"
 #include "org/oss/pdfreporter/compilers/jeval/functions/TruncateDateTo.h"
 #include "org/oss/pdfreporter/compilers/util/ResultUtil.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/uses/net/sourceforge/jeval/EvaluationConstants.h"
 #include "org/oss/pdfreporter/uses/net/sourceforge/jeval/EvaluationException.h"
 #include "org/oss/pdfreporter/uses/net/sourceforge/jeval/Evaluator.h"
@@ -349,7 +349,7 @@ NSString *OrgOssPdfreporterCompilersJevalJEvalExpression_getStringWithId_(OrgOss
   else if ([value isKindOfClass:[NSString class]]) {
     return JreStrcat("C$C", OrgOssPdfreporterUsesNetSourceforgeJevalEvaluationConstants_SINGLE_QUOTE, [value description], OrgOssPdfreporterUsesNetSourceforgeJevalEvaluationConstants_SINGLE_QUOTE);
   }
-  else if ([value isKindOfClass:[JavaUtilLocale class]]) {
+  else if ([value isKindOfClass:[OrgOssPdfreporterTextBundleStringLocale class]]) {
     return JreStrcat("C$C", OrgOssPdfreporterUsesNetSourceforgeJevalEvaluationConstants_SINGLE_QUOTE, [value description], OrgOssPdfreporterUsesNetSourceforgeJevalEvaluationConstants_SINGLE_QUOTE);
   }
   else if ([value isKindOfClass:[JavaLangDouble class]]) {
