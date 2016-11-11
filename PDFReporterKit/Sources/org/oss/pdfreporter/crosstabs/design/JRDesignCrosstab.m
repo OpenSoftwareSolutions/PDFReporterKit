@@ -16,9 +16,7 @@
 #include "java/util/Iterator.h"
 #include "java/util/List.h"
 #include "java/util/ListIterator.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
-#include "java/util/ResourceBundle.h"
 #include "java/util/TimeZone.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/commons/arrays/Array2D.h"
@@ -68,6 +66,8 @@
 #include "org/oss/pdfreporter/engine/util/JRStyleResolver.h"
 #include "org/oss/pdfreporter/engine/util/Pair.h"
 #include "org/oss/pdfreporter/geometry/IColor.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
 #include "org/oss/pdfreporter/uses/org/apache/commons/collections/SequencedHashMap.h"
 
@@ -1117,7 +1117,7 @@ withOrgOssPdfreporterCrosstabsJRCrosstabParameter:(id<OrgOssPdfreporterCrosstabs
 + (void)initialize {
   if (self == [OrgOssPdfreporterCrosstabsDesignJRDesignCrosstab class]) {
     OrgOssPdfreporterCrosstabsDesignJRDesignCrosstab_logger = JavaUtilLoggingLogger_getLoggerWithNSString_([OrgOssPdfreporterCrosstabsDesignJRDesignCrosstab_class_() getName]);
-    OrgOssPdfreporterCrosstabsDesignJRDesignCrosstab_BUILT_IN_PARAMETERS = [IOSObjectArray newArrayWithObjects:(id[]){ OrgOssPdfreporterEngineJRParameter_REPORT_CONTEXT, OrgOssPdfreporterEngineReportContext_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_PARAMETERS_MAP, JavaUtilMap_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE, JavaUtilLocale_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE, JavaUtilResourceBundle_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_TIME_ZONE, JavaUtilTimeZone_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FORMAT_FACTORY, OrgOssPdfreporterTextFormatFactoryIFormatFactory_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FILE_RESOLVER, OrgOssPdfreporterEngineUtilFileResolver_class_() } count:14 type:NSObject_class_()];
+    OrgOssPdfreporterCrosstabsDesignJRDesignCrosstab_BUILT_IN_PARAMETERS = [IOSObjectArray newArrayWithObjects:(id[]){ OrgOssPdfreporterEngineJRParameter_REPORT_CONTEXT, OrgOssPdfreporterEngineReportContext_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_PARAMETERS_MAP, JavaUtilMap_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE, OrgOssPdfreporterTextBundleStringLocale_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE, OrgOssPdfreporterTextBundleITextBundle_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_TIME_ZONE, JavaUtilTimeZone_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FORMAT_FACTORY, OrgOssPdfreporterTextFormatFactoryIFormatFactory_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FILE_RESOLVER, OrgOssPdfreporterEngineUtilFileResolver_class_() } count:14 type:NSObject_class_()];
     OrgOssPdfreporterCrosstabsDesignJRDesignCrosstab_BUILT_IN_VARIABLES = [IOSObjectArray newArrayWithObjects:(id[]){ OrgOssPdfreporterCrosstabsJRCrosstab_VARIABLE_ROW_COUNT, JavaLangInteger_class_(), OrgOssPdfreporterCrosstabsJRCrosstab_VARIABLE_COLUMN_COUNT, JavaLangInteger_class_() } count:4 type:NSObject_class_()];
     J2OBJC_SET_INITIALIZED(OrgOssPdfreporterCrosstabsDesignJRDesignCrosstab)
   }

@@ -5,7 +5,6 @@
 
 #include "J2ObjC_source.h"
 #include "java/util/HashMap.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "org/oss/pdfreporter/engine/DefaultJasperReportsContext.h"
 #include "org/oss/pdfreporter/engine/JRPrintText.h"
@@ -17,14 +16,15 @@
 #include "org/oss/pdfreporter/engine/util/JRStyledTextParser.h"
 #include "org/oss/pdfreporter/font/text/TextAttribute.h"
 #include "org/oss/pdfreporter/geometry/IColor.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineJRStyledTextAttributeSelector ()
 
-+ (JavaUtilLocale *)getLocale;
++ (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 @end
 
-__attribute__((unused)) static JavaUtilLocale *OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getLocale();
+__attribute__((unused)) static OrgOssPdfreporterTextBundleStringLocale *OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getLocale();
 
 @interface OrgOssPdfreporterEngineJRStyledTextAttributeSelector_AllSelector : OrgOssPdfreporterEngineJRStyledTextAttributeSelector
 
@@ -105,11 +105,11 @@ OrgOssPdfreporterEngineJRStyledTextAttributeSelector *OrgOssPdfreporterEngineJRS
   return self;
 }
 
-+ (JavaUtilLocale *)getLocale {
++ (OrgOssPdfreporterTextBundleStringLocale *)getLocale {
   return OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getLocale();
 }
 
-+ (JavaUtilLocale *)getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)printText {
++ (OrgOssPdfreporterTextBundleStringLocale *)getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)printText {
   return OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(printText);
 }
 
@@ -143,8 +143,8 @@ OrgOssPdfreporterEngineJRStyledTextAttributeSelector *OrgOssPdfreporterEngineJRS
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithOrgOssPdfreporterEngineJasperReportsContext:", "JRStyledTextAttributeSelector", NULL, 0x4, NULL, NULL },
-    { "getLocale", NULL, "Ljava.util.Locale;", 0xa, NULL, NULL },
-    { "getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:", "getTextLocale", "Ljava.util.Locale;", 0x9, NULL, NULL },
+    { "getLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0xa, NULL, NULL },
+    { "getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:", "getTextLocale", "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x9, NULL, NULL },
     { "getStyledTextAttributesWithOrgOssPdfreporterEngineJRPrintText:", "getStyledTextAttributes", "Ljava.util.Map;", 0x401, NULL, "(Lorg/oss/pdfreporter/engine/JRPrintText;)Ljava/util/Map<Lorg/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator$Attribute;Ljava/lang/Object;>;" },
     { "getAllSelectorWithOrgOssPdfreporterEngineJasperReportsContext:", "getAllSelector", "Lorg.oss.pdfreporter.engine.JRStyledTextAttributeSelector;", 0x9, NULL, NULL },
     { "getNoBackcolorSelectorWithOrgOssPdfreporterEngineJasperReportsContext:", "getNoBackcolorSelector", "Lorg.oss.pdfreporter.engine.JRStyledTextAttributeSelector;", 0x9, NULL, NULL },
@@ -168,12 +168,12 @@ void OrgOssPdfreporterEngineJRStyledTextAttributeSelector_initWithOrgOssPdfrepor
   self->jasperReportsContext_ = jasperReportsContext;
 }
 
-JavaUtilLocale *OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getLocale() {
+OrgOssPdfreporterTextBundleStringLocale *OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getLocale() {
   OrgOssPdfreporterEngineJRStyledTextAttributeSelector_initialize();
   return OrgOssPdfreporterEngineUtilJRStyledTextParser_getLocale();
 }
 
-JavaUtilLocale *OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(id<OrgOssPdfreporterEngineJRPrintText> printText) {
+OrgOssPdfreporterTextBundleStringLocale *OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(id<OrgOssPdfreporterEngineJRPrintText> printText) {
   OrgOssPdfreporterEngineJRStyledTextAttributeSelector_initialize();
   NSString *localeCode = [((id<OrgOssPdfreporterEngineJRPrintText>) nil_chk(printText)) getLocaleCode];
   if (localeCode == nil) {

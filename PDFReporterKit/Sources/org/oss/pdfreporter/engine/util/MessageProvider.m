@@ -14,7 +14,7 @@
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
-    { "getMessageWithNSString:withNSObjectArray:withJavaUtilLocale:", "getMessage", "Ljava.lang.String;", 0x401, NULL, NULL },
+    { "getMessageWithNSString:withNSObjectArray:withOrgOssPdfreporterTextBundleStringLocale:", "getMessage", "Ljava.lang.String;", 0x401, NULL, NULL },
   };
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineUtilMessageProvider = { 2, "MessageProvider", "org.oss.pdfreporter.engine.util", NULL, 0x609, 1, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineUtilMessageProvider;

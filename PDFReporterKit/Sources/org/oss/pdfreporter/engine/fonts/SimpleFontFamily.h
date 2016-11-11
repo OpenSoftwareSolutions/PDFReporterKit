@@ -21,7 +21,7 @@
 #include "org/oss/pdfreporter/engine/fonts/FontFamily.h"
 
 @class JavaLangBoolean;
-@class JavaUtilLocale;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol JavaUtilMap;
 @protocol JavaUtilSet;
 @protocol OrgOssPdfreporterEngineFontsFontFace;
@@ -93,7 +93,7 @@
 
 - (void)setPdfEncodingWithNSString:(NSString *)pdfEncoding;
 
-- (jboolean)supportsLocaleWithJavaUtilLocale:(JavaUtilLocale *)locale;
+- (jboolean)supportsLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 @end
 

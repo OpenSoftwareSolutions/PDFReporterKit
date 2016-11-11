@@ -17,7 +17,7 @@
 #define OrgOssPdfreporterTextFormatLocaleConverter_
 
 @class IOSClass;
-@class JavaUtilLocale;
+@class OrgOssPdfreporterTextBundleStringLocale;
 
 @interface OrgOssPdfreporterTextFormatLocaleConverter : NSObject
 
@@ -27,14 +27,14 @@
 
 + (id)convertWithNSString:(NSString *)valueString
              withIOSClass:(IOSClass *)valueClass
-       withJavaUtilLocale:(JavaUtilLocale *)locale
+withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)localestring
              withNSString:(NSString *)pattern;
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(OrgOssPdfreporterTextFormatLocaleConverter)
 
-FOUNDATION_EXPORT id OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withJavaUtilLocale_withNSString_(NSString *valueString, IOSClass *valueClass, JavaUtilLocale *locale, NSString *pattern);
+FOUNDATION_EXPORT id OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withOrgOssPdfreporterTextBundleStringLocale_withNSString_(NSString *valueString, IOSClass *valueClass, OrgOssPdfreporterTextBundleStringLocale *localestring, NSString *pattern);
 
 FOUNDATION_EXPORT void OrgOssPdfreporterTextFormatLocaleConverter_init(OrgOssPdfreporterTextFormatLocaleConverter *self);
 

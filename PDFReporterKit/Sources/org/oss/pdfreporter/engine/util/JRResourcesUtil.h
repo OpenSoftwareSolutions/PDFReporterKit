@@ -17,10 +17,10 @@
 #define OrgOssPdfreporterEngineUtilJRResourcesUtil_
 
 @class JavaIoFile;
-@class JavaUtilLocale;
-@class JavaUtilResourceBundle;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterEngineUtilFileResolver;
 @protocol OrgOssPdfreporterNetIURL;
+@protocol OrgOssPdfreporterTextBundleITextBundle;
 
 @interface OrgOssPdfreporterEngineUtilJRResourcesUtil : NSObject
 
@@ -28,8 +28,8 @@
 
 + (id<OrgOssPdfreporterNetIURL>)createURLWithNSString:(NSString *)spec;
 
-+ (JavaUtilResourceBundle *)loadResourceBundleWithNSString:(NSString *)baseName
-                                        withJavaUtilLocale:(JavaUtilLocale *)locale;
++ (id<OrgOssPdfreporterTextBundleITextBundle>)loadResourceBundleWithNSString:(NSString *)baseName
+                                 withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 + (JavaIoFile *)resolveFileWithNSString:(NSString *)location
 withOrgOssPdfreporterEngineUtilFileResolver:(id<OrgOssPdfreporterEngineUtilFileResolver>)fileRes;
@@ -42,7 +42,7 @@ FOUNDATION_EXPORT id<OrgOssPdfreporterNetIURL> OrgOssPdfreporterEngineUtilJRReso
 
 FOUNDATION_EXPORT JavaIoFile *OrgOssPdfreporterEngineUtilJRResourcesUtil_resolveFileWithNSString_withOrgOssPdfreporterEngineUtilFileResolver_(NSString *location, id<OrgOssPdfreporterEngineUtilFileResolver> fileRes);
 
-FOUNDATION_EXPORT JavaUtilResourceBundle *OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withJavaUtilLocale_(NSString *baseName, JavaUtilLocale *locale);
+FOUNDATION_EXPORT id<OrgOssPdfreporterTextBundleITextBundle> OrgOssPdfreporterEngineUtilJRResourcesUtil_loadResourceBundleWithNSString_withOrgOssPdfreporterTextBundleStringLocale_(NSString *baseName, OrgOssPdfreporterTextBundleStringLocale *locale);
 
 J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineUtilJRResourcesUtil)
 

@@ -6,13 +6,13 @@
 #include "J2ObjC_source.h"
 #include "java/util/Iterator.h"
 #include "java/util/List.h"
-#include "java/util/Locale.h"
 #include "org/oss/pdfreporter/engine/JRRuntimeException.h"
 #include "org/oss/pdfreporter/engine/JasperReportsContext.h"
 #include "org/oss/pdfreporter/engine/util/LocalizedMessageProvider.h"
 #include "org/oss/pdfreporter/engine/util/MessageProvider.h"
 #include "org/oss/pdfreporter/engine/util/MessageProviderFactory.h"
 #include "org/oss/pdfreporter/engine/util/MessageUtil.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineUtilMessageUtil () {
  @public
@@ -55,8 +55,8 @@ __attribute__((unused)) static OrgOssPdfreporterEngineUtilMessageUtil *create_Or
 }
 
 - (OrgOssPdfreporterEngineUtilLocalizedMessageProvider *)getLocalizedMessageProviderWithNSString:(NSString *)name
-                                                                              withJavaUtilLocale:(JavaUtilLocale *)locale {
-  return new_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withJavaUtilLocale_([self getMessageProviderWithNSString:name], locale);
+                                                     withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  return new_OrgOssPdfreporterEngineUtilLocalizedMessageProvider_initWithOrgOssPdfreporterEngineUtilMessageProvider_withOrgOssPdfreporterTextBundleStringLocale_([self getMessageProviderWithNSString:name], locale);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -64,7 +64,7 @@ __attribute__((unused)) static OrgOssPdfreporterEngineUtilMessageUtil *create_Or
     { "initWithOrgOssPdfreporterEngineJasperReportsContext:", "MessageUtil", NULL, 0x2, NULL, NULL },
     { "getInstanceWithOrgOssPdfreporterEngineJasperReportsContext:", "getInstance", "Lorg.oss.pdfreporter.engine.util.MessageUtil;", 0x19, NULL, NULL },
     { "getMessageProviderWithNSString:", "getMessageProvider", "Lorg.oss.pdfreporter.engine.util.MessageProvider;", 0x1, NULL, NULL },
-    { "getLocalizedMessageProviderWithNSString:withJavaUtilLocale:", "getLocalizedMessageProvider", "Lorg.oss.pdfreporter.engine.util.LocalizedMessageProvider;", 0x1, NULL, NULL },
+    { "getLocalizedMessageProviderWithNSString:withOrgOssPdfreporterTextBundleStringLocale:", "getLocalizedMessageProvider", "Lorg.oss.pdfreporter.engine.util.LocalizedMessageProvider;", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
     { "jasperReportsContext_", NULL, 0x12, "Lorg.oss.pdfreporter.engine.JasperReportsContext;", NULL, NULL, .constantValue.asLong = 0 },

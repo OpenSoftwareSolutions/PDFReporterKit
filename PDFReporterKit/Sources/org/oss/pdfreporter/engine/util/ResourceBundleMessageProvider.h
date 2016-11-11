@@ -21,7 +21,7 @@
 #include "org/oss/pdfreporter/engine/util/MessageProvider.h"
 
 @class IOSObjectArray;
-@class JavaUtilLocale;
+@class OrgOssPdfreporterTextBundleStringLocale;
 
 @interface OrgOssPdfreporterEngineUtilResourceBundleMessageProvider : NSObject < OrgOssPdfreporterEngineUtilMessageProvider >
 
@@ -30,11 +30,11 @@
 - (instancetype)initWithNSString:(NSString *)baseName;
 
 - (NSString *)getMessageWithNSString:(NSString *)code
-                  withJavaUtilLocale:(JavaUtilLocale *)locale;
+                   withNSObjectArray:(IOSObjectArray *)args
+withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (NSString *)getMessageWithNSString:(NSString *)code
-                   withNSObjectArray:(IOSObjectArray *)args
-                  withJavaUtilLocale:(JavaUtilLocale *)locale;
+withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 @end
 

@@ -9,7 +9,6 @@
 #include "java/util/Collection.h"
 #include "java/util/HashMap.h"
 #include "java/util/List.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/TimeZone.h"
 #include "java/util/concurrent/atomic/AtomicInteger.h"
@@ -31,6 +30,7 @@
 #include "org/oss/pdfreporter/engine/query/JRQueryExecuter.h"
 #include "org/oss/pdfreporter/engine/util/DeduplicableRegistry.h"
 #include "org/oss/pdfreporter/engine/util/Pair.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
 
 @interface OrgOssPdfreporterEngineFillJRFillContext () {
@@ -52,7 +52,7 @@
   id<JavaUtilList> recordedData_;
   OrgOssPdfreporterEngineFillJRVirtualizationContext *virtualizationContext_;
   id<OrgOssPdfreporterTextFormatFactoryIFormatFactory> masterFormatFactory_;
-  JavaUtilLocale *masterLocale_;
+  OrgOssPdfreporterTextBundleStringLocale *masterLocale_;
   JavaUtilTimeZone *masterTimeZone_;
   volatile_jboolean canceled_;
   JavaUtilConcurrentAtomicAtomicInteger *fillerIdSeq_;
@@ -77,7 +77,7 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, dataRecorder_, id<
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, recordedData_, id<JavaUtilList>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, virtualizationContext_, OrgOssPdfreporterEngineFillJRVirtualizationContext *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, masterFormatFactory_, id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>)
-J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, masterLocale_, JavaUtilLocale *)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, masterLocale_, OrgOssPdfreporterTextBundleStringLocale *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, masterTimeZone_, JavaUtilTimeZone *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, fillerIdSeq_, JavaUtilConcurrentAtomicAtomicInteger *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillContext, fillElementSeq_, JavaUtilConcurrentAtomicAtomicInteger *)
@@ -193,11 +193,11 @@ withOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)s
   self->masterFormatFactory_ = masterFormatFactory;
 }
 
-- (JavaUtilLocale *)getMasterLocale {
+- (OrgOssPdfreporterTextBundleStringLocale *)getMasterLocale {
   return masterLocale_;
 }
 
-- (void)setMasterLocaleWithJavaUtilLocale:(JavaUtilLocale *)masterLocale {
+- (void)setMasterLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)masterLocale {
   self->masterLocale_ = masterLocale;
 }
 
@@ -338,8 +338,8 @@ withOrgOssPdfreporterEngineJRTemplate:(id<OrgOssPdfreporterEngineJRTemplate>)tem
     { "getVirtualizationContext", NULL, "Lorg.oss.pdfreporter.engine.fill.JRVirtualizationContext;", 0x1, NULL, NULL },
     { "getMasterFormatFactory", NULL, "Lorg.oss.pdfreporter.text.format.factory.IFormatFactory;", 0x1, NULL, NULL },
     { "setMasterFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory:", "setMasterFormatFactory", "V", 0x1, NULL, NULL },
-    { "getMasterLocale", NULL, "Ljava.util.Locale;", 0x1, NULL, NULL },
-    { "setMasterLocaleWithJavaUtilLocale:", "setMasterLocale", "V", 0x1, NULL, NULL },
+    { "getMasterLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x1, NULL, NULL },
+    { "setMasterLocaleWithOrgOssPdfreporterTextBundleStringLocale:", "setMasterLocale", "V", 0x1, NULL, NULL },
     { "getMasterTimeZone", NULL, "Ljava.util.TimeZone;", 0x1, NULL, NULL },
     { "setMasterTimeZoneWithJavaUtilTimeZone:", "setMasterTimeZone", "V", 0x1, NULL, NULL },
     { "hasLoadedTemplateWithId:", "hasLoadedTemplate", "Z", 0x1, NULL, NULL },
@@ -381,7 +381,7 @@ withOrgOssPdfreporterEngineJRTemplate:(id<OrgOssPdfreporterEngineJRTemplate>)tem
     { "recordedData_", NULL, 0x2, "Ljava.util.List;", NULL, "Ljava/util/List<Lorg/oss/pdfreporter/engine/util/Pair<Lorg/oss/pdfreporter/engine/fill/FillDatasetPosition;Ljava/lang/Object;>;>;", .constantValue.asLong = 0 },
     { "virtualizationContext_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fill.JRVirtualizationContext;", NULL, NULL, .constantValue.asLong = 0 },
     { "masterFormatFactory_", NULL, 0x2, "Lorg.oss.pdfreporter.text.format.factory.IFormatFactory;", NULL, NULL, .constantValue.asLong = 0 },
-    { "masterLocale_", NULL, 0x2, "Ljava.util.Locale;", NULL, NULL, .constantValue.asLong = 0 },
+    { "masterLocale_", NULL, 0x2, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", NULL, NULL, .constantValue.asLong = 0 },
     { "masterTimeZone_", NULL, 0x2, "Ljava.util.TimeZone;", NULL, NULL, .constantValue.asLong = 0 },
     { "canceled_", NULL, 0x42, "Z", NULL, NULL, .constantValue.asLong = 0 },
     { "fillerIdSeq_", NULL, 0x12, "Ljava.util.concurrent.atomic.AtomicInteger;", NULL, NULL, .constantValue.asLong = 0 },

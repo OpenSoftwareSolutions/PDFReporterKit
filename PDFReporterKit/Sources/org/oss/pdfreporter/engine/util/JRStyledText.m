@@ -15,7 +15,6 @@
 #include "java/util/HashSet.h"
 #include "java/util/Iterator.h"
 #include "java/util/List.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/Set.h"
 #include "org/oss/pdfreporter/engine/DefaultJasperReportsContext.h"
@@ -28,6 +27,7 @@
 #include "org/oss/pdfreporter/font/factory/IFontFactory.h"
 #include "org/oss/pdfreporter/font/text/TextAttribute.h"
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/uses/java/awt/text/AttributedString.h"
 #include "org/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator.h"
 
@@ -38,7 +38,7 @@
   OrgOssPdfreporterUsesJavaAwtTextAttributedString *attributedString_;
   OrgOssPdfreporterUsesJavaAwtTextAttributedString *awtAttributedString_;
   id<JavaUtilMap> globalAttributes_;
-  JavaUtilLocale *locale_;
+  OrgOssPdfreporterTextBundleStringLocale *locale_;
 }
 
 - (OrgOssPdfreporterFontIFont_FontStyle *)getFontStyleFromAttributesWithJavaUtilMap:(id<JavaUtilMap>)attrs;
@@ -50,7 +50,7 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilJRStyledText, runs_, id<JavaUtilL
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilJRStyledText, attributedString_, OrgOssPdfreporterUsesJavaAwtTextAttributedString *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilJRStyledText, awtAttributedString_, OrgOssPdfreporterUsesJavaAwtTextAttributedString *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilJRStyledText, globalAttributes_, id<JavaUtilMap>)
-J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilJRStyledText, locale_, JavaUtilLocale *)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineUtilJRStyledText, locale_, OrgOssPdfreporterTextBundleStringLocale *)
 
 inline id<JavaUtilSet> OrgOssPdfreporterEngineUtilJRStyledText_get_FONT_ATTRS();
 static id<JavaUtilSet> OrgOssPdfreporterEngineUtilJRStyledText_FONT_ATTRS;
@@ -75,8 +75,8 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-- (instancetype)initWithJavaUtilLocale:(JavaUtilLocale *)locale {
-  OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(self, locale);
+- (instancetype)initWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
+  OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(self, locale);
   return self;
 }
 
@@ -100,7 +100,7 @@ J2OBJC_IGNORE_DESIGNATED_END
   return [((JavaLangStringBuffer *) nil_chk(sbuffer_)) description];
 }
 
-- (JavaUtilLocale *)getLocale {
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale {
   return locale_;
 }
 
@@ -136,7 +136,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     while (runLimit < [((id<OrgOssPdfreporterUsesJavaAwtTextIAttributedCharacterIterator>) nil_chk(iterator)) getEndIndex] && (runLimit = [iterator getRunLimitWithJavaUtilSet:OrgOssPdfreporterEngineUtilJRStyledText_FONT_ATTRS]) <= [iterator getEndIndex]) {
       id<JavaUtilMap> attrs = [iterator getAttributes];
       NSString *familyName = (NSString *) cast_chk([((id<JavaUtilMap>) nil_chk(attrs)) getWithId:JreLoadStatic(OrgOssPdfreporterFontTextTextAttribute, FAMILY)], [NSString class]);
-      id<OrgOssPdfreporterFontIFont> awtFont = [((OrgOssPdfreporterEngineFontsFontUtil *) nil_chk(OrgOssPdfreporterEngineFontsFontUtil_getInstanceWithOrgOssPdfreporterEngineJasperReportsContext_(jasperReportsContext))) getAwtFontFromBundlesWithNSString:familyName withOrgOssPdfreporterFontIFont_FontStyle:OrgOssPdfreporterEngineUtilJRStyledText_getFontStyleFromAttributesWithJavaUtilMap_(self, attrs) withInt:[((JavaLangFloat *) nil_chk(((JavaLangFloat *) cast_chk([attrs getWithId:JreLoadStatic(OrgOssPdfreporterFontTextTextAttribute, SIZE)], [JavaLangFloat class])))) intValue] withJavaUtilLocale:locale_ withBoolean:ignoreMissingFont];
+      id<OrgOssPdfreporterFontIFont> awtFont = [((OrgOssPdfreporterEngineFontsFontUtil *) nil_chk(OrgOssPdfreporterEngineFontsFontUtil_getInstanceWithOrgOssPdfreporterEngineJasperReportsContext_(jasperReportsContext))) getAwtFontFromBundlesWithNSString:familyName withOrgOssPdfreporterFontIFont_FontStyle:OrgOssPdfreporterEngineUtilJRStyledText_getFontStyleFromAttributesWithJavaUtilMap_(self, attrs) withInt:[((JavaLangFloat *) nil_chk(((JavaLangFloat *) cast_chk([attrs getWithId:JreLoadStatic(OrgOssPdfreporterFontTextTextAttribute, SIZE)], [JavaLangFloat class])))) intValue] withOrgOssPdfreporterTextBundleStringLocale:locale_ withBoolean:ignoreMissingFont];
       if (awtFont == nil) {
         [((OrgOssPdfreporterEngineFontsFontUtil *) nil_chk(OrgOssPdfreporterEngineFontsFontUtil_getInstanceWithOrgOssPdfreporterEngineJasperReportsContext_(jasperReportsContext))) checkAwtFontWithNSString:familyName withBoolean:ignoreMissingFont];
       }
@@ -258,12 +258,12 @@ J2OBJC_IGNORE_DESIGNATED_END
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "init", "JRStyledText", NULL, 0x1, NULL, NULL },
-    { "initWithJavaUtilLocale:", "JRStyledText", NULL, 0x1, NULL, NULL },
+    { "initWithOrgOssPdfreporterTextBundleStringLocale:", "JRStyledText", NULL, 0x1, NULL, NULL },
     { "appendWithNSString:", "append", "V", 0x1, NULL, NULL },
     { "addRunWithOrgOssPdfreporterEngineUtilJRStyledText_Run:", "addRun", "V", 0x1, NULL, NULL },
     { "length", NULL, "I", 0x1, NULL, NULL },
     { "getText", NULL, "Ljava.lang.String;", 0x1, NULL, NULL },
-    { "getLocale", NULL, "Ljava.util.Locale;", 0x1, NULL, NULL },
+    { "getLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x1, NULL, NULL },
     { "getAttributedString", NULL, "Lorg.oss.pdfreporter.uses.java.awt.text.AttributedString;", 0x1, NULL, NULL },
     { "getAwtAttributedStringWithBoolean:", "getAwtAttributedString", "Lorg.oss.pdfreporter.uses.java.awt.text.AttributedString;", 0x1, NULL, NULL },
     { "getAwtAttributedStringWithOrgOssPdfreporterEngineJasperReportsContext:withBoolean:", "getAwtAttributedString", "Lorg.oss.pdfreporter.uses.java.awt.text.AttributedString;", 0x1, NULL, NULL },
@@ -284,7 +284,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "attributedString_", NULL, 0x2, "Lorg.oss.pdfreporter.uses.java.awt.text.AttributedString;", NULL, NULL, .constantValue.asLong = 0 },
     { "awtAttributedString_", NULL, 0x2, "Lorg.oss.pdfreporter.uses.java.awt.text.AttributedString;", NULL, NULL, .constantValue.asLong = 0 },
     { "globalAttributes_", NULL, 0x2, "Ljava.util.Map;", NULL, "Ljava/util/Map<Lorg/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator$Attribute;Ljava/lang/Object;>;", .constantValue.asLong = 0 },
-    { "locale_", NULL, 0x2, "Ljava.util.Locale;", NULL, NULL, .constantValue.asLong = 0 },
+    { "locale_", NULL, 0x2, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const char *inner_classes[] = {"Lorg.oss.pdfreporter.engine.util.JRStyledText$Run;"};
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineUtilJRStyledText = { 2, "JRStyledText", "org.oss.pdfreporter.engine.util", NULL, 0x1, 18, methods, 8, fields, 0, NULL, 1, inner_classes, NULL, NULL };
@@ -294,7 +294,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 @end
 
 void OrgOssPdfreporterEngineUtilJRStyledText_init(OrgOssPdfreporterEngineUtilJRStyledText *self) {
-  OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(self, nil);
+  OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(self, nil);
 }
 
 OrgOssPdfreporterEngineUtilJRStyledText *new_OrgOssPdfreporterEngineUtilJRStyledText_init() {
@@ -305,19 +305,19 @@ OrgOssPdfreporterEngineUtilJRStyledText *create_OrgOssPdfreporterEngineUtilJRSty
   J2OBJC_CREATE_IMPL(OrgOssPdfreporterEngineUtilJRStyledText, init)
 }
 
-void OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(OrgOssPdfreporterEngineUtilJRStyledText *self, JavaUtilLocale *locale) {
+void OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterEngineUtilJRStyledText *self, OrgOssPdfreporterTextBundleStringLocale *locale) {
   NSObject_init(self);
   self->sbuffer_ = new_JavaLangStringBuffer_init();
   self->runs_ = new_JavaUtilArrayList_init();
   self->locale_ = locale;
 }
 
-OrgOssPdfreporterEngineUtilJRStyledText *new_OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(JavaUtilLocale *locale) {
-  J2OBJC_NEW_IMPL(OrgOssPdfreporterEngineUtilJRStyledText, initWithJavaUtilLocale_, locale)
+OrgOssPdfreporterEngineUtilJRStyledText *new_OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterTextBundleStringLocale *locale) {
+  J2OBJC_NEW_IMPL(OrgOssPdfreporterEngineUtilJRStyledText, initWithOrgOssPdfreporterTextBundleStringLocale_, locale)
 }
 
-OrgOssPdfreporterEngineUtilJRStyledText *create_OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(JavaUtilLocale *locale) {
-  J2OBJC_CREATE_IMPL(OrgOssPdfreporterEngineUtilJRStyledText, initWithJavaUtilLocale_, locale)
+OrgOssPdfreporterEngineUtilJRStyledText *create_OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterTextBundleStringLocale *locale) {
+  J2OBJC_CREATE_IMPL(OrgOssPdfreporterEngineUtilJRStyledText, initWithOrgOssPdfreporterTextBundleStringLocale_, locale)
 }
 
 OrgOssPdfreporterFontIFont_FontStyle *OrgOssPdfreporterEngineUtilJRStyledText_getFontStyleFromAttributesWithJavaUtilMap_(OrgOssPdfreporterEngineUtilJRStyledText *self, id<JavaUtilMap> attrs) {

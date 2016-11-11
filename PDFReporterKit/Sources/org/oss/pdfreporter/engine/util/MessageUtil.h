@@ -16,8 +16,8 @@
 #if !defined (OrgOssPdfreporterEngineUtilMessageUtil_) && (INCLUDE_ALL_OrgOssPdfreporterEngineUtilMessageUtil || defined(INCLUDE_OrgOssPdfreporterEngineUtilMessageUtil))
 #define OrgOssPdfreporterEngineUtilMessageUtil_
 
-@class JavaUtilLocale;
 @class OrgOssPdfreporterEngineUtilLocalizedMessageProvider;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterEngineJasperReportsContext;
 @protocol OrgOssPdfreporterEngineUtilMessageProvider;
 
@@ -28,7 +28,7 @@
 + (OrgOssPdfreporterEngineUtilMessageUtil *)getInstanceWithOrgOssPdfreporterEngineJasperReportsContext:(id<OrgOssPdfreporterEngineJasperReportsContext>)jasperReportsContext;
 
 - (OrgOssPdfreporterEngineUtilLocalizedMessageProvider *)getLocalizedMessageProviderWithNSString:(NSString *)name
-                                                                              withJavaUtilLocale:(JavaUtilLocale *)locale;
+                                                     withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (id<OrgOssPdfreporterEngineUtilMessageProvider>)getMessageProviderWithNSString:(NSString *)name;
 

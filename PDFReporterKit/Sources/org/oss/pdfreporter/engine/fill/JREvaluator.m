@@ -24,6 +24,7 @@
 #include "org/oss/pdfreporter/engine/fill/JRExpressionEvalException.h"
 #include "org/oss/pdfreporter/engine/type/WhenResourceMissingTypeEnum.h"
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/IMessageFormat.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
 
@@ -243,7 +244,7 @@ void OrgOssPdfreporterEngineFillJREvaluator_init(OrgOssPdfreporterEngineFillJREv
 }
 
 id<OrgOssPdfreporterTextFormatIMessageFormat> OrgOssPdfreporterEngineFillJREvaluator_getMessageFormatWithNSString_(OrgOssPdfreporterEngineFillJREvaluator *self, NSString *pattern) {
-  return [((id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>) nil_chk(OrgOssPdfreporterRegistryApiRegistry_getIFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType_(JreLoadEnum(OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType, DEFAULT)))) newMessageFormatWithNSString:pattern withJavaUtilLocale:(JavaUtilLocale *) cast_chk([((id<OrgOssPdfreporterEngineFillIJRFillParameter>) nil_chk(self->locale_)) getValue], [JavaUtilLocale class])];
+  return [((id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>) nil_chk(OrgOssPdfreporterRegistryApiRegistry_getIFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType_(JreLoadEnum(OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType, DEFAULT)))) newMessageFormatWithNSString:pattern withJavaUtilLocale:[((OrgOssPdfreporterTextBundleStringLocale *) nil_chk(((OrgOssPdfreporterTextBundleStringLocale *) cast_chk([((id<OrgOssPdfreporterEngineFillIJRFillParameter>) nil_chk(self->locale_)) getValue], [OrgOssPdfreporterTextBundleStringLocale class])))) toLocale]];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(OrgOssPdfreporterEngineFillJREvaluator)

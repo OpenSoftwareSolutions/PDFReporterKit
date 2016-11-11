@@ -15,9 +15,7 @@
 #include "java/util/HashMap.h"
 #include "java/util/List.h"
 #include "java/util/ListIterator.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
-#include "java/util/ResourceBundle.h"
 #include "java/util/TimeZone.h"
 #include "org/oss/pdfreporter/engine/DatasetFilter.h"
 #include "org/oss/pdfreporter/engine/DefaultJasperReportsContext.h"
@@ -56,6 +54,8 @@
 #include "org/oss/pdfreporter/engine/util/JRCloneUtils.h"
 #include "org/oss/pdfreporter/engine/util/JRQueryExecuterUtils.h"
 #include "org/oss/pdfreporter/sql/IConnection.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
 #include "org/oss/pdfreporter/uses/java/util/UUID.h"
 
@@ -666,7 +666,7 @@ withOrgOssPdfreporterEngineDesignJRDesignGroup:(OrgOssPdfreporterEngineDesignJRD
 
 + (void)initialize {
   if (self == [OrgOssPdfreporterEngineDesignJRDesignDataset class]) {
-    OrgOssPdfreporterEngineDesignJRDesignDataset_BUILT_IN_PARAMETERS = [IOSObjectArray newArrayWithObjects:(id[]){ OrgOssPdfreporterEngineJRParameter_REPORT_CONTEXT, OrgOssPdfreporterEngineReportContext_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_PARAMETERS_MAP, JavaUtilMap_class_(), OrgOssPdfreporterEngineJRParameter_JASPER_REPORT, OrgOssPdfreporterEngineJasperReport_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_CONNECTION, OrgOssPdfreporterSqlIConnection_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_MAX_COUNT, JavaLangInteger_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_DATA_SOURCE, OrgOssPdfreporterEngineJRDataSource_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE, JavaUtilLocale_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE, JavaUtilResourceBundle_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_TIME_ZONE, JavaUtilTimeZone_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FORMAT_FACTORY, OrgOssPdfreporterTextFormatFactoryIFormatFactory_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FILE_RESOLVER, OrgOssPdfreporterEngineUtilFileResolver_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_TEMPLATES, JavaUtilCollection_class_(), OrgOssPdfreporterEngineJRParameter_SORT_FIELDS, JavaUtilList_class_(), OrgOssPdfreporterEngineJRParameter_FILTER, OrgOssPdfreporterEngineDatasetFilter_class_() } count:28 type:NSObject_class_()];
+    OrgOssPdfreporterEngineDesignJRDesignDataset_BUILT_IN_PARAMETERS = [IOSObjectArray newArrayWithObjects:(id[]){ OrgOssPdfreporterEngineJRParameter_REPORT_CONTEXT, OrgOssPdfreporterEngineReportContext_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_PARAMETERS_MAP, JavaUtilMap_class_(), OrgOssPdfreporterEngineJRParameter_JASPER_REPORT, OrgOssPdfreporterEngineJasperReport_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_CONNECTION, OrgOssPdfreporterSqlIConnection_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_MAX_COUNT, JavaLangInteger_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_DATA_SOURCE, OrgOssPdfreporterEngineJRDataSource_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE, OrgOssPdfreporterTextBundleStringLocale_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE, OrgOssPdfreporterTextBundleITextBundle_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_TIME_ZONE, JavaUtilTimeZone_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FORMAT_FACTORY, OrgOssPdfreporterTextFormatFactoryIFormatFactory_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_FILE_RESOLVER, OrgOssPdfreporterEngineUtilFileResolver_class_(), OrgOssPdfreporterEngineJRParameter_REPORT_TEMPLATES, JavaUtilCollection_class_(), OrgOssPdfreporterEngineJRParameter_SORT_FIELDS, JavaUtilList_class_(), OrgOssPdfreporterEngineJRParameter_FILTER, OrgOssPdfreporterEngineDatasetFilter_class_() } count:28 type:NSObject_class_()];
     OrgOssPdfreporterEngineDesignJRDesignDataset_BUILT_IN_PARAMETERS_MAIN = [IOSObjectArray newArrayWithObjects:(id[]){ OrgOssPdfreporterEngineJRParameter_REPORT_VIRTUALIZER, OrgOssPdfreporterEngineJRVirtualizer_class_(), OrgOssPdfreporterEngineJRParameter_IS_IGNORE_PAGINATION, JavaLangBoolean_class_() } count:4 type:NSObject_class_()];
     J2OBJC_SET_INITIALIZED(OrgOssPdfreporterEngineDesignJRDesignDataset)
   }

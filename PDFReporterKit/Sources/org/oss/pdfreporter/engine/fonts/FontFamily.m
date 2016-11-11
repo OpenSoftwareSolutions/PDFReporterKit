@@ -26,7 +26,7 @@
     { "getPdfEncoding", NULL, "Ljava.lang.String;", 0x401, NULL, NULL },
     { "isPdfEmbedded", NULL, "Ljava.lang.Boolean;", 0x401, NULL, NULL },
     { "getExportFontWithNSString:", "getExportFont", "Ljava.lang.String;", 0x401, NULL, NULL },
-    { "supportsLocaleWithJavaUtilLocale:", "supportsLocale", "Z", 0x401, NULL, NULL },
+    { "supportsLocaleWithOrgOssPdfreporterTextBundleStringLocale:", "supportsLocale", "Z", 0x401, NULL, NULL },
   };
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineFontsFontFamily = { 2, "FontFamily", "org.oss.pdfreporter.engine.fonts", NULL, 0x609, 13, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineFontsFontFamily;

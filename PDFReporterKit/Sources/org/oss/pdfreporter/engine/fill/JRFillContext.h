@@ -20,12 +20,12 @@
 #define INCLUDE_OrgOssPdfreporterEngineFillIJRFillContext 1
 #include "org/oss/pdfreporter/engine/fill/IJRFillContext.h"
 
-@class JavaUtilLocale;
 @class JavaUtilTimeZone;
 @class OrgOssPdfreporterEngineFillFillDatasetPosition;
 @class OrgOssPdfreporterEngineFillJRBaseFiller;
 @class OrgOssPdfreporterEngineFillJRVirtualizationContext;
 @class OrgOssPdfreporterEngineJasperReport;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterDataCacheDataCacheHandler;
 @protocol OrgOssPdfreporterDataCacheDataRecorder;
 @protocol OrgOssPdfreporterDataCacheDataSnapshot;
@@ -78,7 +78,7 @@
 
 - (id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>)getMasterFormatFactory;
 
-- (JavaUtilLocale *)getMasterLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getMasterLocale;
 
 - (JavaUtilTimeZone *)getMasterTimeZone;
 
@@ -120,7 +120,7 @@ withOrgOssPdfreporterEngineJRTemplate:(id<OrgOssPdfreporterEngineJRTemplate>)tem
 
 - (void)setMasterFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory:(id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>)masterFormatFactory;
 
-- (void)setMasterLocaleWithJavaUtilLocale:(JavaUtilLocale *)masterLocale;
+- (void)setMasterLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)masterLocale;
 
 - (void)setMasterTimeZoneWithJavaUtilTimeZone:(JavaUtilTimeZone *)masterTimeZone;
 

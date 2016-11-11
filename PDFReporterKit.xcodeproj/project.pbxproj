@@ -30,6 +30,12 @@
 		3B4F7AF91DD5C49800B4C8F6 /* DecodeBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7AF71DD5C49800B4C8F6 /* DecodeBase64String.m */; };
 		3B4F7AFC1DD5C5A800B4C8F6 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7AFA1DD5C5A800B4C8F6 /* Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B4F7AFD1DD5C5A800B4C8F6 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7AFB1DD5C5A800B4C8F6 /* Base64.m */; };
+		3B4F7B051DD6054F00B4C8F6 /* ITextBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7AFF1DD6054F00B4C8F6 /* ITextBundle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B4F7B061DD6054F00B4C8F6 /* ITextBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7B001DD6054F00B4C8F6 /* ITextBundle.m */; };
+		3B4F7B071DD6054F00B4C8F6 /* StringLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7B011DD6054F00B4C8F6 /* StringLocale.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B4F7B081DD6054F00B4C8F6 /* StringLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7B021DD6054F00B4C8F6 /* StringLocale.m */; };
+		3B4F7B091DD6054F00B4C8F6 /* TextBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7B031DD6054F00B4C8F6 /* TextBundle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B4F7B0A1DD6054F00B4C8F6 /* TextBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7B041DD6054F00B4C8F6 /* TextBundle.m */; };
 		3B5424EC1D3B5D3100C2EBB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5424EB1D3B5D3100C2EBB0 /* Security.framework */; };
 		3B6B130C1DA5953700543E67 /* AbstractImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6B130A1DA5953700543E67 /* AbstractImageProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B6B130D1DA5953700543E67 /* AbstractImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B130B1DA5953700543E67 /* AbstractImageProxy.m */; };
@@ -2818,6 +2824,12 @@
 		3B4F7AF71DD5C49800B4C8F6 /* DecodeBase64String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeBase64String.m; sourceTree = "<group>"; };
 		3B4F7AFA1DD5C5A800B4C8F6 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		3B4F7AFB1DD5C5A800B4C8F6 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		3B4F7AFF1DD6054F00B4C8F6 /* ITextBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITextBundle.h; sourceTree = "<group>"; };
+		3B4F7B001DD6054F00B4C8F6 /* ITextBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITextBundle.m; sourceTree = "<group>"; };
+		3B4F7B011DD6054F00B4C8F6 /* StringLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringLocale.h; sourceTree = "<group>"; };
+		3B4F7B021DD6054F00B4C8F6 /* StringLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringLocale.m; sourceTree = "<group>"; };
+		3B4F7B031DD6054F00B4C8F6 /* TextBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBundle.h; sourceTree = "<group>"; };
+		3B4F7B041DD6054F00B4C8F6 /* TextBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBundle.m; sourceTree = "<group>"; };
 		3B54140E1D3B56FB00C2EBB0 /* PDFReporterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PDFReporterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5424EB1D3B5D3100C2EBB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		3B6B130A1DA5953700543E67 /* AbstractImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractImageProxy.h; sourceTree = "<group>"; };
@@ -5616,6 +5628,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B4F7AFE1DD6054F00B4C8F6 /* bundle */ = {
+			isa = PBXGroup;
+			children = (
+				3B4F7AFF1DD6054F00B4C8F6 /* ITextBundle.h */,
+				3B4F7B001DD6054F00B4C8F6 /* ITextBundle.m */,
+				3B4F7B011DD6054F00B4C8F6 /* StringLocale.h */,
+				3B4F7B021DD6054F00B4C8F6 /* StringLocale.m */,
+				3B4F7B031DD6054F00B4C8F6 /* TextBundle.h */,
+				3B4F7B041DD6054F00B4C8F6 /* TextBundle.m */,
+			);
+			path = bundle;
+			sourceTree = "<group>";
+		};
 		3B5414021D3B569400C2EBB0 = {
 			isa = PBXGroup;
 			children = (
@@ -8487,6 +8512,7 @@
 		3BDF98081D441CD400C2DF4F /* text */ = {
 			isa = PBXGroup;
 			children = (
+				3B4F7AFE1DD6054F00B4C8F6 /* bundle */,
 				3BDF98091D441CD400C2DF4F /* AttributedStringConverter.h */,
 				3BDF980A1D441CD400C2DF4F /* AttributedStringConverter.m */,
 				3BDF980B1D441CD400C2DF4F /* Chunk.h */,
@@ -9784,6 +9810,7 @@
 				3BDFA42F1D441CD700C2DF4F /* MessageDigest.h in Headers */,
 				3BDF9A9B1D441CD600C2DF4F /* BeanUtils.h in Headers */,
 				3BDFA1371D441CD700C2DF4F /* JRBaseFactory.h in Headers */,
+				3B4F7B091DD6054F00B4C8F6 /* TextBundle.h in Headers */,
 				3BDF9C151D441CD600C2DF4F /* DataRecorder.h in Headers */,
 				3BDF9F771D441CD600C2DF4F /* JRPrintLine.h in Headers */,
 				3BDFA41D1D441CD700C2DF4F /* IObjectCreationFactory.h in Headers */,
@@ -10095,6 +10122,7 @@
 				3BDF9E511D441CD600C2DF4F /* JROriginProvider.h in Headers */,
 				3BDF9EEB1D441CD600C2DF4F /* JRBoxPenProvider.h in Headers */,
 				3BDFA5311D441CD700C2DF4F /* DocumentImpl.h in Headers */,
+				3B4F7B051DD6054F00B4C8F6 /* ITextBundle.h in Headers */,
 				3BDFA2391D441CD700C2DF4F /* IColor.h in Headers */,
 				3BDFA1C51D441CD700C2DF4F /* JRXmlDigesterFactory.h in Headers */,
 				3BDFA35F1D441CD700C2DF4F /* EvaluationHelper.h in Headers */,
@@ -10114,6 +10142,7 @@
 				3BDF9ABB1D441CD600C2DF4F /* IDataHolder.h in Headers */,
 				3BDF9AB91D441CD600C2DF4F /* ExpressionParseException.h in Headers */,
 				3BDFA2431D441CD700C2DF4F /* Rectangle.h in Headers */,
+				3B4F7B071DD6054F00B4C8F6 /* StringLocale.h in Headers */,
 				3BDFA3C91D441CD700C2DF4F /* NextOperator.h in Headers */,
 				3BDF9C4F1D441CD600C2DF4F /* JRBaseGenericElementParameter.h in Headers */,
 				3BDFA0F91D441CD700C2DF4F /* Pair.h in Headers */,
@@ -11158,6 +11187,7 @@
 				3BDF9DA21D441CD600C2DF4F /* JRPdfExporterParameter.m in Sources */,
 				3BDF9E181D441CD600C2DF4F /* JRFillExpressionEvaluator.m in Sources */,
 				3BDF9AA01D441CD600C2DF4F /* Array2D.m in Sources */,
+				3B4F7B061DD6054F00B4C8F6 /* ITextBundle.m in Sources */,
 				3BDFA2CC1D441CD700C2DF4F /* RepositoryContext.m in Sources */,
 				3BDF9DFA1D441CD600C2DF4F /* JRFillChartDataset.m in Sources */,
 				3BDFA2421D441CD700C2DF4F /* IStroke.m in Sources */,
@@ -11183,6 +11213,7 @@
 				3BDF9E3E1D441CD600C2DF4F /* JRFillTextField.m in Sources */,
 				3BDF9ECC1D441CD600C2DF4F /* ImageMapRenderable.m in Sources */,
 				3BDF9DA61D441CD600C2DF4F /* PdfFont.m in Sources */,
+				3B4F7B081DD6054F00B4C8F6 /* StringLocale.m in Sources */,
 				3BDFA3F01D441CD700C2DF4F /* ParsedFunction.m in Sources */,
 				3BDFA0EE1D441CD700C2DF4F /* MaxFontSizeFinder.m in Sources */,
 				3BDF9AB41D441CD600C2DF4F /* ExpressionType.m in Sources */,
@@ -11564,6 +11595,7 @@
 				3BDFA0621D441CD700C2DF4F /* SortOrderEnum.m in Sources */,
 				3BDF9D401D441CD600C2DF4F /* JRDesignScriptlet.m in Sources */,
 				3BDF9F0A1D441CD600C2DF4F /* JRDatasetRun.m in Sources */,
+				3B4F7B0A1DD6054F00B4C8F6 /* TextBundle.m in Sources */,
 				3BDF9B601D441CD600C2DF4F /* TableJasperReport.m in Sources */,
 				3BDFA03E1D441CD700C2DF4F /* JREnum.m in Sources */,
 				3BDF9FE21D441CD600C2DF4F /* JREmptyQueryExecuter.m in Sources */,

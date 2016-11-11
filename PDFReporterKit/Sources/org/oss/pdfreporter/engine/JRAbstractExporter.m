@@ -68,6 +68,7 @@
 #include "org/oss/pdfreporter/engine/util/LocalJasperReportsContext.h"
 #include "org/oss/pdfreporter/net/IURL.h"
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/IDateFormat.h"
 #include "org/oss/pdfreporter/text/format/INumberFormat.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
@@ -336,7 +337,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 - (void)setJasperPrintWithOrgOssPdfreporterEngineJasperPrint:(OrgOssPdfreporterEngineJasperPrint *)jasperPrint {
   self->jasperPrint_ = jasperPrint;
   NSString *localeCode = [((OrgOssPdfreporterEngineJasperPrint *) nil_chk(jasperPrint)) getLocaleCode];
-  OrgOssPdfreporterEngineUtilJRStyledTextParser_setLocaleWithJavaUtilLocale_(localeCode == nil ? nil : OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(localeCode));
+  OrgOssPdfreporterEngineUtilJRStyledTextParser_setLocaleWithOrgOssPdfreporterTextBundleStringLocale_(localeCode == nil ? nil : OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(localeCode));
 }
 
 - (void)setInput {
@@ -472,12 +473,12 @@ J2OBJC_IGNORE_DESIGNATED_END
   return formatFactoryClass;
 }
 
-- (JavaUtilLocale *)getLocale {
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale {
   NSString *localeCode = [((OrgOssPdfreporterEngineJasperPrint *) nil_chk(jasperPrint_)) getLocaleCode];
   return localeCode == nil ? nil : OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(localeCode);
 }
 
-- (JavaUtilLocale *)getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)text {
+- (OrgOssPdfreporterTextBundleStringLocale *)getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)text {
   NSString *localeCode = [((id<OrgOssPdfreporterEngineJRPrintText>) nil_chk(text)) getLocaleCode];
   if (localeCode == nil) {
     localeCode = [((OrgOssPdfreporterEngineJasperPrint *) nil_chk(jasperPrint_)) getLocaleCode];
@@ -585,13 +586,13 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (id<OrgOssPdfreporterTextFormatIDateFormat>)getDateFormatWithNSString:(NSString *)formatFactoryClass
                                                            withNSString:(NSString *)pattern
-                                                     withJavaUtilLocale:(JavaUtilLocale *)lc
+                            withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)lc
                                                    withJavaUtilTimeZone:(JavaUtilTimeZone *)tz {
-  NSString *key = JreStrcat("$C$C$C$", formatFactoryClass, '|', pattern, '|', (lc == nil ? @"" : OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithJavaUtilLocale_(lc)), '|', (tz == nil ? @"" : OrgOssPdfreporterEngineUtilJRDataUtils_getTimeZoneIdWithJavaUtilTimeZone_(tz)));
+  NSString *key = JreStrcat("$C$C$C$", formatFactoryClass, '|', pattern, '|', (lc == nil ? @"" : OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale_(lc)), '|', (tz == nil ? @"" : OrgOssPdfreporterEngineUtilJRDataUtils_getTimeZoneIdWithJavaUtilTimeZone_(tz)));
   id<OrgOssPdfreporterTextFormatIDateFormat> dateFormat = [((id<JavaUtilMap>) nil_chk(dateFormatCache_)) getWithId:key];
   if (dateFormat == nil) {
     id<OrgOssPdfreporterTextFormatFactoryIFormatFactory> formatFactory = OrgOssPdfreporterRegistryApiRegistry_getIFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType_(JreLoadEnum(OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType, DEFAULT));
-    dateFormat = [((id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>) nil_chk(formatFactory)) newDateFormatWithNSString:pattern withJavaUtilLocale:lc withJavaUtilTimeZone:tz];
+    dateFormat = [((id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>) nil_chk(formatFactory)) newDateFormatWithNSString:pattern withJavaUtilLocale:[((OrgOssPdfreporterTextBundleStringLocale *) nil_chk(lc)) toLocale] withJavaUtilTimeZone:tz];
     (void) [((id<JavaUtilMap>) nil_chk(dateFormatCache_)) putWithId:key withId:dateFormat];
   }
   return dateFormat;
@@ -599,12 +600,12 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (id<OrgOssPdfreporterTextFormatINumberFormat>)getNumberFormatWithNSString:(NSString *)formatFactoryClass
                                                                withNSString:(NSString *)pattern
-                                                         withJavaUtilLocale:(JavaUtilLocale *)lc {
-  NSString *key = JreStrcat("$C$C$", formatFactoryClass, '|', pattern, '|', (lc == nil ? @"" : OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithJavaUtilLocale_(lc)));
+                                withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)lc {
+  NSString *key = JreStrcat("$C$C$", formatFactoryClass, '|', pattern, '|', (lc == nil ? @"" : OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale_(lc)));
   id<OrgOssPdfreporterTextFormatINumberFormat> numberFormat = [((id<JavaUtilMap>) nil_chk(numberFormatCache_)) getWithId:key];
   if (numberFormat == nil) {
     id<OrgOssPdfreporterTextFormatFactoryIFormatFactory> formatFactory = OrgOssPdfreporterRegistryApiRegistry_getIFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType_(JreLoadEnum(OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType, DEFAULT));
-    numberFormat = [((id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>) nil_chk(formatFactory)) newNumberFormatWithNSString:pattern withJavaUtilLocale:lc];
+    numberFormat = [((id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>) nil_chk(formatFactory)) newNumberFormatWithNSString:pattern withJavaUtilLocale:[((OrgOssPdfreporterTextBundleStringLocale *) nil_chk(lc)) toLocale]];
     (void) [((id<JavaUtilMap>) nil_chk(numberFormatCache_)) putWithId:key withId:numberFormat];
   }
   return numberFormat;
@@ -696,8 +697,8 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "setElementOffsetsWithInt:withInt:", "setElementOffsets", "V", 0x2, NULL, NULL },
     { "restoreElementOffsets", NULL, "V", 0x4, NULL, NULL },
     { "getTextFormatFactoryClassWithOrgOssPdfreporterEngineJRPrintText:", "getTextFormatFactoryClass", "Ljava.lang.String;", 0x4, NULL, NULL },
-    { "getLocale", NULL, "Ljava.util.Locale;", 0x4, NULL, NULL },
-    { "getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:", "getTextLocale", "Ljava.util.Locale;", 0x4, NULL, NULL },
+    { "getLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x4, NULL, NULL },
+    { "getTextLocaleWithOrgOssPdfreporterEngineJRPrintText:", "getTextLocale", "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x4, NULL, NULL },
     { "getTextTimeZoneWithOrgOssPdfreporterEngineJRPrintText:", "getTextTimeZone", "Ljava.util.TimeZone;", 0x4, NULL, NULL },
     { "getTextValueWithOrgOssPdfreporterEngineJRPrintText:withNSString:", "getTextValue", "Lorg.oss.pdfreporter.engine.export.data.TextValue;", 0x4, NULL, NULL },
     { "getTextValueStringWithOrgOssPdfreporterEngineJRPrintText:withNSString:", "getTextValueString", "Lorg.oss.pdfreporter.engine.export.data.TextValue;", 0x4, NULL, NULL },
@@ -705,8 +706,8 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "getNumberCellValueWithOrgOssPdfreporterEngineJRPrintText:withNSString:", "getNumberCellValue", "Lorg.oss.pdfreporter.engine.export.data.TextValue;", 0x4, "Ljava.text.ParseException;Ljava.lang.ClassNotFoundException;", NULL },
     { "defaultParseNumberWithNSString:withIOSClass:", "defaultParseNumber", "Ljava.lang.Number;", 0x4, NULL, "(Ljava/lang/String;Ljava/lang/Class<*>;)Ljava/lang/Number;" },
     { "getBooleanCellValueWithOrgOssPdfreporterEngineJRPrintText:withNSString:", "getBooleanCellValue", "Lorg.oss.pdfreporter.engine.export.data.TextValue;", 0x4, NULL, NULL },
-    { "getDateFormatWithNSString:withNSString:withJavaUtilLocale:withJavaUtilTimeZone:", "getDateFormat", "Lorg.oss.pdfreporter.text.format.IDateFormat;", 0x4, NULL, NULL },
-    { "getNumberFormatWithNSString:withNSString:withJavaUtilLocale:", "getNumberFormat", "Lorg.oss.pdfreporter.text.format.INumberFormat;", 0x4, NULL, NULL },
+    { "getDateFormatWithNSString:withNSString:withOrgOssPdfreporterTextBundleStringLocale:withJavaUtilTimeZone:", "getDateFormat", "Lorg.oss.pdfreporter.text.format.IDateFormat;", 0x4, NULL, NULL },
+    { "getNumberFormatWithNSString:withNSString:withOrgOssPdfreporterTextBundleStringLocale:", "getNumberFormat", "Lorg.oss.pdfreporter.text.format.INumberFormat;", 0x4, NULL, NULL },
     { "createFilterWithNSString:", "createFilter", "Lorg.oss.pdfreporter.engine.export.ExporterFilter;", 0x4, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "setFontMap", NULL, "V", 0x4, NULL, NULL },
     { "setHyperlinkProducerFactory", NULL, "V", 0x4, NULL, NULL },

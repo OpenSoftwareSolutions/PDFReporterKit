@@ -26,8 +26,6 @@
 
 @class IOSObjectArray;
 @class JavaUtilHashMap;
-@class JavaUtilLocale;
-@class JavaUtilResourceBundle;
 @class JavaUtilTimeZone;
 @class OrgOssPdfreporterEngineFillElementEvaluationVirtualizationListener;
 @class OrgOssPdfreporterEngineFillJRCalculator;
@@ -59,6 +57,7 @@
 @class OrgOssPdfreporterEngineTypeWhenNoDataTypeEnum;
 @class OrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum;
 @class OrgOssPdfreporterEngineUtilJRStyledTextParser;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol JavaUtilCollection;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
@@ -77,6 +76,7 @@
 @protocol OrgOssPdfreporterEngineJRTemplate;
 @protocol OrgOssPdfreporterEngineJasperReportsContext;
 @protocol OrgOssPdfreporterSqlIConnection;
+@protocol OrgOssPdfreporterTextBundleITextBundle;
 @protocol OrgOssPdfreporterTextFormatFactoryIFormatFactory;
 @protocol OrgOssPdfreporterTextFormatIFormat;
 
@@ -291,13 +291,13 @@ withOrgOssPdfreporterEngineTypeCalculationEnum:(OrgOssPdfreporterEngineTypeCalcu
 
 - (OrgOssPdfreporterEngineFillJRFillGroup *)getGroupWithNSString:(NSString *)groupName;
 
-- (JavaUtilLocale *)getLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 - (jint)getMasterColumnCount;
 
 - (id<JavaUtilMap>)getParametersMap;
 
-- (JavaUtilResourceBundle *)getResourceBundle;
+- (id<OrgOssPdfreporterTextBundleITextBundle>)getResourceBundle;
 
 - (JavaUtilTimeZone *)getTimeZone;
 

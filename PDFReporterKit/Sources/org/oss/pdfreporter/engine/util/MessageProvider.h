@@ -17,13 +17,13 @@
 #define OrgOssPdfreporterEngineUtilMessageProvider_
 
 @class IOSObjectArray;
-@class JavaUtilLocale;
+@class OrgOssPdfreporterTextBundleStringLocale;
 
 @protocol OrgOssPdfreporterEngineUtilMessageProvider < NSObject, JavaObject >
 
 - (NSString *)getMessageWithNSString:(NSString *)code
                    withNSObjectArray:(IOSObjectArray *)args
-                  withJavaUtilLocale:(JavaUtilLocale *)locale;
+withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 @end
 

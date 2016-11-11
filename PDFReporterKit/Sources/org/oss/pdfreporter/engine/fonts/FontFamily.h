@@ -17,7 +17,7 @@
 #define OrgOssPdfreporterEngineFontsFontFamily_
 
 @class JavaLangBoolean;
-@class JavaUtilLocale;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol OrgOssPdfreporterEngineFontsFontFace;
 
 @protocol OrgOssPdfreporterEngineFontsFontFamily < NSObject, JavaObject >
@@ -46,7 +46,7 @@
 
 - (NSString *)getExportFontWithNSString:(NSString *)key;
 
-- (jboolean)supportsLocaleWithJavaUtilLocale:(JavaUtilLocale *)locale;
+- (jboolean)supportsLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 @end
 

@@ -16,7 +16,6 @@
 #include "java/util/HashMap.h"
 #include "java/util/HashSet.h"
 #include "java/util/List.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "java/util/Set.h"
 #include "java/util/TimeZone.h"
@@ -85,6 +84,7 @@
 #include "org/oss/pdfreporter/net/IURL.h"
 #include "org/oss/pdfreporter/repo/SubreportUtil.h"
 #include "org/oss/pdfreporter/sql/IConnection.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
 #include "org/oss/pdfreporter/uses/java/util/UUID.h"
 

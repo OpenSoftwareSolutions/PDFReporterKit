@@ -10,7 +10,6 @@
 #include "java/lang/Integer.h"
 #include "java/lang/UnsupportedOperationException.h"
 #include "java/util/HashMap.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "org/oss/pdfreporter/engine/JRCommonText.h"
 #include "org/oss/pdfreporter/engine/JRElement.h"
@@ -48,6 +47,7 @@
 #include "org/oss/pdfreporter/engine/util/MarkupProcessorFactory.h"
 #include "org/oss/pdfreporter/font/text/TextAttribute.h"
 #include "org/oss/pdfreporter/geometry/IColor.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 #pragma clang diagnostic ignored "-Wprotocol"
 
@@ -312,7 +312,7 @@ NSString *OrgOssPdfreporterEngineFillJRFillTextElement_PROPERTY_CONSUME_SPACE_ON
   if (styledText_ == nil) {
     NSString *text = [self getRawText];
     if (text != nil) {
-      styledText_ = [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getStyledTextParser])) getStyledTextWithJavaUtilMap:[self getStyledTextAttributes] withNSString:text withBoolean:![((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_NONE)) isEqual:[self getMarkup]] withJavaUtilLocale:[((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getLocale]];
+      styledText_ = [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getStyledTextParser])) getStyledTextWithJavaUtilMap:[self getStyledTextAttributes] withNSString:text withBoolean:![((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_NONE)) isEqual:[self getMarkup]] withOrgOssPdfreporterTextBundleStringLocale:[((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getLocale]];
     }
   }
   return styledText_;

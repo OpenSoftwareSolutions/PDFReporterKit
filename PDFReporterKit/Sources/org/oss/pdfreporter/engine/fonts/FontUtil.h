@@ -16,9 +16,9 @@
 #if !defined (OrgOssPdfreporterEngineFontsFontUtil_) && (INCLUDE_ALL_OrgOssPdfreporterEngineFontsFontUtil || defined(INCLUDE_OrgOssPdfreporterEngineFontsFontUtil))
 #define OrgOssPdfreporterEngineFontsFontUtil_
 
-@class JavaUtilLocale;
 @class OrgOssPdfreporterEngineFontsFontInfo;
 @class OrgOssPdfreporterFontIFont_FontStyle;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @protocol JavaUtilCollection;
 @protocol JavaUtilMap;
 @protocol OrgOssPdfreporterEngineJRFont;
@@ -39,18 +39,18 @@
                             withOrgOssPdfreporterEngineJRFont:(id<OrgOssPdfreporterEngineJRFont>)font;
 
 - (id<OrgOssPdfreporterFontIFont>)getAwtFontWithOrgOssPdfreporterEngineJRFont:(id<OrgOssPdfreporterEngineJRFont>)font
-                                                           withJavaUtilLocale:(JavaUtilLocale *)locale;
+                                  withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (id<OrgOssPdfreporterFontIFont>)getAwtFontFromBundlesWithNSString:(NSString *)name
                            withOrgOssPdfreporterFontIFont_FontStyle:(OrgOssPdfreporterFontIFont_FontStyle *)style
                                                             withInt:(jint)size
-                                                 withJavaUtilLocale:(JavaUtilLocale *)locale
+                        withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale
                                                         withBoolean:(jboolean)ignoreMissingFont;
 
 - (id<JavaUtilCollection>)getFontFamilyNames;
 
 - (OrgOssPdfreporterEngineFontsFontInfo *)getFontInfoWithNSString:(NSString *)name
-                                               withJavaUtilLocale:(JavaUtilLocale *)locale;
+                      withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 + (OrgOssPdfreporterEngineFontsFontUtil *)getInstanceWithOrgOssPdfreporterEngineJasperReportsContext:(id<OrgOssPdfreporterEngineJasperReportsContext>)jasperReportsContext;
 

@@ -24,7 +24,8 @@
   IOSObjectArray *parameter = [((NSString *) nil_chk(arguments)) split:@"'|_"];
   NSString *language = IOSObjectArray_Get(nil_chk(parameter), 1);
   NSString *country = IOSObjectArray_Get(parameter, 2);
-  NSString *displayName = [new_JavaUtilLocale_initWithNSString_withNSString_(language, country) getDisplayName];
+  JavaUtilLocale *locale = new_JavaUtilLocale_initWithNSString_withNSString_(language, country);
+  NSString *displayName = [locale getDisplayNameWithJavaUtilLocale:locale];
   return new_OrgOssPdfreporterUsesNetSourceforgeJevalFunctionFunctionResult_initWithNSString_withInt_(displayName, OrgOssPdfreporterUsesNetSourceforgeJevalFunctionFunctionConstants_FUNCTION_RESULT_TYPE_STRING);
 }
 

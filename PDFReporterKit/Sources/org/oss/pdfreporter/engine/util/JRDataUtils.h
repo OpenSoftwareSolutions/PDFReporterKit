@@ -17,8 +17,8 @@
 #define OrgOssPdfreporterEngineUtilJRDataUtils_
 
 @class JavaUtilDate;
-@class JavaUtilLocale;
 @class JavaUtilTimeZone;
+@class OrgOssPdfreporterTextBundleStringLocale;
 
 @interface OrgOssPdfreporterEngineUtilJRDataUtils : NSObject
 
@@ -29,16 +29,16 @@
 #pragma mark Public
 
 + (jdouble)getExcelSerialDayNumberWithJavaUtilDate:(JavaUtilDate *)date
-                                withJavaUtilLocale:(JavaUtilLocale *)locale
+       withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale
                               withJavaUtilTimeZone:(JavaUtilTimeZone *)timeZone;
 
 + (jdouble)getGregorianToJulianDayWithInt:(jint)year
                                   withInt:(jint)month
                                   withInt:(jint)day;
 
-+ (JavaUtilLocale *)getLocaleWithNSString:(NSString *)code;
++ (OrgOssPdfreporterTextBundleStringLocale *)getLocaleWithNSString:(NSString *)code;
 
-+ (NSString *)getLocaleCodeWithJavaUtilLocale:(JavaUtilLocale *)locale;
++ (NSString *)getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 + (JavaUtilTimeZone *)getTimeZoneWithNSString:(NSString *)id_;
 
@@ -61,15 +61,15 @@ inline jdouble OrgOssPdfreporterEngineUtilJRDataUtils_get_JULIAN_1900();
 #define OrgOssPdfreporterEngineUtilJRDataUtils_JULIAN_1900 2415020.5
 J2OBJC_STATIC_FIELD_CONSTANT(OrgOssPdfreporterEngineUtilJRDataUtils, JULIAN_1900, jdouble)
 
-FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithJavaUtilLocale_(JavaUtilLocale *locale);
+FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleCodeWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterTextBundleStringLocale *locale);
 
-FOUNDATION_EXPORT JavaUtilLocale *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(NSString *code);
+FOUNDATION_EXPORT OrgOssPdfreporterTextBundleStringLocale *OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(NSString *code);
 
 FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineUtilJRDataUtils_getTimeZoneIdWithJavaUtilTimeZone_(JavaUtilTimeZone *tz);
 
 FOUNDATION_EXPORT JavaUtilTimeZone *OrgOssPdfreporterEngineUtilJRDataUtils_getTimeZoneWithNSString_(NSString *id_);
 
-FOUNDATION_EXPORT jdouble OrgOssPdfreporterEngineUtilJRDataUtils_getExcelSerialDayNumberWithJavaUtilDate_withJavaUtilLocale_withJavaUtilTimeZone_(JavaUtilDate *date, JavaUtilLocale *locale, JavaUtilTimeZone *timeZone);
+FOUNDATION_EXPORT jdouble OrgOssPdfreporterEngineUtilJRDataUtils_getExcelSerialDayNumberWithJavaUtilDate_withOrgOssPdfreporterTextBundleStringLocale_withJavaUtilTimeZone_(JavaUtilDate *date, OrgOssPdfreporterTextBundleStringLocale *locale, JavaUtilTimeZone *timeZone);
 
 FOUNDATION_EXPORT jdouble OrgOssPdfreporterEngineUtilJRDataUtils_getGregorianToJulianDayWithInt_withInt_withInt_(jint year, jint month, jint day);
 

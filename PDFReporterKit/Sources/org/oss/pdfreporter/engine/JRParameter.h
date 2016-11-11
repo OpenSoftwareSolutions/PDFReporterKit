@@ -67,6 +67,10 @@
 
 + (NSString *)REPORT_LOCALE;
 
++ (NSString *)REPORT_LANGUAGE;
+
++ (NSString *)REPORT_ENCODING;
+
 + (NSString *)REPORT_RESOURCE_BUNDLE;
 
 + (NSString *)REPORT_TIME_ZONE;
@@ -127,6 +131,16 @@ inline NSString *OrgOssPdfreporterEngineJRParameter_get_REPORT_LOCALE();
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterEngineJRParameter, REPORT_LOCALE, NSString *)
+
+inline NSString *OrgOssPdfreporterEngineJRParameter_get_REPORT_LANGUAGE();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineJRParameter_REPORT_LANGUAGE;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterEngineJRParameter, REPORT_LANGUAGE, NSString *)
+
+inline NSString *OrgOssPdfreporterEngineJRParameter_get_REPORT_ENCODING();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineJRParameter_REPORT_ENCODING;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterEngineJRParameter, REPORT_ENCODING, NSString *)
 
 inline NSString *OrgOssPdfreporterEngineJRParameter_get_REPORT_RESOURCE_BUNDLE();
 /*! INTERNAL ONLY - Use accessor function from above. */

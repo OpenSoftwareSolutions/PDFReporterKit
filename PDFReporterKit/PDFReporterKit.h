@@ -1125,6 +1125,9 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #include <PDFReporterKit/org/oss/pdfreporter/text/ParseException.h>
 #include <PDFReporterKit/org/oss/pdfreporter/text/PositionedLined.h>
 #include <PDFReporterKit/org/oss/pdfreporter/text/ScaledLine.h>
+#include <PDFReporterKit/org/oss/pdfreporter/text/bundle/ITextBundle.h>
+#include <PDFReporterKit/org/oss/pdfreporter/text/bundle/StringLocale.h>
+#include <PDFReporterKit/org/oss/pdfreporter/text/bundle/TextBundle.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/java/awt/text/Annotation.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/java/awt/text/AttributedString.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator.h>

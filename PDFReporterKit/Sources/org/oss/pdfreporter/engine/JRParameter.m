@@ -13,6 +13,8 @@ NSString *OrgOssPdfreporterEngineJRParameter_REPORT_MAX_COUNT = @"REPORT_MAX_COU
 NSString *OrgOssPdfreporterEngineJRParameter_REPORT_DATA_SOURCE = @"REPORT_DATA_SOURCE";
 NSString *OrgOssPdfreporterEngineJRParameter_REPORT_SCRIPTLET = @"REPORT_SCRIPTLET";
 NSString *OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE = @"REPORT_LOCALE";
+NSString *OrgOssPdfreporterEngineJRParameter_REPORT_LANGUAGE = @"REPORT_LANGUAGE";
+NSString *OrgOssPdfreporterEngineJRParameter_REPORT_ENCODING = @"REPORT_ENCODING";
 NSString *OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE = @"REPORT_RESOURCE_BUNDLE";
 NSString *OrgOssPdfreporterEngineJRParameter_REPORT_TIME_ZONE = @"REPORT_TIME_ZONE";
 NSString *OrgOssPdfreporterEngineJRParameter_REPORT_VIRTUALIZER = @"REPORT_VIRTUALIZER";
@@ -53,6 +55,14 @@ NSString *OrgOssPdfreporterEngineJRParameter_FILTER = @"FILTER";
 
 + (NSString *)REPORT_LOCALE {
   return OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE;
+}
+
++ (NSString *)REPORT_LANGUAGE {
+  return OrgOssPdfreporterEngineJRParameter_REPORT_LANGUAGE;
+}
+
++ (NSString *)REPORT_ENCODING {
+  return OrgOssPdfreporterEngineJRParameter_REPORT_ENCODING;
 }
 
 + (NSString *)REPORT_RESOURCE_BUNDLE {
@@ -124,6 +134,8 @@ NSString *OrgOssPdfreporterEngineJRParameter_FILTER = @"FILTER";
     { "REPORT_DATA_SOURCE", "REPORT_DATA_SOURCE", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_DATA_SOURCE, NULL, .constantValue.asLong = 0 },
     { "REPORT_SCRIPTLET", "REPORT_SCRIPTLET", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_SCRIPTLET, NULL, .constantValue.asLong = 0 },
     { "REPORT_LOCALE", "REPORT_LOCALE", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE, NULL, .constantValue.asLong = 0 },
+    { "REPORT_LANGUAGE", "REPORT_LANGUAGE", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_LANGUAGE, NULL, .constantValue.asLong = 0 },
+    { "REPORT_ENCODING", "REPORT_ENCODING", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_ENCODING, NULL, .constantValue.asLong = 0 },
     { "REPORT_RESOURCE_BUNDLE", "REPORT_RESOURCE_BUNDLE", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE, NULL, .constantValue.asLong = 0 },
     { "REPORT_TIME_ZONE", "REPORT_TIME_ZONE", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_TIME_ZONE, NULL, .constantValue.asLong = 0 },
     { "REPORT_VIRTUALIZER", "REPORT_VIRTUALIZER", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_VIRTUALIZER, NULL, .constantValue.asLong = 0 },
@@ -136,7 +148,7 @@ NSString *OrgOssPdfreporterEngineJRParameter_FILTER = @"FILTER";
     { "REPORT_CONTEXT", "REPORT_CONTEXT", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_REPORT_CONTEXT, NULL, .constantValue.asLong = 0 },
     { "FILTER", "FILTER", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRParameter_FILTER, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineJRParameter = { 2, "JRParameter", "org.oss.pdfreporter.engine", NULL, 0x609, 10, methods, 18, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineJRParameter = { 2, "JRParameter", "org.oss.pdfreporter.engine", NULL, 0x609, 10, methods, 20, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineJRParameter;
 }
 

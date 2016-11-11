@@ -15,13 +15,13 @@
 #include "java/math/BigDecimal.h"
 #include "java/math/BigInteger.h"
 #include "java/util/Date.h"
-#include "java/util/Locale.h"
 #include "java/util/TimeZone.h"
 #include "org/oss/pdfreporter/engine/JRException.h"
 #include "org/oss/pdfreporter/engine/data/JRAbstractTextDataSource.h"
 #include "org/oss/pdfreporter/engine/util/FormatUtils.h"
 #include "org/oss/pdfreporter/engine/util/JRDataUtils.h"
 #include "org/oss/pdfreporter/text/ParseException.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/IDateFormat.h"
 #include "org/oss/pdfreporter/text/format/INumberFormat.h"
 #include "org/oss/pdfreporter/text/format/LocaleConverter.h"
@@ -30,7 +30,7 @@
 
 @interface OrgOssPdfreporterEngineDataJRAbstractTextDataSource () {
  @public
-  JavaUtilLocale *locale_;
+  OrgOssPdfreporterTextBundleStringLocale *locale_;
   NSString *datePattern_;
   NSString *numberPattern_;
   JavaUtilTimeZone *timeZone_;
@@ -38,7 +38,7 @@
 
 @end
 
-J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineDataJRAbstractTextDataSource, locale_, JavaUtilLocale *)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineDataJRAbstractTextDataSource, locale_, OrgOssPdfreporterTextBundleStringLocale *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineDataJRAbstractTextDataSource, datePattern_, NSString *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineDataJRAbstractTextDataSource, numberPattern_, NSString *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineDataJRAbstractTextDataSource, timeZone_, JavaUtilTimeZone *)
@@ -52,10 +52,10 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineDataJRAbstractTextDataSource, timeZon
     value = text;
   }
   else if ([NSNumber_class_() isAssignableFrom:valueClass]) {
-    value = OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withJavaUtilLocale_withNSString_([((NSString *) nil_chk(text)) trim], valueClass, locale_, numberPattern_);
+    value = OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withOrgOssPdfreporterTextBundleStringLocale_withNSString_([((NSString *) nil_chk(text)) trim], valueClass, locale_, numberPattern_);
   }
   else if ([JavaUtilDate_class_() isAssignableFrom:valueClass]) {
-    value = OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withJavaUtilLocale_withNSString_([((NSString *) nil_chk(text)) trim], valueClass, locale_, datePattern_);
+    value = OrgOssPdfreporterTextFormatLocaleConverter_convertWithNSString_withIOSClass_withOrgOssPdfreporterTextBundleStringLocale_withNSString_([((NSString *) nil_chk(text)) trim], valueClass, locale_, datePattern_);
   }
   else if ([JavaLangBoolean_class_() isEqual:valueClass]) {
     value = JavaLangBoolean_valueOfWithNSString_(text);
@@ -109,22 +109,22 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineDataJRAbstractTextDataSource, timeZon
 }
 
 - (void)setTextAttributesWithOrgOssPdfreporterEngineDataJRAbstractTextDataSource:(OrgOssPdfreporterEngineDataJRAbstractTextDataSource *)textDataSource {
-  [self setLocaleWithJavaUtilLocale:[((OrgOssPdfreporterEngineDataJRAbstractTextDataSource *) nil_chk(textDataSource)) getLocale]];
+  [self setLocaleWithOrgOssPdfreporterTextBundleStringLocale:[((OrgOssPdfreporterEngineDataJRAbstractTextDataSource *) nil_chk(textDataSource)) getLocale]];
   [self setDatePatternWithNSString:[textDataSource getDatePattern]];
   [self setNumberPatternWithNSString:[textDataSource getNumberPattern]];
   [self setTimeZoneWithJavaUtilTimeZone:[textDataSource getTimeZone]];
 }
 
-- (JavaUtilLocale *)getLocale {
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale {
   return locale_;
 }
 
-- (void)setLocaleWithJavaUtilLocale:(JavaUtilLocale *)locale {
+- (void)setLocaleWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale {
   self->locale_ = locale;
 }
 
 - (void)setLocaleWithNSString:(NSString *)locale {
-  [self setLocaleWithJavaUtilLocale:OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(locale)];
+  [self setLocaleWithOrgOssPdfreporterTextBundleStringLocale:OrgOssPdfreporterEngineUtilJRDataUtils_getLocaleWithNSString_(locale)];
 }
 
 - (NSString *)getDatePattern {
@@ -169,8 +169,8 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "getFormattedNumberWithOrgOssPdfreporterTextFormatINumberFormat:withNSString:withIOSClass:", "getFormattedNumber", "Ljava.lang.Number;", 0x4, "Lorg.oss.pdfreporter.text.ParseException;", "(Lorg/oss/pdfreporter/text/format/INumberFormat;Ljava/lang/String;Ljava/lang/Class<*>;)Ljava/lang/Number;" },
     { "getFormattedDateWithOrgOssPdfreporterTextFormatIDateFormat:withNSString:withIOSClass:", "getFormattedDate", "Ljava.util.Date;", 0x4, "Lorg.oss.pdfreporter.text.ParseException;", "(Lorg/oss/pdfreporter/text/format/IDateFormat;Ljava/lang/String;Ljava/lang/Class<*>;)Ljava/util/Date;" },
     { "setTextAttributesWithOrgOssPdfreporterEngineDataJRAbstractTextDataSource:", "setTextAttributes", "V", 0x1, NULL, NULL },
-    { "getLocale", NULL, "Ljava.util.Locale;", 0x1, NULL, NULL },
-    { "setLocaleWithJavaUtilLocale:", "setLocale", "V", 0x1, NULL, NULL },
+    { "getLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x1, NULL, NULL },
+    { "setLocaleWithOrgOssPdfreporterTextBundleStringLocale:", "setLocale", "V", 0x1, NULL, NULL },
     { "setLocaleWithNSString:", "setLocale", "V", 0x1, NULL, NULL },
     { "getDatePattern", NULL, "Ljava.lang.String;", 0x1, NULL, NULL },
     { "setDatePatternWithNSString:", "setDatePattern", "V", 0x1, NULL, NULL },
@@ -182,7 +182,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "init", "JRAbstractTextDataSource", NULL, 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "locale_", NULL, 0x2, "Ljava.util.Locale;", NULL, NULL, .constantValue.asLong = 0 },
+    { "locale_", NULL, 0x2, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", NULL, NULL, .constantValue.asLong = 0 },
     { "datePattern_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "numberPattern_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "timeZone_", NULL, 0x2, "Ljava.util.TimeZone;", NULL, NULL, .constantValue.asLong = 0 },

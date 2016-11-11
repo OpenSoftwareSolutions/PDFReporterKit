@@ -5,8 +5,6 @@
 
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
-#include "java/util/Locale.h"
-#include "java/util/ResourceBundle.h"
 #include "java/util/TimeZone.h"
 #include "org/oss/pdfreporter/engine/JRComponentElement.h"
 #include "org/oss/pdfreporter/engine/JRElement.h"
@@ -38,6 +36,8 @@
 #include "org/oss/pdfreporter/engine/fill/JRFillObjectFactory.h"
 #include "org/oss/pdfreporter/engine/fill/JRTemplateElement.h"
 #include "org/oss/pdfreporter/engine/type/EvaluationTimeEnum.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 @interface OrgOssPdfreporterEngineFillJRFillComponentElement () {
  @public
@@ -183,11 +183,11 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillComponentElement, fillCompo
   [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) addBoundElementWithOrgOssPdfreporterEngineFillJRFillElement:self withOrgOssPdfreporterEngineJRPrintElement:printElement withOrgOssPdfreporterEngineTypeEvaluationTimeEnum:evaluationTime withNSString:evaluationGroup withOrgOssPdfreporterEngineFillJRFillBand:band_];
 }
 
-- (JavaUtilLocale *)getReportLocale {
+- (OrgOssPdfreporterTextBundleStringLocale *)getReportLocale {
   return [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getLocale];
 }
 
-- (JavaUtilResourceBundle *)getReportResourceBundle {
+- (id<OrgOssPdfreporterTextBundleITextBundle>)getReportResourceBundle {
   return [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getResourceBundle];
 }
 
@@ -227,8 +227,8 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillComponentElement, fillCompo
     { "getElementPrintY", NULL, "I", 0x1, NULL, NULL },
     { "getElementStyle", NULL, "Lorg.oss.pdfreporter.engine.JRStyle;", 0x1, NULL, NULL },
     { "registerDelayedEvaluationWithOrgOssPdfreporterEngineJRPrintElement:withOrgOssPdfreporterEngineTypeEvaluationTimeEnum:withNSString:", "registerDelayedEvaluation", "V", 0x1, NULL, NULL },
-    { "getReportLocale", NULL, "Ljava.util.Locale;", 0x1, NULL, NULL },
-    { "getReportResourceBundle", NULL, "Ljava.util.ResourceBundle;", 0x1, NULL, NULL },
+    { "getReportLocale", NULL, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", 0x1, NULL, NULL },
+    { "getReportResourceBundle", NULL, "Lorg.oss.pdfreporter.text.bundle.ITextBundle;", 0x1, NULL, NULL },
     { "getReportTimezone", NULL, "Ljava.util.TimeZone;", 0x1, NULL, NULL },
     { "getFiller", NULL, "Lorg.oss.pdfreporter.engine.fill.JRBaseFiller;", 0x1, NULL, NULL },
     { "getFillContainerContext", NULL, "Lorg.oss.pdfreporter.engine.fill.FillContainerContext;", 0x1, NULL, NULL },

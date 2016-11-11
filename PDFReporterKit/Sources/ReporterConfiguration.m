@@ -63,5 +63,9 @@
     [self addExportParameterValue:JavaLangInteger_valueOfWithInt_(permissions) forKey:OrgOssPdfreporterEngineExportJRPdfExporterParameter_get_PERMISSIONS()];
 }
 
+- (void)setLanguage:(NSString *)language;
+{
+    _language = language;
+}
 
 @end

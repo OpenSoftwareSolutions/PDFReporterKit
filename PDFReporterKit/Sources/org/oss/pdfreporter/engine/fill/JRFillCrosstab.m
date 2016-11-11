@@ -18,7 +18,6 @@
 #include "java/util/Iterator.h"
 #include "java/util/List.h"
 #include "java/util/Map.h"
-#include "java/util/ResourceBundle.h"
 #include "java/util/Set.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/commons/arrays/Array2D.h"
@@ -103,6 +102,7 @@
 #include "org/oss/pdfreporter/engine/util/JRStyleResolver.h"
 #include "org/oss/pdfreporter/geometry/IColor.h"
 #include "org/oss/pdfreporter/jfree/Dataset.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
 
 @interface OrgOssPdfreporterEngineFillJRFillCrosstab () {
  @public
@@ -446,7 +446,7 @@ withOrgOssPdfreporterCrosstabsFillCalculationMeasureDefinition_MeasureValueArray
 
 - (void)initEvaluatorWithByte:(jbyte)evaluation {
   id<JavaUtilMap> parameterValues = OrgOssPdfreporterEngineFillJRFillSubreport_getParameterValuesWithOrgOssPdfreporterEngineFillJRBaseFiller_withOrgOssPdfreporterEngineJRExpression_withOrgOssPdfreporterEngineJRDatasetParameterArray_withByte_withBoolean_withBoolean_withBoolean_(filler_, [self getParametersMapExpression], [self getParameters], evaluation, true, false, false);
-  JavaUtilResourceBundle *resBdl = (JavaUtilResourceBundle *) cast_chk([((id<JavaUtilMap>) nil_chk(parameterValues)) getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE], [JavaUtilResourceBundle class]);
+  id<OrgOssPdfreporterTextBundleITextBundle> resBdl = (id<OrgOssPdfreporterTextBundleITextBundle>) cast_check([((id<JavaUtilMap>) nil_chk(parameterValues)) getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE], OrgOssPdfreporterTextBundleITextBundle_class_());
   if (resBdl == nil) {
     id<OrgOssPdfreporterEngineFillIJRFillParameter> resourceBundleParam = [((id<JavaUtilMap>) nil_chk([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getParametersMap])) getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE];
     (void) [parameterValues putWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE withId:[((id<OrgOssPdfreporterEngineFillIJRFillParameter>) nil_chk(resourceBundleParam)) getValue]];

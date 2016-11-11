@@ -32,8 +32,6 @@
 
 @class IOSObjectArray;
 @class JavaLangInteger;
-@class JavaUtilLocale;
-@class JavaUtilResourceBundle;
 @class JavaUtilTimeZone;
 @class OrgOssPdfreporterEngineEvaluationType;
 @class OrgOssPdfreporterEngineFillFillDatasetPosition;
@@ -49,6 +47,7 @@
 @class OrgOssPdfreporterEngineJasperReport;
 @class OrgOssPdfreporterEngineTypeCalculationEnum;
 @class OrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @class OrgOssPdfreporterUsesJavaUtilUUID;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
@@ -63,6 +62,7 @@
 @protocol OrgOssPdfreporterEngineJRQuery;
 @protocol OrgOssPdfreporterEngineJasperReportsContext;
 @protocol OrgOssPdfreporterSqlIConnection;
+@protocol OrgOssPdfreporterTextBundleITextBundle;
 
 @interface OrgOssPdfreporterEngineFillJRFillDataset : NSObject < OrgOssPdfreporterEngineJRDataset, OrgOssPdfreporterEngineFillDatasetFillContext > {
  @public
@@ -83,8 +83,8 @@
   id<JavaUtilList> scriptlets_;
   OrgOssPdfreporterEngineJRAbstractScriptlet *delegateScriptlet_;
   id<OrgOssPdfreporterEngineJRDataSource> dataSource_;
-  JavaUtilLocale *locale_;
-  JavaUtilResourceBundle *resourceBundle_;
+  OrgOssPdfreporterTextBundleStringLocale *locale_;
+  id<OrgOssPdfreporterTextBundleITextBundle> textBundle_;
   JavaUtilTimeZone *timeZone_;
   JavaLangInteger *reportCount_;
   OrgOssPdfreporterEngineFillJRCalculator *calculator_;
@@ -130,7 +130,7 @@ withOrgOssPdfreporterEngineEvaluationType:(OrgOssPdfreporterEngineEvaluationType
 
 - (IOSObjectArray *)getGroups;
 
-- (JavaUtilLocale *)getLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 - (NSString *)getName;
 
@@ -243,7 +243,7 @@ withOrgOssPdfreporterEngineTypeCalculationEnum:(OrgOssPdfreporterEngineTypeCalcu
 
 - (jboolean)isIncludedInDataCacheWithOrgOssPdfreporterEngineFillJRFillParameter:(OrgOssPdfreporterEngineFillJRFillParameter *)parameter;
 
-- (JavaUtilResourceBundle *)loadResourceBundle;
+- (id<OrgOssPdfreporterTextBundleITextBundle>)loadResourceBundle;
 
 - (jboolean)nextWithBoolean:(jboolean)sorting;
 
@@ -286,8 +286,8 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, scriptletClassName
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, scriptlets_, id<JavaUtilList>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, delegateScriptlet_, OrgOssPdfreporterEngineJRAbstractScriptlet *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, dataSource_, id<OrgOssPdfreporterEngineJRDataSource>)
-J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, locale_, JavaUtilLocale *)
-J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, resourceBundle_, JavaUtilResourceBundle *)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, locale_, OrgOssPdfreporterTextBundleStringLocale *)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, textBundle_, id<OrgOssPdfreporterTextBundleITextBundle>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, timeZone_, JavaUtilTimeZone *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, reportCount_, JavaLangInteger *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJRFillDataset, calculator_, OrgOssPdfreporterEngineFillJRCalculator *)

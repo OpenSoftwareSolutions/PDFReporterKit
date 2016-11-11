@@ -17,8 +17,8 @@
 #define OrgOssPdfreporterEngineUtilJRStyledText_
 
 @class IOSShortArray;
-@class JavaUtilLocale;
 @class OrgOssPdfreporterEngineUtilJRStyledText_Run;
+@class OrgOssPdfreporterTextBundleStringLocale;
 @class OrgOssPdfreporterUsesJavaAwtTextAttributedString;
 @protocol JavaUtilList;
 @protocol JavaUtilMap;
@@ -32,7 +32,7 @@
 
 - (instancetype)init;
 
-- (instancetype)initWithJavaUtilLocale:(JavaUtilLocale *)locale;
+- (instancetype)initWithOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLocale *)locale;
 
 - (void)addRunWithOrgOssPdfreporterEngineUtilJRStyledText_Run:(OrgOssPdfreporterEngineUtilJRStyledText_Run *)run;
 
@@ -49,7 +49,7 @@
 
 - (id<JavaUtilMap>)getGlobalAttributes;
 
-- (JavaUtilLocale *)getLocale;
+- (OrgOssPdfreporterTextBundleStringLocale *)getLocale;
 
 - (id<JavaUtilList>)getRuns;
 
@@ -83,11 +83,11 @@ FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilJRStyledText *new_OrgOssPdfreporter
 
 FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilJRStyledText *create_OrgOssPdfreporterEngineUtilJRStyledText_init();
 
-FOUNDATION_EXPORT void OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(OrgOssPdfreporterEngineUtilJRStyledText *self, JavaUtilLocale *locale);
+FOUNDATION_EXPORT void OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterEngineUtilJRStyledText *self, OrgOssPdfreporterTextBundleStringLocale *locale);
 
-FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilJRStyledText *new_OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(JavaUtilLocale *locale) NS_RETURNS_RETAINED;
+FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilJRStyledText *new_OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterTextBundleStringLocale *locale) NS_RETURNS_RETAINED;
 
-FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilJRStyledText *create_OrgOssPdfreporterEngineUtilJRStyledText_initWithJavaUtilLocale_(JavaUtilLocale *locale);
+FOUNDATION_EXPORT OrgOssPdfreporterEngineUtilJRStyledText *create_OrgOssPdfreporterEngineUtilJRStyledText_initWithOrgOssPdfreporterTextBundleStringLocale_(OrgOssPdfreporterTextBundleStringLocale *locale);
 
 FOUNDATION_EXPORT id<JavaUtilMap> OrgOssPdfreporterEngineUtilJRStyledText_cloneAttributesMapWithJavaUtilMap_(id<JavaUtilMap> attributes);
 

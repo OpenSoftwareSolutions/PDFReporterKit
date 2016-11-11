@@ -7,7 +7,6 @@
 #include "J2ObjC_source.h"
 #include "java/lang/Boolean.h"
 #include "java/lang/Integer.h"
-#include "java/util/Locale.h"
 #include "java/util/Map.h"
 #include "org/oss/pdfreporter/engine/DefaultJasperReportsContext.h"
 #include "org/oss/pdfreporter/engine/JRAnchor.h"
@@ -40,6 +39,7 @@
 #include "org/oss/pdfreporter/engine/util/JRStyledTextParser.h"
 #include "org/oss/pdfreporter/engine/util/JRStyledTextUtil.h"
 #include "org/oss/pdfreporter/geometry/IColor.h"
+#include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 
 inline jlong OrgOssPdfreporterEngineBaseJRBasePrintText_get_serialVersionUID();
 #define OrgOssPdfreporterEngineBaseJRBasePrintText_serialVersionUID 10200LL
@@ -108,7 +108,7 @@ J2OBJC_STATIC_FIELD_CONSTANT(OrgOssPdfreporterEngineBaseJRBasePrintText, serialV
   if ([self getFullText] == nil) {
     return nil;
   }
-  return [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk(OrgOssPdfreporterEngineUtilJRStyledTextParser_getInstance())) getStyledTextWithJavaUtilMap:[((OrgOssPdfreporterEngineJRStyledTextAttributeSelector *) nil_chk(attributeSelector)) getStyledTextAttributesWithOrgOssPdfreporterEngineJRPrintText:self] withNSString:[self getFullText] withBoolean:![((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_NONE)) isEqual:[self getMarkup]] withJavaUtilLocale:OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(self)];
+  return [((OrgOssPdfreporterEngineUtilJRStyledTextParser *) nil_chk(OrgOssPdfreporterEngineUtilJRStyledTextParser_getInstance())) getStyledTextWithJavaUtilMap:[((OrgOssPdfreporterEngineJRStyledTextAttributeSelector *) nil_chk(attributeSelector)) getStyledTextAttributesWithOrgOssPdfreporterEngineJRPrintText:self] withNSString:[self getFullText] withBoolean:![((NSString *) nil_chk(OrgOssPdfreporterEngineJRCommonText_MARKUP_NONE)) isEqual:[self getMarkup]] withOrgOssPdfreporterTextBundleStringLocale:OrgOssPdfreporterEngineJRStyledTextAttributeSelector_getTextLocaleWithOrgOssPdfreporterEngineJRPrintText_(self)];
 }
 
 - (id)getValue {
