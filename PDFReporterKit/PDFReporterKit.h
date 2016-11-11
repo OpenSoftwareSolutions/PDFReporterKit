@@ -66,6 +66,9 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/SubDataSource.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/ToMilliseconds.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/TruncateDateTo.h>
+#include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/BytesAsStream.h>
+#include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/DecodeBase64Bytes.h>
+#include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/functions/DecodeBase64String.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/JSHuntingYardCompiler.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/JSHuntingYardExpression.h>
 #include <PDFReporterKit/org/oss/pdfreporter/compilers/jshuntingyard/JSHuntingYardExpressionEvaluator.h>
@@ -133,6 +136,7 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #include <PDFReporterKit/org/oss/pdfreporter/components/table/util/TableUtil.h>
 #include <PDFReporterKit/org/oss/pdfreporter/components/table/WhenNoDataTypeTableEnum.h>
 #include <PDFReporterKit/org/oss/pdfreporter/converters/DecimalConverter.h>
+#include <PDFReporterKit/org/oss/pdfreporter/converters/Base64.h>
 #include <PDFReporterKit/org/oss/pdfreporter/crosstabs/base/JRBaseCellContents.h>
 #include <PDFReporterKit/org/oss/pdfreporter/crosstabs/base/JRBaseCrosstab.h>
 #include <PDFReporterKit/org/oss/pdfreporter/crosstabs/base/JRBaseCrosstabBucket.h>
