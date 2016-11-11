@@ -133,6 +133,7 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #include <PDFReporterKit/org/oss/pdfreporter/components/table/util/TableUtil.h>
 #include <PDFReporterKit/org/oss/pdfreporter/components/table/WhenNoDataTypeTableEnum.h>
 #include <PDFReporterKit/org/oss/pdfreporter/converters/DecimalConverter.h>
+#include <PDFReporterKit/org/oss/pdfreporter/converters/Base64.h>
 #include <PDFReporterKit/org/oss/pdfreporter/crosstabs/base/JRBaseCellContents.h>
 #include <PDFReporterKit/org/oss/pdfreporter/crosstabs/base/JRBaseCrosstab.h>
 #include <PDFReporterKit/org/oss/pdfreporter/crosstabs/base/JRBaseCrosstabBucket.h>
@@ -1334,6 +1335,9 @@ FOUNDATION_EXPORT const unsigned char PDFReporterKitVersionString[];
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/Substring.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/ToLowerCase.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/ToUpperCase.h>
+#include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/BytesAsStream.h>
+#include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/DecodeBase64Bytes.h>
+#include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/userfunction/string/DecodeBase64String.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/evaluator/VariableArgument.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/lexer/ExpressionToken.h>
 #include <PDFReporterKit/org/oss/pdfreporter/uses/org/oss/jshuntingyard/lexer/ExpressionTokenizer.h>

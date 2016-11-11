@@ -22,6 +22,14 @@
 
 /* Begin PBXBuildFile section */
 		3B1BF6561D453D8A00B07918 /* libjre_emul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1BF64F1D4531E800B07918 /* libjre_emul.a */; };
+		3B4F7AF01DD5C42C00B4C8F6 /* BytesAsStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7AEE1DD5C42C00B4C8F6 /* BytesAsStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B4F7AF11DD5C42C00B4C8F6 /* BytesAsStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7AEF1DD5C42C00B4C8F6 /* BytesAsStream.m */; };
+		3B4F7AF41DD5C46400B4C8F6 /* DecodeBase64Bytes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7AF21DD5C46400B4C8F6 /* DecodeBase64Bytes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B4F7AF51DD5C46400B4C8F6 /* DecodeBase64Bytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7AF31DD5C46400B4C8F6 /* DecodeBase64Bytes.m */; };
+		3B4F7AF81DD5C49800B4C8F6 /* DecodeBase64String.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7AF61DD5C49800B4C8F6 /* DecodeBase64String.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B4F7AF91DD5C49800B4C8F6 /* DecodeBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7AF71DD5C49800B4C8F6 /* DecodeBase64String.m */; };
+		3B4F7AFC1DD5C5A800B4C8F6 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4F7AFA1DD5C5A800B4C8F6 /* Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B4F7AFD1DD5C5A800B4C8F6 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F7AFB1DD5C5A800B4C8F6 /* Base64.m */; };
 		3B5424EC1D3B5D3100C2EBB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5424EB1D3B5D3100C2EBB0 /* Security.framework */; };
 		3B6B130C1DA5953700543E67 /* AbstractImageProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6B130A1DA5953700543E67 /* AbstractImageProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B6B130D1DA5953700543E67 /* AbstractImageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B130B1DA5953700543E67 /* AbstractImageProxy.m */; };
@@ -2802,6 +2810,14 @@
 
 /* Begin PBXFileReference section */
 		3B1BF64F1D4531E800B07918 /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = ../j2objc/lib/libjre_emul.a; sourceTree = "<group>"; };
+		3B4F7AEE1DD5C42C00B4C8F6 /* BytesAsStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BytesAsStream.h; sourceTree = "<group>"; };
+		3B4F7AEF1DD5C42C00B4C8F6 /* BytesAsStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BytesAsStream.m; sourceTree = "<group>"; };
+		3B4F7AF21DD5C46400B4C8F6 /* DecodeBase64Bytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeBase64Bytes.h; sourceTree = "<group>"; };
+		3B4F7AF31DD5C46400B4C8F6 /* DecodeBase64Bytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeBase64Bytes.m; sourceTree = "<group>"; };
+		3B4F7AF61DD5C49800B4C8F6 /* DecodeBase64String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeBase64String.h; sourceTree = "<group>"; };
+		3B4F7AF71DD5C49800B4C8F6 /* DecodeBase64String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeBase64String.m; sourceTree = "<group>"; };
+		3B4F7AFA1DD5C5A800B4C8F6 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		3B4F7AFB1DD5C5A800B4C8F6 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		3B54140E1D3B56FB00C2EBB0 /* PDFReporterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PDFReporterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5424EB1D3B5D3100C2EBB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		3B6B130A1DA5953700543E67 /* AbstractImageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractImageProxy.h; sourceTree = "<group>"; };
@@ -5935,6 +5951,12 @@
 		3BDF8FA91D441CCF00C2DF4F /* functions */ = {
 			isa = PBXGroup;
 			children = (
+				3B4F7AF61DD5C49800B4C8F6 /* DecodeBase64String.h */,
+				3B4F7AF71DD5C49800B4C8F6 /* DecodeBase64String.m */,
+				3B4F7AF21DD5C46400B4C8F6 /* DecodeBase64Bytes.h */,
+				3B4F7AF31DD5C46400B4C8F6 /* DecodeBase64Bytes.m */,
+				3B4F7AEE1DD5C42C00B4C8F6 /* BytesAsStream.h */,
+				3B4F7AEF1DD5C42C00B4C8F6 /* BytesAsStream.m */,
 				3BDF8FAA1D441CCF00C2DF4F /* BooleanConverter.h */,
 				3BDF8FAB1D441CCF00C2DF4F /* BooleanConverter.m */,
 				3BDF8FAC1D441CCF00C2DF4F /* Conditional.h */,
@@ -6152,6 +6174,8 @@
 		3BDF90541D441CCF00C2DF4F /* converters */ = {
 			isa = PBXGroup;
 			children = (
+				3B4F7AFA1DD5C5A800B4C8F6 /* Base64.h */,
+				3B4F7AFB1DD5C5A800B4C8F6 /* Base64.m */,
 				3BDF90551D441CCF00C2DF4F /* DecimalConverter.h */,
 				3BDF90561D441CCF00C2DF4F /* DecimalConverter.m */,
 			);
@@ -9548,6 +9572,7 @@
 				3BDF9E9F1D441CD600C2DF4F /* SimpleTextLine.h in Headers */,
 				3BDFA32B1D441CD700C2DF4F /* MessageFormat.h in Headers */,
 				3BDFA3751D441CD700C2DF4F /* FunctionResult.h in Headers */,
+				3B4F7AF81DD5C49800B4C8F6 /* DecodeBase64String.h in Headers */,
 				3BDFA17D1D441CD700C2DF4F /* JRPenFactory.h in Headers */,
 				3BDF9C111D441CD600C2DF4F /* CachedDataset.h in Headers */,
 				3BDF9E771D441CD600C2DF4F /* JRTemplateLine.h in Headers */,
@@ -10017,6 +10042,7 @@
 				3BDF9DE91D441CD600C2DF4F /* JREvaluationTime.h in Headers */,
 				3BDFA0651D441CD700C2DF4F /* StretchTypeEnum.h in Headers */,
 				3BDFA1111D441CD700C2DF4F /* ValuePropertiesWrapper.h in Headers */,
+				3B4F7AF01DD5C42C00B4C8F6 /* BytesAsStream.h in Headers */,
 				3BDFA0411D441CD700C2DF4F /* LineDirectionEnum.h in Headers */,
 				3BDF9CC11D441CD600C2DF4F /* DefaultComponentManager.h in Headers */,
 				3BDFA4C51D441CD700C2DF4F /* CompareTo.h in Headers */,
@@ -10464,6 +10490,7 @@
 				3BDF9EC91D441CD600C2DF4F /* IJRVirtualizable.h in Headers */,
 				3BDFA1FB1D441CD700C2DF4F /* AbstractFontManager.h in Headers */,
 				3BDF9AAF1D441CD600C2DF4F /* ExpressionParameter.h in Headers */,
+				3B4F7AF41DD5C46400B4C8F6 /* DecodeBase64Bytes.h in Headers */,
 				3BDF9F2B1D441CD600C2DF4F /* JRField.h in Headers */,
 				3BDF9DDB1D441CD600C2DF4F /* JRCalculator.h in Headers */,
 				3BDFA1BD1D441CD700C2DF4F /* JRVariableExpressionFactory.h in Headers */,
@@ -10538,6 +10565,7 @@
 				3BDF9B1B1D441CD600C2DF4F /* TextConstant.h in Headers */,
 				3BDFA4311D441CD700C2DF4F /* AbstractFunctionElement.h in Headers */,
 				3BDF9AE31D441CD600C2DF4F /* JEvalExpressionEvaluator.h in Headers */,
+				3B4F7AFC1DD5C5A800B4C8F6 /* Base64.h in Headers */,
 				3BDFA3951D441CD700C2DF4F /* Random.h in Headers */,
 				3BDF9CE71D441CD600C2DF4F /* CollectionElementRemovedEvent.h in Headers */,
 				3BDF9AE71D441CD600C2DF4F /* JEvalResultCast.h in Headers */,
@@ -11279,6 +11307,7 @@
 				3BDF9C121D441CD600C2DF4F /* CachedDataset.m in Sources */,
 				3BDFA11A1D441CD700C2DF4F /* JRXmlDocumentProducer.m in Sources */,
 				3BDFA0321D441CD700C2DF4F /* FooterPositionEnum.m in Sources */,
+				3B4F7AF91DD5C49800B4C8F6 /* DecodeBase64String.m in Sources */,
 				3BDF9CDE1D441CD600C2DF4F /* Deduplicable.m in Sources */,
 				3BDF9C2C1D441CD600C2DF4F /* JRBaseBoxTopPen.m in Sources */,
 				3BDF9D241D441CD600C2DF4F /* JRDesignGenericElement.m in Sources */,
@@ -11417,6 +11446,7 @@
 				3BDFA4B81D441CD700C2DF4F /* Round.m in Sources */,
 				3BDFA3C61D441CD700C2DF4F /* ToUpperCase.m in Sources */,
 				3BDFA4821D441CD700C2DF4F /* EqualTo.m in Sources */,
+				3B4F7AFD1DD5C5A800B4C8F6 /* Base64.m in Sources */,
 				3BDF9AF81D441CD600C2DF4F /* IntegerStringConverter.m in Sources */,
 				3BDF9AAC1D441CD600C2DF4F /* ExpressionConstants.m in Sources */,
 				3BDFA3CE1D441CD700C2DF4F /* AdditionOperator.m in Sources */,
@@ -11569,6 +11599,7 @@
 				3BDF9EEA1D441CD600C2DF4F /* JRBoxContainer.m in Sources */,
 				3BDF9AA61D441CD600C2DF4F /* IBeansUtils.m in Sources */,
 				3BDFA4301D441CD700C2DF4F /* MessageDigest.m in Sources */,
+				3B4F7AF11DD5C42C00B4C8F6 /* BytesAsStream.m in Sources */,
 				3BDF9D701D441CD600C2DF4F /* StringTextValue.m in Sources */,
 				3BDFA32A1D441CD700C2DF4F /* LocaleConverter.m in Sources */,
 				3BDF9DA41D441CD600C2DF4F /* BorderOffset.m in Sources */,
@@ -12341,6 +12372,7 @@
 				3BDF9E3C1D441CD600C2DF4F /* JRFillTextElement.m in Sources */,
 				3BDF9F261D441CD600C2DF4F /* JRExpression.m in Sources */,
 				3BDF9CF21D441CD600C2DF4F /* JasperDesign.m in Sources */,
+				3B4F7AF51DD5C46400B4C8F6 /* DecodeBase64Bytes.m in Sources */,
 				3BDF9D341D441CD600C2DF4F /* JRDesignParameter.m in Sources */,
 				3BDF9F901D441CD600C2DF4F /* JRReport.m in Sources */,
 				3BDFA2E41D441CD700C2DF4F /* DateUtil.m in Sources */,

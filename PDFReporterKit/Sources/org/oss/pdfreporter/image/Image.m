@@ -15,6 +15,8 @@
 
 #import "IOSPrimitiveArray.h"
 #include "java/io/InputStream.h"
+#include "java/io/ByteArrayInputStream.h"
+#include "IOSPrimitiveArray.h"
 
 
 @implementation Image
@@ -138,14 +140,27 @@
 - (void)loadImage
 {
     HpdfDocBox *docBox = [HpdfDocBox GetDocBoxFromSession:[[OrgOssPdfreporterRegistryApiRegistry getImageFactory] getSession]];
+
+    NSData *nsData;
+
+    if ([_is isKindOfClass:[JavaIoByteArrayInputStream class]])
+    {
+        JavaIoByteArrayInputStream *imageStream = (JavaIoByteArrayInputStream *)_is;
+        IOSByteArray *byteArray = imageStream->buf_;
+        nsData = [byteArray toNSData];
+    }
+    else
+    {
+        int available = [_is available];
+        IOSByteArray *data = [IOSByteArray newArrayWithLength:available];
+        [_is readWithByteArray:data];
+        nsData = [data toNSData];
+    }
     
-    int available = [_is available];
-    IOSByteArray *data = [IOSByteArray newArrayWithLength:available];
-    [_is readWithByteArray:data];
-    NSData *nsData = [data toNSData];
+
     uint8_t c;
     const unsigned char *cData = [nsData bytes];
-    unsigned int size = (unsigned int)([data length] / sizeof(unsigned char));
+    unsigned int size = (unsigned int)([nsData length] / sizeof(unsigned char));
     [nsData getBytes:&c length:1];
 
     if (c == 0xFF) // JPEG
