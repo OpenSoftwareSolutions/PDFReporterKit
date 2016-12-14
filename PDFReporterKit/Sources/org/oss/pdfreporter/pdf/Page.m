@@ -182,7 +182,7 @@
 
 - (void)textOutWithNSString:(NSString *)text {
     if (!HPDF_HasDoc(hpdf_doc)) @throw [NSException exceptionWithName:@"HPDF_NEW" reason:@"!has doc" userInfo:nil];
-    const char *cText = [text UTF8String];
+    const char *cText = [text cStringUsingEncoding:NSWindowsCP1252StringEncoding];
     HPDF_Page_TextOut(hpdf_page, textPosX, textPosY, cText);
 }
 

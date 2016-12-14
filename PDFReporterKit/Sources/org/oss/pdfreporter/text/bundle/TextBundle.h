@@ -37,7 +37,7 @@
 
 @end
 
-J2OBJC_EMPTY_STATIC_INIT(OrgOssPdfreporterTextBundleTextBundle)
+J2OBJC_STATIC_INIT(OrgOssPdfreporterTextBundleTextBundle)
 
 FOUNDATION_EXPORT OrgOssPdfreporterTextBundleTextBundle *OrgOssPdfreporterTextBundleTextBundle_getInstanceWithNSString_withOrgOssPdfreporterTextBundleStringLocale_withNSString_(NSString *baseName, OrgOssPdfreporterTextBundleStringLocale *locale, NSString *charset);
 

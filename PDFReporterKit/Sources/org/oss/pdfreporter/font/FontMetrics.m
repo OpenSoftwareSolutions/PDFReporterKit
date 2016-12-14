@@ -23,7 +23,8 @@
 }
 
 - (int)measureTextWithNSString:(NSString *)text withInt:(int)width withBoolean:(jboolean)wordwrap {
-    const char *cText = [text UTF8String];
+    
+    const char *cText = [text cStringUsingEncoding:NSWindowsCP1252StringEncoding];
     float calcWidth = ((float)width);
     float realWidth = -1;
     int chars = -1;

@@ -277,6 +277,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFillJRFillTextField)
   [self evaluatePropertiesWithByte:evaluation];
   [self evaluateStyleWithByte:evaluation];
   value_ = [self evaluateExpressionWithOrgOssPdfreporterEngineJRExpression:[self getExpression] withByte:evaluation];
+  [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterEngineFillJRFillTextField_logger)) finestWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"TextField: %s", [IOSObjectArray newArrayWithObjects:(id[]){ value_ } count:1 type:NSObject_class_()])];
   NSString *strValue = nil;
   pattern_ = (NSString *) cast_chk([self evaluateExpressionWithOrgOssPdfreporterEngineJRExpression:[self getPatternExpression] withByte:evaluation], [NSString class]);
   if (value_ == nil) {

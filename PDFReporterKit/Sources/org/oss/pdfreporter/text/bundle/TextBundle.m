@@ -12,6 +12,8 @@
 #include "java/lang/RuntimeException.h"
 #include "java/util/List.h"
 #include "java/util/Properties.h"
+#include "java/util/logging/Level.h"
+#include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/net/IURL.h"
 #include "org/oss/pdfreporter/repo/FileResourceLoader.h"
 #include "org/oss/pdfreporter/repo/RepositoryManager.h"
@@ -48,6 +50,10 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterTextBundleTextBundle, baseName_, NSString *
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterTextBundleTextBundle, charset_, NSString *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterTextBundleTextBundle, bundle_, JavaUtilProperties *)
 
+inline JavaUtilLoggingLogger *OrgOssPdfreporterTextBundleTextBundle_get_LOGGER();
+static JavaUtilLoggingLogger *OrgOssPdfreporterTextBundleTextBundle_LOGGER;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterTextBundleTextBundle, LOGGER, JavaUtilLoggingLogger *)
+
 inline NSString *OrgOssPdfreporterTextBundleTextBundle_get_ENCODING_ISO_8859_1();
 static NSString *OrgOssPdfreporterTextBundleTextBundle_ENCODING_ISO_8859_1 = @"iso-8859-1";
 J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterTextBundleTextBundle, ENCODING_ISO_8859_1, NSString *)
@@ -71,6 +77,8 @@ __attribute__((unused)) static id<OrgOssPdfreporterNetIURL> OrgOssPdfreporterTex
 __attribute__((unused)) static id<OrgOssPdfreporterNetIURL> OrgOssPdfreporterTextBundleTextBundle_locateLanguage(OrgOssPdfreporterTextBundleTextBundle *self);
 
 __attribute__((unused)) static id<OrgOssPdfreporterNetIURL> OrgOssPdfreporterTextBundleTextBundle_locateDefault(OrgOssPdfreporterTextBundleTextBundle *self);
+
+J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterTextBundleTextBundle)
 
 @implementation OrgOssPdfreporterTextBundleTextBundle
 
@@ -102,7 +110,11 @@ withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLo
   if (bundle_ == nil) {
     bundle_ = OrgOssPdfreporterTextBundleTextBundle_loadBundle(self);
   }
-  return [((JavaUtilProperties *) nil_chk(bundle_)) getPropertyWithNSString:key];
+  NSString *text = [((JavaUtilProperties *) nil_chk(bundle_)) getPropertyWithNSString:key];
+  if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterTextBundleTextBundle_LOGGER)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
+    [OrgOssPdfreporterTextBundleTextBundle_LOGGER logWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"key: %s, value: %s", [IOSObjectArray newArrayWithObjects:(id[]){ key, text } count:2 type:NSObject_class_()])];
+  }
+  return text;
 }
 
 - (JavaUtilProperties *)loadBundle {
@@ -121,6 +133,13 @@ withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLo
   return OrgOssPdfreporterTextBundleTextBundle_locateDefault(self);
 }
 
++ (void)initialize {
+  if (self == [OrgOssPdfreporterTextBundleTextBundle class]) {
+    OrgOssPdfreporterTextBundleTextBundle_LOGGER = JavaUtilLoggingLogger_getLoggerWithNSString_([OrgOssPdfreporterTextBundleTextBundle_class_() getName]);
+    J2OBJC_SET_INITIALIZED(OrgOssPdfreporterTextBundleTextBundle)
+  }
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithNSString:withOrgOssPdfreporterTextBundleStringLocale:withNSString:", "TextBundle", NULL, 0x2, NULL, NULL },
@@ -134,13 +153,14 @@ withOrgOssPdfreporterTextBundleStringLocale:(OrgOssPdfreporterTextBundleStringLo
     { "locateDefault", NULL, "Lorg.oss.pdfreporter.net.IURL;", 0x2, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
+    { "LOGGER", "LOGGER", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterTextBundleTextBundle_LOGGER, NULL, .constantValue.asLong = 0 },
     { "ENCODING_ISO_8859_1", "ENCODING_ISO_8859_1", 0x1a, "Ljava.lang.String;", &OrgOssPdfreporterTextBundleTextBundle_ENCODING_ISO_8859_1, NULL, .constantValue.asLong = 0 },
     { "locale_", NULL, 0x12, "Lorg.oss.pdfreporter.text.bundle.StringLocale;", NULL, NULL, .constantValue.asLong = 0 },
     { "baseName_", NULL, 0x12, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "charset_", NULL, 0x12, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "bundle_", NULL, 0x2, "Ljava.util.Properties;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterTextBundleTextBundle = { 2, "TextBundle", "org.oss.pdfreporter.text.bundle", NULL, 0x1, 9, methods, 5, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterTextBundleTextBundle = { 2, "TextBundle", "org.oss.pdfreporter.text.bundle", NULL, 0x1, 9, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterTextBundleTextBundle;
 }
 
@@ -218,16 +238,19 @@ JavaUtilProperties *OrgOssPdfreporterTextBundleTextBundle_loadBundle(OrgOssPdfre
 
 id<OrgOssPdfreporterNetIURL> OrgOssPdfreporterTextBundleTextBundle_locateBundle(OrgOssPdfreporterTextBundleTextBundle *self) {
   NSString *propertyFileName = JreStrcat("$C$$", self->baseName_, '_', [((OrgOssPdfreporterTextBundleStringLocale *) nil_chk(self->locale_)) getLocaleString], @".properties");
+  [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterTextBundleTextBundle_LOGGER)) logWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"locating bundle: %s", [IOSObjectArray newArrayWithObjects:(id[]){ propertyFileName } count:1 type:NSObject_class_()])];
   return OrgOssPdfreporterRepoFileResourceLoader_getURLWithNSString_(propertyFileName);
 }
 
 id<OrgOssPdfreporterNetIURL> OrgOssPdfreporterTextBundleTextBundle_locateLanguage(OrgOssPdfreporterTextBundleTextBundle *self) {
   NSString *propertyFileName = JreStrcat("$C$$", self->baseName_, '_', [((OrgOssPdfreporterTextBundleStringLocale *) nil_chk(self->locale_)) getLanguage], @".properties");
+  [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterTextBundleTextBundle_LOGGER)) logWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"locating bundle: %s", [IOSObjectArray newArrayWithObjects:(id[]){ propertyFileName } count:1 type:NSObject_class_()])];
   return OrgOssPdfreporterRepoFileResourceLoader_getURLWithNSString_(propertyFileName);
 }
 
 id<OrgOssPdfreporterNetIURL> OrgOssPdfreporterTextBundleTextBundle_locateDefault(OrgOssPdfreporterTextBundleTextBundle *self) {
   NSString *propertyFileName = JreStrcat("$$", self->baseName_, @".properties");
+  [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterTextBundleTextBundle_LOGGER)) logWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"locating bundle: %s", [IOSObjectArray newArrayWithObjects:(id[]){ propertyFileName } count:1 type:NSObject_class_()])];
   return OrgOssPdfreporterRepoFileResourceLoader_getURLWithNSString_(propertyFileName);
 }
 

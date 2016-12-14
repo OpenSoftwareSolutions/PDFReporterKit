@@ -4,6 +4,7 @@
 //
 
 #include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/io/IOException.h"
 #include "java/util/ArrayList.h"
@@ -12,6 +13,7 @@
 #include "java/util/List.h"
 #include "java/util/Map.h"
 #include "java/util/Set.h"
+#include "java/util/logging/Level.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/font/AbstractFontManager.h"
 #include "org/oss/pdfreporter/font/Base14Font.h"
@@ -107,6 +109,7 @@ withOrgOssPdfreporterFontIFont_FontStyle:(OrgOssPdfreporterFontIFont_FontStyle *
 
 - (void)addFontWithOrgOssPdfreporterFontAbstractFontManager_FontKey:(OrgOssPdfreporterFontAbstractFontManager_FontKey *)key
                                      withOrgOssPdfreporterFontIFont:(id<OrgOssPdfreporterFontIFont>)font {
+  [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterFontAbstractFontManager_logger)) logWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"font: %s, encoding: %s", [IOSObjectArray newArrayWithObjects:(id[]){ [((id<OrgOssPdfreporterFontIFont>) nil_chk(font)) getName], [font getEncoding] } count:2 type:NSObject_class_()])];
   (void) [((id<JavaUtilMap>) nil_chk(fontCache_)) putWithId:key withId:font];
   if (![((id<JavaUtilList>) nil_chk(familyNames_)) containsWithId:[((OrgOssPdfreporterFontAbstractFontManager_FontKey *) nil_chk(key)) getName]]) {
     [familyNames_ addWithId:[key getName]];

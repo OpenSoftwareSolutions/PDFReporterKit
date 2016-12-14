@@ -45,7 +45,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     if(fontname == nil) return nil;
     id<OrgOssPdfreporterFontIFont> font = [fontDict objectForKey:fontname];
     if(font == nil) {
-        font = [[Font alloc] initWithFontName:fontname style:OrgOssPdfreporterFontIFont_FontStyle_get_PLAIN() size:1 encoding:@"FontSpecific" manager:self];
+        font = [[Font alloc] initWithFontName:fontname style:OrgOssPdfreporterFontIFont_FontStyle_get_PLAIN() size:1 encoding:@"CP1252" manager:self];
         [fontDict setObject:font forKey:fontname];
     }
     return font;
