@@ -37,6 +37,8 @@ typedef NS_ENUM(NSUInteger, OrgOssPdfreporterSqlSqlType_Enum) {
   OrgOssPdfreporterSqlSqlType_Enum_TIMESTAMP = 13,
   OrgOssPdfreporterSqlSqlType_Enum_DATETIME = 14,
   OrgOssPdfreporterSqlSqlType_Enum_BLOB = 15,
+  OrgOssPdfreporterSqlSqlType_Enum_OBJECT = 16,
+  OrgOssPdfreporterSqlSqlType_Enum_NULL = 17,
 };
 
 @interface OrgOssPdfreporterSqlSqlType : JavaLangEnum < NSCopying >
@@ -72,6 +74,10 @@ typedef NS_ENUM(NSUInteger, OrgOssPdfreporterSqlSqlType_Enum) {
 + (OrgOssPdfreporterSqlSqlType *)DATETIME;
 
 + (OrgOssPdfreporterSqlSqlType *)BLOB;
+
++ (OrgOssPdfreporterSqlSqlType *)OBJECT;
+
++ (OrgOssPdfreporterSqlSqlType *)NULL_;
 
 #pragma mark Package-Private
 
@@ -135,6 +141,12 @@ J2OBJC_ENUM_CONSTANT(OrgOssPdfreporterSqlSqlType, DATETIME)
 
 inline OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_get_BLOB();
 J2OBJC_ENUM_CONSTANT(OrgOssPdfreporterSqlSqlType, BLOB)
+
+inline OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_get_OBJECT();
+J2OBJC_ENUM_CONSTANT(OrgOssPdfreporterSqlSqlType, OBJECT)
+
+inline OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_get_NULL();
+J2OBJC_ENUM_CONSTANT(OrgOssPdfreporterSqlSqlType, NULL)
 
 FOUNDATION_EXPORT IOSObjectArray *OrgOssPdfreporterSqlSqlType_values();
 

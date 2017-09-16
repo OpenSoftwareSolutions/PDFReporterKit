@@ -9,6 +9,7 @@
 #include "java/lang/Integer.h"
 #include "java/lang/Long.h"
 #include "java/lang/Short.h"
+#include "java/math/BigDecimal.h"
 #include "java/util/regex/Matcher.h"
 #include "java/util/regex/Pattern.h"
 #include "org/oss/pdfreporter/compilers/ExpressionEvaluationException.h"
@@ -27,6 +28,11 @@
 @end
 
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterCompilersUtilNumberConstant, number_, NSNumber *)
+
+inline NSString *OrgOssPdfreporterCompilersUtilNumberConstant_get_BIGDECIMAL_MATCH();
+inline NSString *OrgOssPdfreporterCompilersUtilNumberConstant_set_BIGDECIMAL_MATCH(NSString *value);
+static NSString *OrgOssPdfreporterCompilersUtilNumberConstant_BIGDECIMAL_MATCH = @"new java\\.math\\.BigDecimal\\(-?\\d+\\)";
+J2OBJC_STATIC_FIELD_OBJ(OrgOssPdfreporterCompilersUtilNumberConstant, BIGDECIMAL_MATCH, NSString *)
 
 inline NSString *OrgOssPdfreporterCompilersUtilNumberConstant_get_INTEGER_MATCH();
 inline NSString *OrgOssPdfreporterCompilersUtilNumberConstant_set_INTEGER_MATCH(NSString *value);
@@ -102,6 +108,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterCompilersUtilNumberConstant)
     { "getValue", NULL, "Ljava.lang.Object;", 0x1, "Lorg.oss.pdfreporter.compilers.ExpressionEvaluationException;", NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
+    { "BIGDECIMAL_MATCH", "BIGDECIMAL_MATCH", 0xa, "Ljava.lang.String;", &OrgOssPdfreporterCompilersUtilNumberConstant_BIGDECIMAL_MATCH, NULL, .constantValue.asLong = 0 },
     { "INTEGER_MATCH", "INTEGER_MATCH", 0xa, "Ljava.lang.String;", &OrgOssPdfreporterCompilersUtilNumberConstant_INTEGER_MATCH, NULL, .constantValue.asLong = 0 },
     { "LONG_MATCH", "LONG_MATCH", 0xa, "Ljava.lang.String;", &OrgOssPdfreporterCompilersUtilNumberConstant_LONG_MATCH, NULL, .constantValue.asLong = 0 },
     { "SHORT_MATCH", "SHORT_MATCH", 0xa, "Ljava.lang.String;", &OrgOssPdfreporterCompilersUtilNumberConstant_SHORT_MATCH, NULL, .constantValue.asLong = 0 },
@@ -110,7 +117,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterCompilersUtilNumberConstant)
     { "NUMBER_SPLIT", "NUMBER_SPLIT", 0xa, "Ljava.util.regex.Pattern;", &OrgOssPdfreporterCompilersUtilNumberConstant_NUMBER_SPLIT, NULL, .constantValue.asLong = 0 },
     { "number_", NULL, 0x12, "Ljava.lang.Number;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterCompilersUtilNumberConstant = { 2, "NumberConstant", "org.oss.pdfreporter.compilers.util", NULL, 0x1, 5, methods, 7, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterCompilersUtilNumberConstant = { 2, "NumberConstant", "org.oss.pdfreporter.compilers.util", NULL, 0x1, 5, methods, 8, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterCompilersUtilNumberConstant;
 }
 
@@ -118,13 +125,16 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterCompilersUtilNumberConstant)
 
 jboolean OrgOssPdfreporterCompilersUtilNumberConstant_isNumberWithNSString_(NSString *text) {
   OrgOssPdfreporterCompilersUtilNumberConstant_initialize();
-  return [((NSString *) nil_chk(text)) matches:OrgOssPdfreporterCompilersUtilNumberConstant_INTEGER_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_LONG_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_SHORT_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_BYTE_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_NUMBER_MATCH];
+  return [((NSString *) nil_chk(text)) matches:OrgOssPdfreporterCompilersUtilNumberConstant_INTEGER_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_BIGDECIMAL_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_LONG_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_SHORT_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_BYTE_MATCH] || [text matches:OrgOssPdfreporterCompilersUtilNumberConstant_NUMBER_MATCH];
 }
 
 OrgOssPdfreporterCompilersUtilNumberConstant *OrgOssPdfreporterCompilersUtilNumberConstant_parseNumberWithNSString_(NSString *s) {
   OrgOssPdfreporterCompilersUtilNumberConstant_initialize();
   if ([((NSString *) nil_chk(s)) matches:OrgOssPdfreporterCompilersUtilNumberConstant_INTEGER_MATCH]) {
     return new_OrgOssPdfreporterCompilersUtilNumberConstant_initWithNSNumber_(JavaLangInteger_valueOfWithNSString_(OrgOssPdfreporterCompilersUtilNumberConstant_extractWithJavaUtilRegexPattern_withNSString_(OrgOssPdfreporterCompilersUtilNumberConstant_NUMBER_SPLIT, s)));
+  }
+  else if ([s matches:OrgOssPdfreporterCompilersUtilNumberConstant_BIGDECIMAL_MATCH]) {
+    return new_OrgOssPdfreporterCompilersUtilNumberConstant_initWithNSNumber_(new_JavaMathBigDecimal_initWithNSString_(OrgOssPdfreporterCompilersUtilNumberConstant_extractWithJavaUtilRegexPattern_withNSString_(OrgOssPdfreporterCompilersUtilNumberConstant_NUMBER_SPLIT, s)));
   }
   else if ([s matches:OrgOssPdfreporterCompilersUtilNumberConstant_LONG_MATCH]) {
     return new_OrgOssPdfreporterCompilersUtilNumberConstant_initWithNSNumber_(JavaLangLong_valueOfWithNSString_(OrgOssPdfreporterCompilersUtilNumberConstant_extractWithJavaUtilRegexPattern_withNSString_(OrgOssPdfreporterCompilersUtilNumberConstant_NUMBER_SPLIT, s)));

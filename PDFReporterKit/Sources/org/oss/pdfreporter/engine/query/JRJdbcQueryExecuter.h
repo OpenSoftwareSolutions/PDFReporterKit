@@ -21,6 +21,7 @@
 #include "org/oss/pdfreporter/engine/query/JRAbstractQueryExecuter.h"
 
 @class IOSClass;
+@class IOSObjectArray;
 @class JavaUtilCalendar;
 @protocol JavaUtilMap;
 @protocol OrgOssPdfreporterEngineJRDataSource;

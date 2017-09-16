@@ -7,39 +7,52 @@
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/lang/Exception.h"
+#include "java/lang/IllegalAccessException.h"
+#include "java/lang/InstantiationException.h"
 #include "java/lang/Integer.h"
 #include "java/lang/NullPointerException.h"
 #include "java/util/Calendar.h"
 #include "java/util/Date.h"
+#include "java/util/HashMap.h"
 #include "java/util/Locale.h"
 #include "java/util/Map.h"
+#include "java/util/MissingResourceException.h"
 #include "java/util/logging/Level.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/engine/JRException.h"
 #include "org/oss/pdfreporter/engine/JRExpression.h"
 #include "org/oss/pdfreporter/engine/JRParameter.h"
 #include "org/oss/pdfreporter/engine/JRRuntimeException.h"
+#include "org/oss/pdfreporter/engine/fill/FillFunctionContext.h"
 #include "org/oss/pdfreporter/engine/fill/IJRFillParameter.h"
 #include "org/oss/pdfreporter/engine/fill/JREvaluator.h"
 #include "org/oss/pdfreporter/engine/fill/JRExpressionEvalException.h"
 #include "org/oss/pdfreporter/engine/type/WhenResourceMissingTypeEnum.h"
+#include "org/oss/pdfreporter/functions/FunctionSupport.h"
 #include "org/oss/pdfreporter/registry/ApiRegistry.h"
+#include "org/oss/pdfreporter/text/bundle/ITextBundle.h"
 #include "org/oss/pdfreporter/text/bundle/StringLocale.h"
 #include "org/oss/pdfreporter/text/format/IMessageFormat.h"
 #include "org/oss/pdfreporter/text/format/factory/IFormatFactory.h"
 
 @interface OrgOssPdfreporterEngineFillJREvaluator () {
  @public
+  id<OrgOssPdfreporterEngineFillIJRFillParameter> resourceBundle_;
   OrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum *whenResourceMissingType_;
   id<OrgOssPdfreporterEngineFillIJRFillParameter> locale_;
+  id<JavaUtilMap> functions_;
+  OrgOssPdfreporterEngineFillFillFunctionContext *functionContext_;
 }
 
 - (id<OrgOssPdfreporterTextFormatIMessageFormat>)getMessageFormatWithNSString:(NSString *)pattern;
 
 @end
 
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJREvaluator, resourceBundle_, id<OrgOssPdfreporterEngineFillIJRFillParameter>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJREvaluator, whenResourceMissingType_, OrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJREvaluator, locale_, id<OrgOssPdfreporterEngineFillIJRFillParameter>)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJREvaluator, functions_, id<JavaUtilMap>)
+J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillJREvaluator, functionContext_, OrgOssPdfreporterEngineFillFillFunctionContext *)
 
 inline JavaUtilLoggingLogger *OrgOssPdfreporterEngineFillJREvaluator_get_logger();
 static JavaUtilLoggingLogger *OrgOssPdfreporterEngineFillJREvaluator_logger;
@@ -63,8 +76,29 @@ J2OBJC_IGNORE_DESIGNATED_END
               withJavaUtilMap:(id<JavaUtilMap>)variablesMap
 withOrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum:(OrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum *)resourceMissingType {
   self->whenResourceMissingType_ = resourceMissingType;
-  self->locale_ = [((id<JavaUtilMap>) nil_chk(parametersMap)) getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE];
+  resourceBundle_ = [((id<JavaUtilMap>) nil_chk(parametersMap)) getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_RESOURCE_BUNDLE];
+  self->locale_ = [parametersMap getWithId:OrgOssPdfreporterEngineJRParameter_REPORT_LOCALE];
+  functions_ = new_JavaUtilHashMap_init();
+  functionContext_ = new_OrgOssPdfreporterEngineFillFillFunctionContext_initWithJavaUtilMap_(parametersMap);
   [self customizedInitWithJavaUtilMap:parametersMap withJavaUtilMap:fieldsMap withJavaUtilMap:variablesMap];
+}
+
+- (id)getFunctionSupportWithIOSClass:(IOSClass *)clazz {
+  NSString *classId = [((IOSClass *) nil_chk(clazz)) getName];
+  if (![((id<JavaUtilMap>) nil_chk(functions_)) containsKeyWithId:classId]) {
+    @try {
+      id<OrgOssPdfreporterFunctionsFunctionSupport> functionSupport = [clazz newInstance];
+      [((id<OrgOssPdfreporterFunctionsFunctionSupport>) nil_chk(functionSupport)) init__WithOrgOssPdfreporterFunctionsFunctionContext:functionContext_];
+      (void) [((id<JavaUtilMap>) nil_chk(functions_)) putWithId:classId withId:functionSupport];
+    }
+    @catch (JavaLangIllegalAccessException *e) {
+      @throw new_OrgOssPdfreporterEngineJRRuntimeException_initWithNSException_(e);
+    }
+    @catch (JavaLangInstantiationException *e) {
+      @throw new_OrgOssPdfreporterEngineJRRuntimeException_initWithNSException_(e);
+    }
+  }
+  return [((id<JavaUtilMap>) nil_chk(functions_)) getWithId:classId];
 }
 
 - (NSString *)msgWithNSString:(NSString *)pattern
@@ -90,13 +124,27 @@ withOrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum:(OrgOssPdfreporterEng
   return [((id<OrgOssPdfreporterTextFormatIMessageFormat>) nil_chk(OrgOssPdfreporterEngineFillJREvaluator_getMessageFormatWithNSString_(self, pattern))) formatWithNSObjectArray:args];
 }
 
+- (NSString *)strWithNSString:(NSString *)key {
+  NSString *str = nil;
+  @try {
+    str = [((id<OrgOssPdfreporterTextBundleITextBundle>) nil_chk(((id<OrgOssPdfreporterTextBundleITextBundle>) cast_check([((id<OrgOssPdfreporterEngineFillIJRFillParameter>) nil_chk(resourceBundle_)) getValue], OrgOssPdfreporterTextBundleITextBundle_class_())))) getStringWithNSString:key];
+  }
+  @catch (JavaLangNullPointerException *e) {
+    str = [self handleMissingResourceWithNSString:key withJavaLangException:e];
+  }
+  @catch (JavaUtilMissingResourceException *e) {
+    str = [self handleMissingResourceWithNSString:key withJavaLangException:e];
+  }
+  return str;
+}
+
 - (id)evaluateWithOrgOssPdfreporterEngineJRExpression:(id<OrgOssPdfreporterEngineJRExpression>)expression {
   id value = nil;
   if (expression != nil) {
     @try {
       value = [self evaluateWithInt:[expression getId]];
       if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterEngineFillJREvaluator_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
-        NSString *msg = [nil_chk(value) description];
+        NSString *msg = value == nil ? nil : [value description];
         if ([value isKindOfClass:[JavaUtilDate class]]) {
           JavaUtilCalendar *cal = JavaUtilCalendar_getInstance();
           [((JavaUtilCalendar *) nil_chk(cal)) setTimeWithJavaUtilDate:(JavaUtilDate *) cast_chk(value, [JavaUtilDate class])];
@@ -214,10 +262,12 @@ withOrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum:(OrgOssPdfreporterEng
   static const J2ObjcMethodInfo methods[] = {
     { "init", "JREvaluator", NULL, 0x4, NULL, NULL },
     { "init__WithJavaUtilMap:withJavaUtilMap:withJavaUtilMap:withOrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum:", "init", "V", 0x1, "Lorg.oss.pdfreporter.engine.JRException;", "(Ljava/util/Map<Ljava/lang/String;Lorg/oss/pdfreporter/engine/fill/IJRFillParameter;>;Ljava/util/Map<Ljava/lang/String;Lorg/oss/pdfreporter/engine/fill/JRFillField;>;Ljava/util/Map<Ljava/lang/String;Lorg/oss/pdfreporter/engine/fill/JRFillVariable;>;Lorg/oss/pdfreporter/engine/type/WhenResourceMissingTypeEnum;)V" },
+    { "getFunctionSupportWithIOSClass:", "getFunctionSupport", "TT;", 0x1, NULL, "<T::Lorg/oss/pdfreporter/functions/FunctionSupport;>(Ljava/lang/Class<TT;>;)TT;" },
     { "msgWithNSString:withId:", "msg", "Ljava.lang.String;", 0x1, NULL, NULL },
     { "msgWithNSString:withId:withId:", "msg", "Ljava.lang.String;", 0x1, NULL, NULL },
     { "msgWithNSString:withId:withId:withId:", "msg", "Ljava.lang.String;", 0x1, NULL, NULL },
     { "msgWithNSString:withNSObjectArray:", "msg", "Ljava.lang.String;", 0x1, NULL, NULL },
+    { "strWithNSString:", "str", "Ljava.lang.String;", 0x1, NULL, NULL },
     { "evaluateWithOrgOssPdfreporterEngineJRExpression:", "evaluate", "Ljava.lang.Object;", 0x1, "Lorg.oss.pdfreporter.engine.fill.JRExpressionEvalException;", NULL },
     { "evaluateOldWithOrgOssPdfreporterEngineJRExpression:", "evaluateOld", "Ljava.lang.Object;", 0x1, "Lorg.oss.pdfreporter.engine.fill.JRExpressionEvalException;", NULL },
     { "evaluateEstimatedWithOrgOssPdfreporterEngineJRExpression:", "evaluateEstimated", "Ljava.lang.Object;", 0x1, "Lorg.oss.pdfreporter.engine.fill.JRExpressionEvalException;", NULL },
@@ -230,10 +280,13 @@ withOrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum:(OrgOssPdfreporterEng
   };
   static const J2ObjcFieldInfo fields[] = {
     { "logger", "logger", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterEngineFillJREvaluator_logger, NULL, .constantValue.asLong = 0 },
+    { "resourceBundle_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fill.IJRFillParameter;", NULL, NULL, .constantValue.asLong = 0 },
     { "whenResourceMissingType_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.type.WhenResourceMissingTypeEnum;", NULL, NULL, .constantValue.asLong = 0 },
     { "locale_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fill.IJRFillParameter;", NULL, NULL, .constantValue.asLong = 0 },
+    { "functions_", NULL, 0x2, "Ljava.util.Map;", NULL, "Ljava/util/Map<Ljava/lang/String;Lorg/oss/pdfreporter/functions/FunctionSupport;>;", .constantValue.asLong = 0 },
+    { "functionContext_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fill.FillFunctionContext;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillJREvaluator = { 2, "JREvaluator", "org.oss.pdfreporter.engine.fill", NULL, 0x401, 15, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillJREvaluator = { 2, "JREvaluator", "org.oss.pdfreporter.engine.fill", NULL, 0x401, 17, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineFillJREvaluator;
 }
 

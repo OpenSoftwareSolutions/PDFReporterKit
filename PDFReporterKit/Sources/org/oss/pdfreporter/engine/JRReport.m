@@ -9,6 +9,7 @@
 NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JAVA = @"java";
 NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JEVAL = @"jeval";
 NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JSHUNTINGYARD = @"jshuntingyard";
+NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JAVASCIPT = @"javascript";
 
 @implementation OrgOssPdfreporterEngineJRReport
 
@@ -22,6 +23,10 @@ NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JSHUNTINGYARD = @"jshuntingya
 
 + (NSString *)LANGUAGE_JSHUNTINGYARD {
   return OrgOssPdfreporterEngineJRReport_LANGUAGE_JSHUNTINGYARD;
+}
+
++ (NSString *)LANGUAGE_JAVASCIPT {
+  return OrgOssPdfreporterEngineJRReport_LANGUAGE_JAVASCIPT;
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -83,8 +88,9 @@ NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JSHUNTINGYARD = @"jshuntingya
     { "LANGUAGE_JAVA", "LANGUAGE_JAVA", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRReport_LANGUAGE_JAVA, NULL, .constantValue.asLong = 0 },
     { "LANGUAGE_JEVAL", "LANGUAGE_JEVAL", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRReport_LANGUAGE_JEVAL, NULL, .constantValue.asLong = 0 },
     { "LANGUAGE_JSHUNTINGYARD", "LANGUAGE_JSHUNTINGYARD", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRReport_LANGUAGE_JSHUNTINGYARD, NULL, .constantValue.asLong = 0 },
+    { "LANGUAGE_JAVASCIPT", "LANGUAGE_JAVASCIPT", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRReport_LANGUAGE_JAVASCIPT, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineJRReport = { 2, "JRReport", "org.oss.pdfreporter.engine", NULL, 0x609, 52, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineJRReport = { 2, "JRReport", "org.oss.pdfreporter.engine", NULL, 0x609, 52, methods, 4, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineJRReport;
 }
 

@@ -3,10 +3,15 @@
 //  source: ../pdfreporter-core/src/org/oss/pdfreporter/pdf/ParagraphRenderer.java
 //
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
+#include "java/lang/Float.h"
 #include "java/lang/Math.h"
 #include "java/util/ArrayList.h"
 #include "java/util/List.h"
+#include "java/util/logging/Level.h"
+#include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/font/IFont.h"
 #include "org/oss/pdfreporter/geometry/IColor.h"
 #include "org/oss/pdfreporter/geometry/IRectangle.h"
@@ -40,6 +45,10 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterPdfParagraphRenderer, alignment_, OrgOssPdf
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterPdfParagraphRenderer, bounding_, id<OrgOssPdfreporterGeometryIRectangle>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterPdfParagraphRenderer, textLine_, id<JavaUtilList>)
 
+inline JavaUtilLoggingLogger *OrgOssPdfreporterPdfParagraphRenderer_get_logger();
+static JavaUtilLoggingLogger *OrgOssPdfreporterPdfParagraphRenderer_logger;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterPdfParagraphRenderer, logger, JavaUtilLoggingLogger *)
+
 inline jfloat OrgOssPdfreporterPdfParagraphRenderer_get_LEADING_FACTOR();
 inline jfloat OrgOssPdfreporterPdfParagraphRenderer_set_LEADING_FACTOR(jfloat value);
 inline jfloat *OrgOssPdfreporterPdfParagraphRenderer_getRef_LEADING_FACTOR();
@@ -51,6 +60,8 @@ __attribute__((unused)) static jint OrgOssPdfreporterPdfParagraphRenderer_calcSp
 __attribute__((unused)) static void OrgOssPdfreporterPdfParagraphRenderer_addWithOrgOssPdfreporterTextParagraphText_(OrgOssPdfreporterPdfParagraphRenderer *self, OrgOssPdfreporterTextParagraphText *text);
 
 __attribute__((unused)) static void OrgOssPdfreporterPdfParagraphRenderer_renderLineWithOrgOssPdfreporterPdfIPage_(OrgOssPdfreporterPdfParagraphRenderer *self, id<OrgOssPdfreporterPdfIPage> page);
+
+J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterPdfParagraphRenderer)
 
 @implementation OrgOssPdfreporterPdfParagraphRenderer
 
@@ -97,6 +108,13 @@ __attribute__((unused)) static void OrgOssPdfreporterPdfParagraphRenderer_render
   OrgOssPdfreporterPdfParagraphRenderer_renderLineWithOrgOssPdfreporterPdfIPage_(self, page);
 }
 
++ (void)initialize {
+  if (self == [OrgOssPdfreporterPdfParagraphRenderer class]) {
+    OrgOssPdfreporterPdfParagraphRenderer_logger = JavaUtilLoggingLogger_getLoggerWithNSString_([OrgOssPdfreporterPdfParagraphRenderer_class_() getName]);
+    J2OBJC_SET_INITIALIZED(OrgOssPdfreporterPdfParagraphRenderer)
+  }
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithOrgOssPdfreporterTextParagraph:withOrgOssPdfreporterTextHorizontalAlignment:withOrgOssPdfreporterGeometryIRectangle:", "ParagraphRenderer", NULL, 0x1, NULL, NULL },
@@ -106,6 +124,7 @@ __attribute__((unused)) static void OrgOssPdfreporterPdfParagraphRenderer_render
     { "renderLineWithOrgOssPdfreporterPdfIPage:", "renderLine", "V", 0x2, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
+    { "logger", "logger", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterPdfParagraphRenderer_logger, NULL, .constantValue.asLong = 0 },
     { "LEADING_FACTOR", "LEADING_FACTOR", 0xa, "F", &OrgOssPdfreporterPdfParagraphRenderer_LEADING_FACTOR, NULL, .constantValue.asLong = 0 },
     { "paragraph_", NULL, 0x12, "Lorg.oss.pdfreporter.text.Paragraph;", NULL, NULL, .constantValue.asLong = 0 },
     { "alignment_", NULL, 0x12, "Lorg.oss.pdfreporter.text.HorizontalAlignment;", NULL, NULL, .constantValue.asLong = 0 },
@@ -115,7 +134,7 @@ __attribute__((unused)) static void OrgOssPdfreporterPdfParagraphRenderer_render
     { "y_", NULL, 0x2, "F", NULL, NULL, .constantValue.asLong = 0 },
     { "widthLeft_", NULL, 0x2, "F", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterPdfParagraphRenderer = { 2, "ParagraphRenderer", "org.oss.pdfreporter.pdf", NULL, 0x1, 5, methods, 8, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterPdfParagraphRenderer = { 2, "ParagraphRenderer", "org.oss.pdfreporter.pdf", NULL, 0x1, 5, methods, 9, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterPdfParagraphRenderer;
 }
 
@@ -169,6 +188,10 @@ void OrgOssPdfreporterPdfParagraphRenderer_renderLineWithOrgOssPdfreporterPdfIPa
     x = [((id<OrgOssPdfreporterGeometryIRectangle>) nil_chk(self->bounding_)) getX];
   }
   for (OrgOssPdfreporterTextParagraphText * __strong text in nil_chk(self->textLine_)) {
+    if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterPdfParagraphRenderer_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
+      id<OrgOssPdfreporterFontIFont> font = [((OrgOssPdfreporterTextParagraphText *) nil_chk(text)) getFont];
+      [OrgOssPdfreporterPdfParagraphRenderer_logger finestWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"text: %s, fontName: %s, fontStyle: %s, fontDecoration: %s, fontSize: %s ", [IOSObjectArray newArrayWithObjects:(id[]){ [text getText], [((id<OrgOssPdfreporterFontIFont>) nil_chk(font)) getName], [font getStyle], [font getDecoration], JavaLangFloat_valueOfWithFloat_([font getSize]) } count:5 type:NSObject_class_()])];
+    }
     [((id<OrgOssPdfreporterPdfIPage>) nil_chk(page)) setFontWithOrgOssPdfreporterFontIFont:[((OrgOssPdfreporterTextParagraphText *) nil_chk(text)) getFont]];
     [page setRGBColorFillWithOrgOssPdfreporterGeometryIColor:[text getForeground]];
     [page setTextPosWithFloat:x withFloat:self->y_];

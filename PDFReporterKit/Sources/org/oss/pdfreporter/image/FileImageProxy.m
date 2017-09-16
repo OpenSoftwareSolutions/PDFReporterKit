@@ -41,6 +41,7 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterImageFileImageProxy, filePath_, NSString *)
     }
   }
   @catch (JavaIoIOException *e) {
+    [((JavaIoIOException *) nil_chk(e)) printStackTrace];
     @throw new_JavaLangRuntimeException_initWithNSString_withNSException_(JreStrcat("$$", @"Exception while loading image resource :", [self getResourcePath]), e);
   }
 }

@@ -20,11 +20,13 @@
 #define INCLUDE_OrgOssPdfreporterEngineFillDatasetExpressionEvaluator 1
 #include "org/oss/pdfreporter/engine/fill/DatasetExpressionEvaluator.h"
 
+@class IOSClass;
 @class IOSObjectArray;
 @class JavaLangException;
 @class OrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum;
 @protocol JavaUtilMap;
 @protocol OrgOssPdfreporterEngineJRExpression;
+@protocol OrgOssPdfreporterFunctionsFunctionSupport;
 
 @interface OrgOssPdfreporterEngineFillJREvaluator : NSObject < OrgOssPdfreporterEngineFillDatasetExpressionEvaluator >
 
@@ -35,6 +37,8 @@
 - (id)evaluateEstimatedWithOrgOssPdfreporterEngineJRExpression:(id<OrgOssPdfreporterEngineJRExpression>)expression;
 
 - (id)evaluateOldWithOrgOssPdfreporterEngineJRExpression:(id<OrgOssPdfreporterEngineJRExpression>)expression;
+
+- (id)getFunctionSupportWithIOSClass:(IOSClass *)clazz;
 
 - (void)init__WithJavaUtilMap:(id<JavaUtilMap>)parametersMap
               withJavaUtilMap:(id<JavaUtilMap>)fieldsMap
@@ -55,6 +59,8 @@ withOrgOssPdfreporterEngineTypeWhenResourceMissingTypeEnum:(OrgOssPdfreporterEng
 
 - (NSString *)msgWithNSString:(NSString *)pattern
             withNSObjectArray:(IOSObjectArray *)args;
+
+- (NSString *)strWithNSString:(NSString *)key;
 
 #pragma mark Protected
 

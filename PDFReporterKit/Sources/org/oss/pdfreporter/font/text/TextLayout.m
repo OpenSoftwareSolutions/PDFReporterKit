@@ -106,6 +106,10 @@ __attribute__((unused)) static NSString *OrgOssPdfreporterFontTextTextLayout_inv
   return paragraph_;
 }
 
+- (NSString *)description {
+  return JreStrcat("$I$F$F$F$F$$$", @"TextLayout [characterCount: ", [self getCharacterCount], @", advance: ", [self getAdvance], @", ascent: ", [self getAscent], @", descent: ", [self getDescent], @", leading: ", [self getLeading], @", text: '", [((OrgOssPdfreporterTextParagraph *) nil_chk([self getParagraph])) getText], @"']");
+}
+
 - (void)calcMetric {
   OrgOssPdfreporterFontTextTextLayout_calcMetric(self);
 }
@@ -130,6 +134,7 @@ __attribute__((unused)) static NSString *OrgOssPdfreporterFontTextTextLayout_inv
     { "isLeftToRight", NULL, "Z", 0x1, NULL, NULL },
     { "getCharacterCount", NULL, "I", 0x1, NULL, NULL },
     { "getParagraph", NULL, "Lorg.oss.pdfreporter.text.Paragraph;", 0x1, NULL, NULL },
+    { "description", "toString", "Ljava.lang.String;", 0x1, NULL, NULL },
     { "calcMetric", NULL, "V", 0x2, NULL, NULL },
     { "calcAdvance", NULL, "V", 0x2, NULL, NULL },
     { "invisibleCharsAtEndWithNSString:", "invisibleCharsAtEnd", "Ljava.lang.String;", 0xa, NULL, NULL },
@@ -143,7 +148,7 @@ __attribute__((unused)) static NSString *OrgOssPdfreporterFontTextTextLayout_inv
     { "descent_", NULL, 0x2, "Ljava.lang.Float;", NULL, NULL, .constantValue.asLong = 0 },
     { "leading_", NULL, 0x2, "Ljava.lang.Float;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterFontTextTextLayout = { 2, "TextLayout", "org.oss.pdfreporter.font.text", NULL, 0x1, 13, methods, 7, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterFontTextTextLayout = { 2, "TextLayout", "org.oss.pdfreporter.font.text", NULL, 0x1, 14, methods, 7, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterFontTextTextLayout;
 }
 

@@ -4,6 +4,7 @@
 //
 
 #include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
 #include "java/io/File.h"
@@ -701,6 +702,9 @@ J2OBJC_IGNORE_DESIGNATED_END
   jboolean underline = [self hasUnderlineWithJavaUtilMap:attributes];
   jboolean strikethrough = [self hasStrikethroughWithJavaUtilMap:attributes];
   id<OrgOssPdfreporterTextIPositionedLine> line = underline ? OrgOssPdfreporterTextPositionedLined_newUnderline() : strikethrough ? OrgOssPdfreporterTextPositionedLined_newStrikethrough() : nil;
+  if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterEngineExportJRPdfExporter_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
+    [OrgOssPdfreporterEngineExportJRPdfExporter_logger finestWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"text: %s, fontName: %s, fontStyle: %s, fontDecoration: %s, fontSize: %s ", [IOSObjectArray newArrayWithObjects:(id[]){ text, [((id<OrgOssPdfreporterFontIFont>) nil_chk(font)) getName], [font getStyle], [font getDecoration], JavaLangFloat_valueOfWithFloat_([font getSize]) } count:5 type:NSObject_class_()])];
+  }
   return new_OrgOssPdfreporterTextParagraphText_initWithNSString_withOrgOssPdfreporterFontIFont_withOrgOssPdfreporterGeometryIColor_withOrgOssPdfreporterGeometryIColor_withOrgOssPdfreporterTextIPositionedLine_(text, font, forecolor, backcolor, line);
 }
 

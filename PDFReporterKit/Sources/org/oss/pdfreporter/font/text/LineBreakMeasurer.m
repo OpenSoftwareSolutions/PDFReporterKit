@@ -3,9 +3,14 @@
 //  source: ../pdfreporter-portable/src/org/oss/pdfreporter/font/text/LineBreakMeasurer.java
 //
 
+#include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/lang/IllegalArgumentException.h"
+#include "java/lang/Integer.h"
 #include "java/lang/UnsupportedOperationException.h"
+#include "java/util/logging/Level.h"
+#include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/font/text/CharacterBreakIterator.h"
 #include "org/oss/pdfreporter/font/text/IBreakIterator.h"
 #include "org/oss/pdfreporter/font/text/ITextLayout.h"
@@ -32,6 +37,12 @@
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterFontTextLineBreakMeasurer, paragraph_, OrgOssPdfreporterTextParagraph *)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterFontTextLineBreakMeasurer, wordBreakIterator_, id<OrgOssPdfreporterFontTextIBreakIterator>)
 J2OBJC_FIELD_SETTER(OrgOssPdfreporterFontTextLineBreakMeasurer, characterBreakIterator_, id<OrgOssPdfreporterFontTextIBreakIterator>)
+
+inline JavaUtilLoggingLogger *OrgOssPdfreporterFontTextLineBreakMeasurer_get_logger();
+static JavaUtilLoggingLogger *OrgOssPdfreporterFontTextLineBreakMeasurer_logger;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterFontTextLineBreakMeasurer, logger, JavaUtilLoggingLogger *)
+
+J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterFontTextLineBreakMeasurer)
 
 @implementation OrgOssPdfreporterFontTextLineBreakMeasurer
 
@@ -96,10 +107,17 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterFontTextLineBreakMeasurer, characterBreakIt
   }
   [self setPositionWithInt:nextOffset];
   OrgOssPdfreporterTextParagraph *textLine = [((OrgOssPdfreporterTextParagraph *) nil_chk(paragraph_)) subParagraphWithInt:currentOffset withInt:nextOffset];
-  return new_OrgOssPdfreporterFontTextTextLayout_initWithOrgOssPdfreporterTextParagraph_withInt_(textLine, nextOffset - currentOffset);
+  id<OrgOssPdfreporterFontTextITextLayout> textLayout = new_OrgOssPdfreporterFontTextTextLayout_initWithOrgOssPdfreporterTextParagraph_withInt_(textLine, nextOffset - currentOffset);
+  if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterFontTextLineBreakMeasurer_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINER)]) {
+    [OrgOssPdfreporterFontTextLineBreakMeasurer_logger finerWithNSString:[textLayout description]];
+  }
+  return textLayout;
 }
 
 - (jint)getPosition {
+  if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterFontTextLineBreakMeasurer_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
+    [OrgOssPdfreporterFontTextLineBreakMeasurer_logger finestWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"%s", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(pos_) } count:1 type:NSObject_class_()])];
+  }
   return pos_;
 }
 
@@ -125,6 +143,13 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterFontTextLineBreakMeasurer, characterBreakIt
   @throw new_JavaLangUnsupportedOperationException_init();
 }
 
++ (void)initialize {
+  if (self == [OrgOssPdfreporterFontTextLineBreakMeasurer class]) {
+    OrgOssPdfreporterFontTextLineBreakMeasurer_logger = JavaUtilLoggingLogger_getLoggerWithNSString_([OrgOssPdfreporterFontTextLineBreakMeasurer_class_() getName]);
+    J2OBJC_SET_INITIALIZED(OrgOssPdfreporterFontTextLineBreakMeasurer)
+  }
+}
+
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithOrgOssPdfreporterUsesJavaAwtTextAttributedString:withNSString:withOrgOssPdfreporterFontTextIBreakIterator:", "LineBreakMeasurer", NULL, 0x1, NULL, NULL },
@@ -141,14 +166,15 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterFontTextLineBreakMeasurer, characterBreakIt
     { "deleteCharWithOrgOssPdfreporterUsesJavaAwtTextIAttributedCharacterIterator:withInt:", "deleteChar", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
+    { "logger", "logger", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterFontTextLineBreakMeasurer_logger, NULL, .constantValue.asLong = 0 },
     { "paragraph_", NULL, 0x12, "Lorg.oss.pdfreporter.text.Paragraph;", NULL, NULL, .constantValue.asLong = 0 },
     { "wordBreakIterator_", NULL, 0x12, "Lorg.oss.pdfreporter.font.text.IBreakIterator;", NULL, NULL, .constantValue.asLong = 0 },
     { "characterBreakIterator_", NULL, 0x12, "Lorg.oss.pdfreporter.font.text.IBreakIterator;", NULL, NULL, .constantValue.asLong = 0 },
-    { "limit_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "limit_", NULL, 0x12, "I", NULL, NULL, .constantValue.asLong = 0 },
     { "start_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
     { "pos_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterFontTextLineBreakMeasurer = { 2, "LineBreakMeasurer", "org.oss.pdfreporter.font.text", NULL, 0x1, 12, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterFontTextLineBreakMeasurer = { 2, "LineBreakMeasurer", "org.oss.pdfreporter.font.text", NULL, 0x1, 12, methods, 7, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterFontTextLineBreakMeasurer;
 }
 

@@ -4,11 +4,14 @@
 //
 
 #include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
 #include "java/lang/Boolean.h"
+#include "java/lang/Deprecated.h"
 #include "java/lang/Integer.h"
 #include "java/lang/UnsupportedOperationException.h"
+#include "java/lang/annotation/Annotation.h"
 #include "java/util/HashMap.h"
 #include "java/util/Map.h"
 #include "org/oss/pdfreporter/engine/JRCommonText.h"
@@ -221,7 +224,7 @@ NSString *OrgOssPdfreporterEngineFillJRFillTextElement_PROPERTY_CONSUME_SPACE_ON
     if ([self getModeValue] == JreLoadEnum(OrgOssPdfreporterEngineTypeModeEnum, OPAQUE)) {
       (void) [styledTextAttributes putWithId:JreLoadStatic(OrgOssPdfreporterFontTextTextAttribute, BACKGROUND) withId:[self getBackcolor]];
     }
-    (void) [((id<JavaUtilMap>) nil_chk(styledTextAttributesMap_)) putWithId:style withId:styledTextAttributes];
+    (void) [styledTextAttributesMap_ putWithId:style withId:styledTextAttributes];
   }
   return styledTextAttributes;
 }
@@ -553,9 +556,9 @@ NSString *OrgOssPdfreporterEngineFillJRFillTextElement_PROPERTY_CONSUME_SPACE_ON
 
 - (void)setPrintTextWithOrgOssPdfreporterEngineJRPrintText:(id<OrgOssPdfreporterEngineJRPrintText>)printText {
   jint startIndex = [self getTextStart];
-  jint endIndex = [self getTextEnd];
   OrgOssPdfreporterEngineUtilJRStyledText *fullStyledText = [self getStyledText];
   NSString *fullText = [((OrgOssPdfreporterEngineUtilJRStyledText *) nil_chk(fullStyledText)) getText];
+  jint endIndex = [self getTextEnd] == 0 && [((NSString *) nil_chk(fullText)) isEmpty] ? 0 : ((jint) [((NSString *) nil_chk(fullText)) length]);
   jboolean keepAllText = ![self canOverflow] && [((OrgOssPdfreporterEngineJRPropertiesUtil *) nil_chk([((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) getPropertiesUtil])) getBooleanPropertyWithOrgOssPdfreporterEngineJRPropertiesHolder:self withNSString:OrgOssPdfreporterEngineJRTextElement_PROPERTY_PRINT_KEEP_FULL_TEXT withBoolean:false];
   if (keepAllText) {
     if (startIndex != 0) {
@@ -592,6 +595,22 @@ NSString *OrgOssPdfreporterEngineFillJRFillTextElement_PROPERTY_CONSUME_SPACE_ON
 
 - (void)setTextTruncateSuffixWithNSString:(NSString *)textTruncateSuffix {
   self->textTruncateSuffix_ = textTruncateSuffix;
+}
+
++ (IOSObjectArray *)__annotations_getLineSpacingValue {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangDeprecated() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
++ (IOSObjectArray *)__annotations_getOwnLineSpacingValue {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangDeprecated() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
++ (IOSObjectArray *)__annotations_setLineSpacingWithOrgOssPdfreporterEngineTypeLineSpacingEnum_ {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangDeprecated() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
++ (IOSObjectArray *)__annotations_getFont {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangDeprecated() } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (void)initialize {
@@ -710,7 +729,7 @@ NSString *OrgOssPdfreporterEngineFillJRFillTextElement_PROPERTY_CONSUME_SPACE_ON
     { "textTruncateSuffix_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "rawText_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "styledText_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.util.JRStyledText;", NULL, NULL, .constantValue.asLong = 0 },
-    { "styledTextAttributesMap_", NULL, 0x2, "Ljava.util.Map;", NULL, "Ljava/util/Map<Lorg/oss/pdfreporter/engine/JRStyle;Ljava/util/Map<Lorg/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator$Attribute;Ljava/lang/Object;>;>;", .constantValue.asLong = 0 },
+    { "styledTextAttributesMap_", NULL, 0x12, "Ljava.util.Map;", NULL, "Ljava/util/Map<Lorg/oss/pdfreporter/engine/JRStyle;Ljava/util/Map<Lorg/oss/pdfreporter/uses/java/awt/text/IAttributedCharacterIterator$Attribute;Ljava/lang/Object;>;>;", .constantValue.asLong = 0 },
     { "initLineBox_", NULL, 0x14, "Lorg.oss.pdfreporter.engine.JRLineBox;", NULL, NULL, .constantValue.asLong = 0 },
     { "initParagraph_", NULL, 0x14, "Lorg.oss.pdfreporter.engine.JRParagraph;", NULL, NULL, .constantValue.asLong = 0 },
     { "consumeSpaceOnOverflow_", NULL, 0x12, "Z", NULL, NULL, .constantValue.asLong = 0 },

@@ -4,12 +4,14 @@
 //
 
 #include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/io/File.h"
 #include "java/io/InputStream.h"
 #include "java/io/OutputStream.h"
 #include "java/util/Collection.h"
 #include "java/util/logging/Logger.h"
+#include "org/oss/pdfreporter/compilers/factory/ICompilerFactory.h"
 #include "org/oss/pdfreporter/compilers/jeval/JEvalCompiler.h"
 #include "org/oss/pdfreporter/compilers/jshuntingyard/JSHuntingYardCompiler.h"
 #include "org/oss/pdfreporter/crosstabs/JRCrosstab.h"
@@ -24,10 +26,12 @@
 #include "org/oss/pdfreporter/engine/design/JRVerifier.h"
 #include "org/oss/pdfreporter/engine/design/JasperDesign.h"
 #include "org/oss/pdfreporter/engine/fill/JREvaluator.h"
+#include "org/oss/pdfreporter/engine/fill/JasperReportsContextAware.h"
 #include "org/oss/pdfreporter/engine/util/JRSaver.h"
 #include "org/oss/pdfreporter/engine/xml/JRXmlLoader.h"
 #include "org/oss/pdfreporter/progress/IProgressHandler.h"
 #include "org/oss/pdfreporter/progress/ProgressManager.h"
+#include "org/oss/pdfreporter/registry/ApiRegistry.h"
 
 @interface OrgOssPdfreporterEngineJasperCompileManager () {
  @public
@@ -41,6 +45,8 @@
 - (id<OrgOssPdfreporterEngineDesignJRCompiler>)getCompilerWithOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)jasperReport;
 
 - (id<OrgOssPdfreporterEngineDesignJRCompiler>)getCompilerWithOrgOssPdfreporterEngineDesignJasperDesign:(OrgOssPdfreporterEngineDesignJasperDesign *)jasperDesign;
+
+- (id<OrgOssPdfreporterEngineDesignJRCompiler>)getCompilerByLanguageWithNSString:(NSString *)language;
 
 @end
 
@@ -69,6 +75,8 @@ __attribute__((unused)) static OrgOssPdfreporterEngineJasperCompileManager *OrgO
 __attribute__((unused)) static id<OrgOssPdfreporterEngineDesignJRCompiler> OrgOssPdfreporterEngineJasperCompileManager_getCompilerWithOrgOssPdfreporterEngineJasperReport_(OrgOssPdfreporterEngineJasperCompileManager *self, OrgOssPdfreporterEngineJasperReport *jasperReport);
 
 __attribute__((unused)) static id<OrgOssPdfreporterEngineDesignJRCompiler> OrgOssPdfreporterEngineJasperCompileManager_getCompilerWithOrgOssPdfreporterEngineDesignJasperDesign_(OrgOssPdfreporterEngineJasperCompileManager *self, OrgOssPdfreporterEngineDesignJasperDesign *jasperDesign);
+
+__attribute__((unused)) static id<OrgOssPdfreporterEngineDesignJRCompiler> OrgOssPdfreporterEngineJasperCompileManager_getCompilerByLanguageWithNSString_(OrgOssPdfreporterEngineJasperCompileManager *self, NSString *language);
 
 J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJasperCompileManager)
 
@@ -147,17 +155,27 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJasperCompileManager)
 - (OrgOssPdfreporterEngineFillJREvaluator *)getEvaluatorWithOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)jasperReport
                                                            withOrgOssPdfreporterEngineJRDataset:(id<OrgOssPdfreporterEngineJRDataset>)dataset {
   id<OrgOssPdfreporterEngineDesignJRCompiler> compiler = OrgOssPdfreporterEngineJasperCompileManager_getCompilerWithOrgOssPdfreporterEngineJasperReport_(self, jasperReport);
-  return [((id<OrgOssPdfreporterEngineDesignJRCompiler>) nil_chk(compiler)) loadEvaluatorWithOrgOssPdfreporterEngineJasperReport:jasperReport withOrgOssPdfreporterEngineJRDataset:dataset];
+  OrgOssPdfreporterEngineFillJREvaluator *evaluator = [((id<OrgOssPdfreporterEngineDesignJRCompiler>) nil_chk(compiler)) loadEvaluatorWithOrgOssPdfreporterEngineJasperReport:jasperReport withOrgOssPdfreporterEngineJRDataset:dataset];
+  [self initialize__WithOrgOssPdfreporterEngineFillJREvaluator:evaluator];
+  return evaluator;
 }
 
 - (OrgOssPdfreporterEngineFillJREvaluator *)getEvaluatorWithOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)jasperReport
                                                        withOrgOssPdfreporterCrosstabsJRCrosstab:(id<OrgOssPdfreporterCrosstabsJRCrosstab>)crosstab {
   id<OrgOssPdfreporterEngineDesignJRCompiler> compiler = OrgOssPdfreporterEngineJasperCompileManager_getCompilerWithOrgOssPdfreporterEngineJasperReport_(self, jasperReport);
-  return [((id<OrgOssPdfreporterEngineDesignJRCompiler>) nil_chk(compiler)) loadEvaluatorWithOrgOssPdfreporterEngineJasperReport:jasperReport withOrgOssPdfreporterCrosstabsJRCrosstab:crosstab];
+  OrgOssPdfreporterEngineFillJREvaluator *evaluator = [((id<OrgOssPdfreporterEngineDesignJRCompiler>) nil_chk(compiler)) loadEvaluatorWithOrgOssPdfreporterEngineJasperReport:jasperReport withOrgOssPdfreporterCrosstabsJRCrosstab:crosstab];
+  [self initialize__WithOrgOssPdfreporterEngineFillJREvaluator:evaluator];
+  return evaluator;
 }
 
 - (OrgOssPdfreporterEngineFillJREvaluator *)getEvaluatorWithOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)jasperReport {
   return [self getEvaluatorWithOrgOssPdfreporterEngineJasperReport:jasperReport withOrgOssPdfreporterEngineJRDataset:[((OrgOssPdfreporterEngineJasperReport *) nil_chk(jasperReport)) getMainDataset]];
+}
+
+- (void)initialize__WithOrgOssPdfreporterEngineFillJREvaluator:(OrgOssPdfreporterEngineFillJREvaluator *)evaluator {
+  if ([OrgOssPdfreporterEngineFillJasperReportsContextAware_class_() isInstance:evaluator]) {
+    [((id<OrgOssPdfreporterEngineFillJasperReportsContextAware>) nil_chk(((id<OrgOssPdfreporterEngineFillJasperReportsContextAware>) cast_check(evaluator, OrgOssPdfreporterEngineFillJasperReportsContextAware_class_())))) setJasperReportsContextWithOrgOssPdfreporterEngineJasperReportsContext:jasperReportsContext_];
+  }
 }
 
 + (NSString *)compileReportToFileWithNSString:(NSString *)sourceFileName {
@@ -222,6 +240,10 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJasperCompileManager)
   return OrgOssPdfreporterEngineJasperCompileManager_getCompilerWithOrgOssPdfreporterEngineDesignJasperDesign_(self, jasperDesign);
 }
 
+- (id<OrgOssPdfreporterEngineDesignJRCompiler>)getCompilerByLanguageWithNSString:(NSString *)language {
+  return OrgOssPdfreporterEngineJasperCompileManager_getCompilerByLanguageWithNSString_(self, language);
+}
+
 + (void)initialize {
   if (self == [OrgOssPdfreporterEngineJasperCompileManager class]) {
     OrgOssPdfreporterEngineJasperCompileManager_logger = JavaUtilLoggingLogger_getLoggerWithNSString_([OrgOssPdfreporterEngineJasperCompileManager_class_() getName]);
@@ -248,6 +270,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJasperCompileManager)
     { "getEvaluatorWithOrgOssPdfreporterEngineJasperReport:withOrgOssPdfreporterEngineJRDataset:", "getEvaluator", "Lorg.oss.pdfreporter.engine.fill.JREvaluator;", 0x1, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "getEvaluatorWithOrgOssPdfreporterEngineJasperReport:withOrgOssPdfreporterCrosstabsJRCrosstab:", "getEvaluator", "Lorg.oss.pdfreporter.engine.fill.JREvaluator;", 0x1, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "getEvaluatorWithOrgOssPdfreporterEngineJasperReport:", "getEvaluator", "Lorg.oss.pdfreporter.engine.fill.JREvaluator;", 0x1, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
+    { "initialize__WithOrgOssPdfreporterEngineFillJREvaluator:", "initialize", "V", 0x1, NULL, NULL },
     { "compileReportToFileWithNSString:", "compileReportToFile", "Ljava.lang.String;", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "compileReportToFileWithNSString:withNSString:", "compileReportToFile", "V", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "compileReportToFileWithOrgOssPdfreporterEngineDesignJasperDesign:withNSString:", "compileReportToFile", "V", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
@@ -262,6 +285,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJasperCompileManager)
     { "loadEvaluatorWithOrgOssPdfreporterEngineJasperReport:", "loadEvaluator", "Lorg.oss.pdfreporter.engine.fill.JREvaluator;", 0x9, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "getCompilerWithOrgOssPdfreporterEngineJasperReport:", "getCompiler", "Lorg.oss.pdfreporter.engine.design.JRCompiler;", 0x2, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
     { "getCompilerWithOrgOssPdfreporterEngineDesignJasperDesign:", "getCompiler", "Lorg.oss.pdfreporter.engine.design.JRCompiler;", 0x2, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
+    { "getCompilerByLanguageWithNSString:", "getCompilerByLanguage", "Lorg.oss.pdfreporter.engine.design.JRCompiler;", 0x2, "Lorg.oss.pdfreporter.engine.JRException;", NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
     { "logger", "logger", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterEngineJasperCompileManager_logger, NULL, .constantValue.asLong = 0 },
@@ -269,7 +293,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJasperCompileManager)
     { "JSHUNTINGYARD_COMPILER", "JSHUNTINGYARD_COMPILER", 0x1a, "Ljava.lang.String;", &OrgOssPdfreporterEngineJasperCompileManager_JSHUNTINGYARD_COMPILER, NULL, .constantValue.asLong = 0 },
     { "jasperReportsContext_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.JasperReportsContext;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineJasperCompileManager = { 2, "JasperCompileManager", "org.oss.pdfreporter.engine", NULL, 0x11, 29, methods, 4, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineJasperCompileManager = { 2, "JasperCompileManager", "org.oss.pdfreporter.engine", NULL, 0x11, 31, methods, 4, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineJasperCompileManager;
 }
 
@@ -366,7 +390,7 @@ id<OrgOssPdfreporterEngineDesignJRCompiler> OrgOssPdfreporterEngineJasperCompile
   else if ([((NSString *) nil_chk(OrgOssPdfreporterEngineJasperCompileManager_JSHUNTINGYARD_COMPILER)) isEqual:compilerClassName]) {
     return new_OrgOssPdfreporterCompilersJshuntingyardJSHuntingYardCompiler_initWithOrgOssPdfreporterEngineJasperReportsContext_(self->jasperReportsContext_);
   }
-  @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_(JreStrcat("$$$", @"Report compiler '", compilerClassName, @"' not supported."));
+  return OrgOssPdfreporterEngineJasperCompileManager_getCompilerByLanguageWithNSString_(self, [jasperReport getLanguage]);
 }
 
 id<OrgOssPdfreporterEngineDesignJRCompiler> OrgOssPdfreporterEngineJasperCompileManager_getCompilerWithOrgOssPdfreporterEngineDesignJasperDesign_(OrgOssPdfreporterEngineJasperCompileManager *self, OrgOssPdfreporterEngineDesignJasperDesign *jasperDesign) {
@@ -377,12 +401,19 @@ id<OrgOssPdfreporterEngineDesignJRCompiler> OrgOssPdfreporterEngineJasperCompile
   else if ([((NSString *) nil_chk(OrgOssPdfreporterEngineJRReport_LANGUAGE_JSHUNTINGYARD)) isEqual:language]) {
     return new_OrgOssPdfreporterCompilersJshuntingyardJSHuntingYardCompiler_initWithOrgOssPdfreporterEngineJasperReportsContext_withBoolean_(self->jasperReportsContext_, false);
   }
-  else {
-    if (language == nil) {
-      @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_(@"There is no default language set for compiler. You should include a dtd to your jrxml report file.");
-    }
-    @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_(JreStrcat("$$", @"No report compiler set for language : ", language));
+  return OrgOssPdfreporterEngineJasperCompileManager_getCompilerByLanguageWithNSString_(self, language);
+}
+
+id<OrgOssPdfreporterEngineDesignJRCompiler> OrgOssPdfreporterEngineJasperCompileManager_getCompilerByLanguageWithNSString_(OrgOssPdfreporterEngineJasperCompileManager *self, NSString *language) {
+  if (language == nil) {
+    @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_(@"There is no default language set for compiler. You should include a dtd to your jrxml report file.");
   }
+  [((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterEngineJasperCompileManager_logger)) finestWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"Try loading compiler %s with ApiRegistry", [IOSObjectArray newArrayWithObjects:(id[]){ language } count:1 type:NSObject_class_()])];
+  id<OrgOssPdfreporterEngineDesignJRCompiler> compiler = [((id<OrgOssPdfreporterCompilersFactoryICompilerFactory>) nil_chk(OrgOssPdfreporterRegistryApiRegistry_getCompilerFactory())) getCompilerByNameWithOrgOssPdfreporterEngineJasperReportsContext:self->jasperReportsContext_ withNSString:language];
+  if (compiler != nil) {
+    return compiler;
+  }
+  @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_(JreStrcat("$$", @"No report compiler set for language : ", language));
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(OrgOssPdfreporterEngineJasperCompileManager)

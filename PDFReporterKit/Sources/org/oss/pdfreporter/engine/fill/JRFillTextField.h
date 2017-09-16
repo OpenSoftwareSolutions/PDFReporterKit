@@ -103,6 +103,8 @@
 
 - (void)setStretchWithOverflowWithBoolean:(jboolean)isStretchWithOverflow;
 
+- (NSString *)description;
+
 - (void)visitWithOrgOssPdfreporterEngineJRVisitor:(id<OrgOssPdfreporterEngineJRVisitor>)visitor;
 
 #pragma mark Protected

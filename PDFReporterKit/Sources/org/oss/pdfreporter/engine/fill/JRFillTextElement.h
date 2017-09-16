@@ -24,6 +24,7 @@
 #define INCLUDE_OrgOssPdfreporterEngineJRTextElement 1
 #include "org/oss/pdfreporter/engine/JRTextElement.h"
 
+@class IOSObjectArray;
 @class IOSShortArray;
 @class JavaLangBoolean;
 @class JavaLangInteger;

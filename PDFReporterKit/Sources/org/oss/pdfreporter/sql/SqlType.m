@@ -15,7 +15,7 @@ __attribute__((unused)) static OrgOssPdfreporterSqlSqlType *new_OrgOssPdfreporte
 
 J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterSqlSqlType)
 
-OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_values_[16];
+OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_values_[18];
 
 @implementation OrgOssPdfreporterSqlSqlType
 
@@ -83,6 +83,14 @@ OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_values_[16];
   return JreEnum(OrgOssPdfreporterSqlSqlType, BLOB);
 }
 
++ (OrgOssPdfreporterSqlSqlType *)OBJECT {
+  return JreEnum(OrgOssPdfreporterSqlSqlType, OBJECT);
+}
+
++ (OrgOssPdfreporterSqlSqlType *)NULL_ {
+  return JreEnum(OrgOssPdfreporterSqlSqlType, NULL);
+}
+
 + (IOSObjectArray *)values {
   return OrgOssPdfreporterSqlSqlType_values();
 }
@@ -113,6 +121,8 @@ OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_values_[16];
     JreEnum(OrgOssPdfreporterSqlSqlType, TIMESTAMP) = new_OrgOssPdfreporterSqlSqlType_initWithNSString_withInt_(@"TIMESTAMP", 13);
     JreEnum(OrgOssPdfreporterSqlSqlType, DATETIME) = new_OrgOssPdfreporterSqlSqlType_initWithNSString_withInt_(@"DATETIME", 14);
     JreEnum(OrgOssPdfreporterSqlSqlType, BLOB) = new_OrgOssPdfreporterSqlSqlType_initWithNSString_withInt_(@"BLOB", 15);
+    JreEnum(OrgOssPdfreporterSqlSqlType, OBJECT) = new_OrgOssPdfreporterSqlSqlType_initWithNSString_withInt_(@"OBJECT", 16);
+    JreEnum(OrgOssPdfreporterSqlSqlType, NULL) = new_OrgOssPdfreporterSqlSqlType_initWithNSString_withInt_(@"NULL", 17);
     J2OBJC_SET_INITIALIZED(OrgOssPdfreporterSqlSqlType)
   }
 }
@@ -135,9 +145,11 @@ OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_values_[16];
     { "TIMESTAMP", "TIMESTAMP", 0x4019, "Lorg.oss.pdfreporter.sql.SqlType;", &JreEnum(OrgOssPdfreporterSqlSqlType, TIMESTAMP), NULL, .constantValue.asLong = 0 },
     { "DATETIME", "DATETIME", 0x4019, "Lorg.oss.pdfreporter.sql.SqlType;", &JreEnum(OrgOssPdfreporterSqlSqlType, DATETIME), NULL, .constantValue.asLong = 0 },
     { "BLOB", "BLOB", 0x4019, "Lorg.oss.pdfreporter.sql.SqlType;", &JreEnum(OrgOssPdfreporterSqlSqlType, BLOB), NULL, .constantValue.asLong = 0 },
+    { "OBJECT", "OBJECT", 0x4019, "Lorg.oss.pdfreporter.sql.SqlType;", &JreEnum(OrgOssPdfreporterSqlSqlType, OBJECT), NULL, .constantValue.asLong = 0 },
+    { "NULL", "NULL", 0x4019, "Lorg.oss.pdfreporter.sql.SqlType;", &JreEnum(OrgOssPdfreporterSqlSqlType, NULL), NULL, .constantValue.asLong = 0 },
   };
   static const char *superclass_type_args[] = {"Lorg.oss.pdfreporter.sql.SqlType;"};
-  static const J2ObjcClassInfo _OrgOssPdfreporterSqlSqlType = { 2, "SqlType", "org.oss.pdfreporter.sql", NULL, 0x4011, 0, NULL, 16, fields, 1, superclass_type_args, 0, NULL, NULL, "Ljava/lang/Enum<Lorg/oss/pdfreporter/sql/SqlType;>;" };
+  static const J2ObjcClassInfo _OrgOssPdfreporterSqlSqlType = { 2, "SqlType", "org.oss.pdfreporter.sql", NULL, 0x4011, 0, NULL, 18, fields, 1, superclass_type_args, 0, NULL, NULL, "Ljava/lang/Enum<Lorg/oss/pdfreporter/sql/SqlType;>;" };
   return &_OrgOssPdfreporterSqlSqlType;
 }
 
@@ -153,12 +165,12 @@ OrgOssPdfreporterSqlSqlType *new_OrgOssPdfreporterSqlSqlType_initWithNSString_wi
 
 IOSObjectArray *OrgOssPdfreporterSqlSqlType_values() {
   OrgOssPdfreporterSqlSqlType_initialize();
-  return [IOSObjectArray arrayWithObjects:OrgOssPdfreporterSqlSqlType_values_ count:16 type:OrgOssPdfreporterSqlSqlType_class_()];
+  return [IOSObjectArray arrayWithObjects:OrgOssPdfreporterSqlSqlType_values_ count:18 type:OrgOssPdfreporterSqlSqlType_class_()];
 }
 
 OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_valueOfWithNSString_(NSString *name) {
   OrgOssPdfreporterSqlSqlType_initialize();
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < 18; i++) {
     OrgOssPdfreporterSqlSqlType *e = OrgOssPdfreporterSqlSqlType_values_[i];
     if ([name isEqual:[e name]]) {
       return e;
@@ -170,7 +182,7 @@ OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_valueOfWithNSString_(NS
 
 OrgOssPdfreporterSqlSqlType *OrgOssPdfreporterSqlSqlType_fromOrdinal(NSUInteger ordinal) {
   OrgOssPdfreporterSqlSqlType_initialize();
-  if (ordinal >= 16) {
+  if (ordinal >= 18) {
     return nil;
   }
   return OrgOssPdfreporterSqlSqlType_values_[ordinal];

@@ -110,7 +110,10 @@ J2OBJC_IGNORE_DESIGNATED_END
           if ([arg isKindOfClass:[OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorVariableArgument class]]) {
             OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorVariableArgument *variable = (OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorVariableArgument *) cast_chk(arg, [OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorVariableArgument class]);
             id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterVariable> boundVariable = [((id<JavaUtilMap>) nil_chk(boundVariables_)) getWithId:[((OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorVariableArgument *) nil_chk(variable)) getName]];
-            (void) IOSObjectArray_Set(args, argIndex, OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterEvaluator_replaceVariableWithId_(self, [((id<OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterVariable>) nil_chk(boundVariable)) getValue]));
+            if (boundVariable == nil) {
+              @throw new_JavaLangIllegalArgumentException_initWithNSString_(NSString_formatWithNSString_withNSObjectArray_(@"Cannot evaluate unbound variable: %s", [IOSObjectArray newArrayWithObjects:(id[]){ [variable getName] } count:1 type:NSObject_class_()]));
+            }
+            (void) IOSObjectArray_Set(args, argIndex, OrgOssPdfreporterUsesOrgOssJshuntingyardEvaluatorInterpreterEvaluator_replaceVariableWithId_(self, [boundVariable getValue]));
           }
         }
         else {
