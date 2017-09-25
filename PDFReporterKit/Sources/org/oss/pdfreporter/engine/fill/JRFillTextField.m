@@ -7,7 +7,9 @@
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/lang/Boolean.h"
+#include "java/lang/Deprecated.h"
 #include "java/lang/Integer.h"
+#include "java/lang/annotation/Annotation.h"
 #include "java/util/Date.h"
 #include "java/util/TimeZone.h"
 #include "java/util/logging/Logger.h"
@@ -513,6 +515,14 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFillJRFillTextField)
   return [self isStretchWithOverflow] && [((OrgOssPdfreporterEngineTypeRotationEnum *) nil_chk([self getRotationValue])) isEqual:JreLoadEnum(OrgOssPdfreporterEngineTypeRotationEnum, NONE)] && [self isEvaluateNow] && [((OrgOssPdfreporterEngineFillJRBaseFiller *) nil_chk(filler_)) isBandOverFlowAllowed];
 }
 
+- (NSString *)description {
+  return [self getRawText];
+}
+
++ (IOSObjectArray *)__annotations_getHyperlinkType {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangDeprecated() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
 + (void)initialize {
   if (self == [OrgOssPdfreporterEngineFillJRFillTextField class]) {
     OrgOssPdfreporterEngineFillJRFillTextField_logger = JavaUtilLoggingLogger_getLoggerWithNSString_([OrgOssPdfreporterEngineFillJRFillTextField_class_() getName]);
@@ -573,10 +583,11 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFillJRFillTextField)
     { "getLinkType", NULL, "Ljava.lang.String;", 0x1, NULL, NULL },
     { "getHyperlinkTooltipExpression", NULL, "Lorg.oss.pdfreporter.engine.JRExpression;", 0x1, NULL, NULL },
     { "canOverflow", NULL, "Z", 0x4, NULL, NULL },
+    { "description", "toString", "Ljava.lang.String;", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
     { "logger", "logger", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterEngineFillJRFillTextField_logger, NULL, .constantValue.asLong = 0 },
-    { "evaluationGroup_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.JRGroup;", NULL, NULL, .constantValue.asLong = 0 },
+    { "evaluationGroup_", NULL, 0x12, "Lorg.oss.pdfreporter.engine.JRGroup;", NULL, NULL, .constantValue.asLong = 0 },
     { "value_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL, .constantValue.asLong = 0 },
     { "textFormat_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fill.TextFormat;", NULL, NULL, .constantValue.asLong = 0 },
     { "pattern_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
@@ -587,7 +598,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFillJRFillTextField)
     { "hyperlinkTooltip_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
     { "hyperlinkParameters_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.JRPrintHyperlinkParameters;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillJRFillTextField = { 2, "JRFillTextField", "org.oss.pdfreporter.engine.fill", NULL, 0x1, 51, methods, 11, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillJRFillTextField = { 2, "JRFillTextField", "org.oss.pdfreporter.engine.fill", NULL, 0x1, 52, methods, 11, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineFillJRFillTextField;
 }
 

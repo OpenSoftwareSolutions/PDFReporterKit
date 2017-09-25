@@ -138,10 +138,10 @@ __attribute__((unused)) static void OrgOssPdfreporterEngineXmlJRXmlLoader_assign
 - (OrgOssPdfreporterEngineDesignJasperDesign *)loadXMLWithOrgOssPdfreporterXmlParsersIInputSource:(id<OrgOssPdfreporterXmlParsersIInputSource>)is {
   @try {
     [((id<OrgOssPdfreporterUsesOrgApacheDigesterIDigester>) nil_chk(digester_)) pushWithId:self];
-    (void) [((id<OrgOssPdfreporterUsesOrgApacheDigesterIDigester>) nil_chk(digester_)) parseWithOrgOssPdfreporterXmlParsersIInputSource:is];
+    (void) [digester_ parseWithOrgOssPdfreporterXmlParsersIInputSource:is];
   }
   @catch (OrgOssPdfreporterXmlParsersXMLParseException *e) {
-    @throw new_OrgOssPdfreporterEngineJRException_initWithNSException_(e);
+    @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_withNSException_(@"Error loading jrxml from IInputSource.", e);
   }
   @catch (JavaIoIOException *e) {
     @throw new_OrgOssPdfreporterEngineJRException_initWithNSException_(e);
@@ -150,10 +150,10 @@ __attribute__((unused)) static void OrgOssPdfreporterEngineXmlJRXmlLoader_assign
     @throw new_OrgOssPdfreporterEngineJRException_initWithNSException_(e);
   }
   @finally {
-    [((id<OrgOssPdfreporterUsesOrgApacheDigesterIDigester>) nil_chk(digester_)) clear];
+    [digester_ clear];
   }
   if ([((id<JavaUtilList>) nil_chk(errors_)) size] > 0) {
-    JavaLangException *e = [((id<JavaUtilList>) nil_chk(errors_)) getWithInt:0];
+    JavaLangException *e = [errors_ getWithInt:0];
     if ([e isKindOfClass:[OrgOssPdfreporterEngineJRException class]]) {
       @throw (OrgOssPdfreporterEngineJRException *) cast_chk(e, [OrgOssPdfreporterEngineJRException class]);
     }
@@ -222,7 +222,7 @@ __attribute__((unused)) static void OrgOssPdfreporterEngineXmlJRXmlLoader_assign
 }
 
 - (OrgOssPdfreporterEngineXmlXmlLoaderReportContext *)getReportContext {
-  return [((JavaUtilLinkedList *) nil_chk(contextStack_)) isEmpty] ? nil : [((JavaUtilLinkedList *) nil_chk(contextStack_)) getFirst];
+  return [((JavaUtilLinkedList *) nil_chk(contextStack_)) isEmpty] ? nil : [contextStack_ getFirst];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -252,11 +252,11 @@ __attribute__((unused)) static void OrgOssPdfreporterEngineXmlJRXmlLoader_assign
   };
   static const J2ObjcFieldInfo fields[] = {
     { "jasperDesign_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.design.JasperDesign;", NULL, NULL, .constantValue.asLong = 0 },
-    { "contextStack_", NULL, 0x2, "Ljava.util.LinkedList;", NULL, "Ljava/util/LinkedList<Lorg/oss/pdfreporter/engine/xml/XmlLoaderReportContext;>;", .constantValue.asLong = 0 },
-    { "groupReferences_", NULL, 0x2, "Ljava.util.Map;", NULL, "Ljava/util/Map<Lorg/oss/pdfreporter/engine/xml/XmlGroupReference;Lorg/oss/pdfreporter/engine/xml/XmlLoaderReportContext;>;", .constantValue.asLong = 0 },
-    { "groupBoundDatasets_", NULL, 0x2, "Ljava.util.Set;", NULL, "Ljava/util/Set<Lorg/oss/pdfreporter/engine/JRElementDataset;>;", .constantValue.asLong = 0 },
-    { "errors_", NULL, 0x2, "Ljava.util.List;", NULL, "Ljava/util/List<Ljava/lang/Exception;>;", .constantValue.asLong = 0 },
-    { "digester_", NULL, 0x2, "Lorg.oss.pdfreporter.uses.org.apache.digester.IDigester;", NULL, NULL, .constantValue.asLong = 0 },
+    { "contextStack_", NULL, 0x12, "Ljava.util.LinkedList;", NULL, "Ljava/util/LinkedList<Lorg/oss/pdfreporter/engine/xml/XmlLoaderReportContext;>;", .constantValue.asLong = 0 },
+    { "groupReferences_", NULL, 0x12, "Ljava.util.Map;", NULL, "Ljava/util/Map<Lorg/oss/pdfreporter/engine/xml/XmlGroupReference;Lorg/oss/pdfreporter/engine/xml/XmlLoaderReportContext;>;", .constantValue.asLong = 0 },
+    { "groupBoundDatasets_", NULL, 0x12, "Ljava.util.Set;", NULL, "Ljava/util/Set<Lorg/oss/pdfreporter/engine/JRElementDataset;>;", .constantValue.asLong = 0 },
+    { "errors_", NULL, 0x12, "Ljava.util.List;", NULL, "Ljava/util/List<Ljava/lang/Exception;>;", .constantValue.asLong = 0 },
+    { "digester_", NULL, 0x12, "Lorg.oss.pdfreporter.uses.org.apache.digester.IDigester;", NULL, NULL, .constantValue.asLong = 0 },
     { "ignoreConsistencyProblems_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineXmlJRXmlLoader = { 2, "JRXmlLoader", "org.oss.pdfreporter.engine.xml", NULL, 0x1, 22, methods, 7, fields, 0, NULL, 0, NULL, NULL, NULL };

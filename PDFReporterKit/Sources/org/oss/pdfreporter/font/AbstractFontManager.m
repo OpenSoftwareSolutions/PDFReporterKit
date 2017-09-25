@@ -4,6 +4,7 @@
 //
 
 #include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/io/IOException.h"
 #include "java/util/ArrayList.h"
@@ -12,6 +13,7 @@
 #include "java/util/List.h"
 #include "java/util/Map.h"
 #include "java/util/Set.h"
+#include "java/util/logging/Level.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/font/AbstractFontManager.h"
 #include "org/oss/pdfreporter/font/Base14Font.h"
@@ -139,6 +141,9 @@ withOrgOssPdfreporterFontIFont_FontStyle:(OrgOssPdfreporterFontIFont_FontStyle *
 
 - (id<OrgOssPdfreporterFontIFont>)getFontWithNSString:(NSString *)name
              withOrgOssPdfreporterFontIFont_FontStyle:(OrgOssPdfreporterFontIFont_FontStyle *)style {
+  if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterFontAbstractFontManager_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
+    [OrgOssPdfreporterFontAbstractFontManager_logger finestWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"name: %s, style: %s", [IOSObjectArray newArrayWithObjects:(id[]){ name, style } count:2 type:NSObject_class_()])];
+  }
   OrgOssPdfreporterFontAbstractFontManager_FontKey *key = new_OrgOssPdfreporterFontAbstractFontManager_FontKey_initWithNSString_withOrgOssPdfreporterFontIFont_FontStyle_(name, style);
   return [((id<JavaUtilMap>) nil_chk(fontCache_)) getWithId:key];
 }

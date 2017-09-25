@@ -21,7 +21,9 @@
 #include "org/oss/pdfreporter/text/format/factory/SimpleFormatFactory.h"
 #include "org/oss/pdfreporter/text/format/fallback/FallbackFormatFactory.h"
 #include "org/oss/pdfreporter/xml/parsers/factory/XmlParserFactory.h"
-//#include "test/org/oss/pdfreporter/registry/DefaultIRegistryExtensionsRegistryFactory.h"
+#include "org/oss/pdfreporter/compilers/javascript/interpreter/JavaScriptInterpreterFactory.h"
+#include "org/oss/pdfreporter/compilers/CompilerFactory.h"
+#include "org/oss/pdfreporter/compilers/javascript/marshaller/Compiler2InterpreterFactory.h"
 #include "test/ch/digireport/jasper/registry/DefaultIRegistryExtensionsRegistryFactory.h"
 
 __attribute__((unused)) static void TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory_initializeIRegistry(TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory *self);
@@ -99,6 +101,9 @@ void TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory_init
             OrgOssPdfreporterImageImageFactory_registerFactory();
             OrgOssPdfreporterGeometryGeometryFactory_registerFactory();
             OrgOssPdfreporterPdfPdfFactory_registerFactory();
+            OrgOssPdfreporterCompilersJavascriptInterpreterJavaScriptInterpreterFactory_registerFactory();
+            OrgOssPdfreporterCompilersCompilerFactory_registerFactory();
+            OrgOssPdfreporterCompilersJavascriptMarshallerCompiler2InterpreterFactory_registerFactory();
             TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory_isInitialized_ = YES;
             [((JavaUtilLoggingLogger *) nil_chk(TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactorylogger_)) infoWithNSString:@"Initialized IRegistry"];
         }

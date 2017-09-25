@@ -75,7 +75,12 @@
 
 - (void)setNullWithInt:(jint)parameterIndex withOrgOssPdfreporterSqlSqlType:(OrgOssPdfreporterSqlSqlType *)type
 {
-    @throw [[OrgOssPdfreporterSqlSQLException alloc] initWithNSString:@"Not implemented"];
+    int result = sqlite3_bind_null(stmt, parameterIndex);
+    if(result != SQLITE_OK)
+    {
+        NSString *message = [NSString stringWithUTF8String:sqlite3_errmsg(db)];
+        @throw [[OrgOssPdfreporterSqlSQLException alloc] initWithNSString:message];
+    }
 }
 
 - (void)setByteWithInt:(jint)parameterIndex withByte:(jbyte)value

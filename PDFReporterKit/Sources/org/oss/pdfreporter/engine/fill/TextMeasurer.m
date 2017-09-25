@@ -7,13 +7,18 @@
 #include "IOSObjectArray.h"
 #include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
+#include "java/lang/Boolean.h"
 #include "java/lang/CloneNotSupportedException.h"
+#include "java/lang/Deprecated.h"
+#include "java/lang/Float.h"
 #include "java/lang/Integer.h"
 #include "java/lang/Math.h"
 #include "java/lang/Short.h"
+#include "java/lang/annotation/Annotation.h"
 #include "java/util/ArrayList.h"
 #include "java/util/List.h"
 #include "java/util/StringTokenizer.h"
+#include "java/util/logging/Level.h"
 #include "java/util/logging/Logger.h"
 #include "org/oss/pdfreporter/engine/DefaultJasperReportsContext.h"
 #include "org/oss/pdfreporter/engine/JRCommonText.h"
@@ -50,6 +55,7 @@
   jfloat formatWidth_;
   jboolean canOverflow_;
   jboolean ignoreMissingFont_;
+  jboolean ignoreMaxHeight_;
 }
 
 @end
@@ -81,11 +87,20 @@ J2OBJC_FIELD_SETTER(OrgOssPdfreporterEngineFillTextMeasurer_Context, this$0_, Or
 J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineFillTextMeasurer)
 
 NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS = @"net.sf.jasperreports.measure.simple.text";
+NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_IGNORE_MAX_HEIGHT = @"net.sf.jasperreports.measure.ignore.height";
 
 @implementation OrgOssPdfreporterEngineFillTextMeasurer
 
 + (NSString *)PROPERTY_MEASURE_SIMPLE_TEXTS {
   return OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS;
+}
+
++ (NSString *)PROPERTY_IGNORE_MAX_HEIGHT {
+  return OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_IGNORE_MAX_HEIGHT;
+}
+
+- (NSString *)description {
+  return JreStrcat("$@$I$I$I$I$I$I$@$F$I$Z$ZC", @"TextMeasurer [textElement=", textElement_, @", width=", width_, @", height=", height_, @", topPadding=", topPadding_, @", leftPadding=", leftPadding_, @", bottomPadding=", bottomPadding_, @", rightPadding=", rightPadding_, @", jrParagraph=", jrParagraph_, @", formatWidth=", formatWidth_, @", maxHeight=", maxHeight_, @", canOverflow=", canOverflow_, @", ignoreMissingFont=", ignoreMissingFont_, ']');
 }
 
 - (instancetype)initWithOrgOssPdfreporterEngineJasperReportsContext:(id<OrgOssPdfreporterEngineJasperReportsContext>)jasperReportsContext
@@ -154,6 +169,7 @@ NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS 
   maxHeight_ = maxHeight_ < 0 ? 0 : maxHeight_;
   self->canOverflow_ = canOverflow;
   ignoreMissingFont_ = [((OrgOssPdfreporterEngineJRPropertiesUtil *) nil_chk(OrgOssPdfreporterEngineJRPropertiesUtil_getInstanceWithOrgOssPdfreporterEngineJasperReportsContext_(jasperReportsContext_))) getBooleanPropertyWithOrgOssPdfreporterEngineJRPropertiesHolder:propertiesHolder_ withNSString:OrgOssPdfreporterEngineUtilJRStyledText_PROPERTY_AWT_IGNORE_MISSING_FONT withBoolean:false];
+  ignoreMaxHeight_ = [((OrgOssPdfreporterEngineJRPropertiesUtil *) nil_chk(OrgOssPdfreporterEngineJRPropertiesUtil_getInstanceWithOrgOssPdfreporterEngineJasperReportsContext_(jasperReportsContext_))) getBooleanPropertyWithOrgOssPdfreporterEngineJRPropertiesHolder:propertiesHolder_ withNSString:OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_IGNORE_MAX_HEIGHT withBoolean:false];
   jboolean saveLineBreakOffsets = [((OrgOssPdfreporterEngineJRPropertiesUtil *) nil_chk(OrgOssPdfreporterEngineJRPropertiesUtil_getInstanceWithOrgOssPdfreporterEngineJasperReportsContext_(jasperReportsContext_))) getBooleanPropertyWithOrgOssPdfreporterEngineJRPropertiesHolder:propertiesHolder_ withNSString:OrgOssPdfreporterEngineJRTextElement_PROPERTY_SAVE_LINE_BREAKS withBoolean:false];
   measuredState_ = new_OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState_initWithBoolean_(saveLineBreakOffsets);
   measuredState_->lastOffset_ = remainingTextStart;
@@ -326,8 +342,11 @@ NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS 
   }
   jfloat newTextHeight = ((OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState *) nil_chk(measuredState_))->textHeight_ + lineHeight;
   jboolean fits = newTextHeight + maxDescent <= maxHeight_;
-  if (fits) {
-    prevMeasuredState_ = [measuredState_ cloneState];
+  if ([((JavaUtilLoggingLogger *) nil_chk(OrgOssPdfreporterEngineFillTextMeasurer_logger)) isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
+    [OrgOssPdfreporterEngineFillTextMeasurer_logger finestWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"fits: %s, newTextHeight: %s, maxDescent: %s, maxHeight: %s", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangBoolean_valueOfWithBoolean_(fits), JavaLangFloat_valueOfWithFloat_(newTextHeight), JavaLangFloat_valueOfWithFloat_(maxDescent), JavaLangInteger_valueOfWithInt_(maxHeight_) } count:4 type:NSObject_class_()])];
+  }
+  if (fits || ignoreMaxHeight_) {
+    prevMeasuredState_ = [((OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState *) nil_chk(measuredState_)) cloneState];
     ((OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState *) nil_chk(measuredState_))->isLeftToRight_ = isLeftToRight;
     measuredState_->textHeight_ = newTextHeight;
     measuredState_->lines_++;
@@ -344,11 +363,24 @@ NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS 
       [((OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState *) nil_chk(measuredState_)) addLineBreak];
     }
   }
+  else {
+    if ([OrgOssPdfreporterEngineFillTextMeasurer_logger isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, WARNING)]) {
+      [OrgOssPdfreporterEngineFillTextMeasurer_logger warningWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"Text '%s' does not fit into textframe: textHeight: %s, maxHeight: %s", [IOSObjectArray newArrayWithObjects:(id[]){ textElement_, JavaLangFloat_valueOfWithFloat_(newTextHeight + maxDescent), JavaLangInteger_valueOfWithInt_(maxHeight_) } count:3 type:NSObject_class_()])];
+    }
+  }
+  if ([OrgOssPdfreporterEngineFillTextMeasurer_logger isLoggableWithJavaUtilLoggingLevel:JreLoadStatic(JavaUtilLoggingLevel, FINEST)]) {
+    [OrgOssPdfreporterEngineFillTextMeasurer_logger finestWithNSString:[self description]];
+    [OrgOssPdfreporterEngineFillTextMeasurer_logger finestWithNSString:[((OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState *) nil_chk(measuredState_)) description]];
+  }
   return fits;
 }
 
 - (id<OrgOssPdfreporterEngineJRPropertiesHolder>)getTextPropertiesHolder {
   return propertiesHolder_;
+}
+
++ (IOSObjectArray *)__annotations_initWithOrgOssPdfreporterEngineJRCommonText_ {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangDeprecated() } count:1 type:JavaLangAnnotationAnnotation_class_()];
 }
 
 + (void)initialize {
@@ -360,6 +392,7 @@ NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS 
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
+    { "description", "toString", "Ljava.lang.String;", 0x1, NULL, NULL },
     { "initWithOrgOssPdfreporterEngineJasperReportsContext:withOrgOssPdfreporterEngineJRCommonText:", "TextMeasurer", NULL, 0x1, NULL, NULL },
     { "initWithOrgOssPdfreporterEngineJRCommonText:", "TextMeasurer", NULL, 0x1, NULL, NULL },
     { "initialize__WithOrgOssPdfreporterEngineUtilJRStyledText:withInt:withInt:withBoolean:", "initialize", "V", 0x4, NULL, NULL },
@@ -372,10 +405,11 @@ NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS 
   static const J2ObjcFieldInfo fields[] = {
     { "logger", "logger", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterEngineFillTextMeasurer_logger, NULL, .constantValue.asLong = 0 },
     { "PROPERTY_MEASURE_SIMPLE_TEXTS", "PROPERTY_MEASURE_SIMPLE_TEXTS", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS, NULL, .constantValue.asLong = 0 },
+    { "PROPERTY_IGNORE_MAX_HEIGHT", "PROPERTY_IGNORE_MAX_HEIGHT", 0x19, "Ljava.lang.String;", &OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_IGNORE_MAX_HEIGHT, NULL, .constantValue.asLong = 0 },
     { "jasperReportsContext_", NULL, 0x4, "Lorg.oss.pdfreporter.engine.JasperReportsContext;", NULL, NULL, .constantValue.asLong = 0 },
     { "textElement_", NULL, 0x4, "Lorg.oss.pdfreporter.engine.JRCommonText;", NULL, NULL, .constantValue.asLong = 0 },
     { "propertiesHolder_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.JRPropertiesHolder;", NULL, NULL, .constantValue.asLong = 0 },
-    { "complextLineWrapper_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.fill.ComplexTextLineWrapper;", NULL, NULL, .constantValue.asLong = 0 },
+    { "complextLineWrapper_", NULL, 0x12, "Lorg.oss.pdfreporter.engine.fill.ComplexTextLineWrapper;", NULL, NULL, .constantValue.asLong = 0 },
     { "width_", NULL, 0x4, "I", NULL, NULL, .constantValue.asLong = 0 },
     { "height_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
     { "topPadding_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
@@ -387,11 +421,12 @@ NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS 
     { "maxHeight_", NULL, 0x4, "I", NULL, NULL, .constantValue.asLong = 0 },
     { "canOverflow_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
     { "ignoreMissingFont_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "ignoreMaxHeight_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
     { "measuredState_", NULL, 0x4, "Lorg.oss.pdfreporter.engine.fill.TextMeasurer$TextMeasuredState;", NULL, NULL, .constantValue.asLong = 0 },
     { "prevMeasuredState_", NULL, 0x4, "Lorg.oss.pdfreporter.engine.fill.TextMeasurer$TextMeasuredState;", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const char *inner_classes[] = {"Lorg.oss.pdfreporter.engine.fill.TextMeasurer$TextMeasuredState;", "Lorg.oss.pdfreporter.engine.fill.TextMeasurer$Context;"};
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillTextMeasurer = { 2, "TextMeasurer", "org.oss.pdfreporter.engine.fill", NULL, 0x1, 8, methods, 19, fields, 0, NULL, 2, inner_classes, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillTextMeasurer = { 2, "TextMeasurer", "org.oss.pdfreporter.engine.fill", NULL, 0x1, 9, methods, 21, fields, 0, NULL, 2, inner_classes, NULL, NULL };
   return &_OrgOssPdfreporterEngineFillTextMeasurer;
 }
 
@@ -552,6 +587,10 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(OrgOssPdfreporterEngineFillTabSegment)
   return offsets;
 }
 
+- (NSString *)description {
+  return JreStrcat("$Z$I$I$I$I$I$F$F$Z$$$I$@C", @"TextMeasuredState [saveLineBreakOffsets=", saveLineBreakOffsets_, @", textOffset=", textOffset_, @", lines=", lines_, @", fontSizeSum=", fontSizeSum_, @", firstLineMaxFontSize=", firstLineMaxFontSize_, @", paragraphStartLine=", paragraphStartLine_, @", textHeight=", textHeight_, @", firstLineLeading=", firstLineLeading_, @", isLeftToRight=", isLeftToRight_, @", textSuffix=", textSuffix_, @", lastOffset=", lastOffset_, @", lineBreakOffsets=", lineBreakOffsets_, ']');
+}
+
 - (id)copyWithZone:(NSZone *)zone {
   return [self clone];
 }
@@ -568,6 +607,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(OrgOssPdfreporterEngineFillTabSegment)
     { "cloneState", NULL, "Lorg.oss.pdfreporter.engine.fill.TextMeasurer$TextMeasuredState;", 0x1, NULL, NULL },
     { "addLineBreak", NULL, "V", 0x4, NULL, NULL },
     { "getLineBreakOffsets", NULL, "[S", 0x1, NULL, NULL },
+    { "description", "toString", "Ljava.lang.String;", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
     { "saveLineBreakOffsets_", NULL, 0x12, "Z", NULL, NULL, .constantValue.asLong = 0 },
@@ -583,7 +623,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(OrgOssPdfreporterEngineFillTabSegment)
     { "lastOffset_", NULL, 0x4, "I", NULL, NULL, .constantValue.asLong = 0 },
     { "lineBreakOffsets_", NULL, 0x4, "Ljava.util.ArrayList;", NULL, "Ljava/util/ArrayList<Ljava/lang/Integer;>;", .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState = { 2, "TextMeasuredState", "org.oss.pdfreporter.engine.fill", "TextMeasurer", 0xc, 10, methods, 12, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState = { 2, "TextMeasuredState", "org.oss.pdfreporter.engine.fill", "TextMeasurer", 0xc, 11, methods, 12, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineFillTextMeasurer_TextMeasuredState;
 }
 

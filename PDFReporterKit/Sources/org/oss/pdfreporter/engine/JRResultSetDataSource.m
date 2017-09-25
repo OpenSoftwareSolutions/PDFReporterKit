@@ -114,11 +114,11 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJRResultSetDataSource)
     IOSClass *clazz = [field getValueClass];
     @try {
       if ([((IOSClass *) nil_chk(clazz)) isEqual:JavaLangBoolean_class_()]) {
-        objValue = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getBooleanWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]] ? JreLoadStatic(JavaLangBoolean, TRUE) : JreLoadStatic(JavaLangBoolean, FALSE);
+        objValue = [resultSet_ getBooleanWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]] ? JreLoadStatic(JavaLangBoolean, TRUE) : JreLoadStatic(JavaLangBoolean, FALSE);
       }
       else if ([clazz isEqual:JavaLangByte_class_()]) {
-        objValue = new_JavaLangByte_initWithByte_([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getByteWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = new_JavaLangByte_initWithByte_([resultSet_ getByteWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
@@ -132,20 +132,20 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJRResultSetDataSource)
         objValue = [self readTimeWithJavaLangInteger:columnIndex withOrgOssPdfreporterEngineJRField:field];
       }
       else if ([clazz isEqual:JavaLangDouble_class_()]) {
-        objValue = new_JavaLangDouble_initWithDouble_([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getDoubleWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = new_JavaLangDouble_initWithDouble_([resultSet_ getDoubleWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
       else if ([clazz isEqual:JavaLangFloat_class_()]) {
-        objValue = new_JavaLangFloat_initWithFloat_([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getFloatWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = new_JavaLangFloat_initWithFloat_([resultSet_ getFloatWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
       else if ([clazz isEqual:JavaLangInteger_class_()]) {
-        objValue = JavaLangInteger_valueOfWithInt_([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getIntWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = JavaLangInteger_valueOfWithInt_([resultSet_ getIntWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
@@ -159,37 +159,37 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJRResultSetDataSource)
         }
       }
       else if ([clazz isEqual:JavaLangLong_class_()]) {
-        objValue = new_JavaLangLong_initWithLong_([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getLongWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = new_JavaLangLong_initWithLong_([resultSet_ getLongWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
       else if ([clazz isEqual:JavaLangShort_class_()]) {
-        objValue = new_JavaLangShort_initWithShort_([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getShortWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = new_JavaLangShort_initWithShort_([resultSet_ getShortWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]]);
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
       else if ([clazz isEqual:JavaMathBigDecimal_class_()]) {
-        objValue = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getDecimalWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = [resultSet_ getDecimalWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
       else if ([clazz isEqual:NSString_class_()]) {
-        OrgOssPdfreporterSqlSqlType *columnType = [((id<OrgOssPdfreporterSqlIResultMetaData>) nil_chk([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getMetaData])) getColumnTypeWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
+        OrgOssPdfreporterSqlSqlType *columnType = [((id<OrgOssPdfreporterSqlIResultMetaData>) nil_chk([resultSet_ getMetaData])) getColumnTypeWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
         switch ([columnType ordinal]) {
           default:
-          objValue = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getStringWithInt:[columnIndex intValue]];
-          if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+          objValue = [resultSet_ getStringWithInt:[columnIndex intValue]];
+          if ([resultSet_ wasNull]) {
             objValue = nil;
           }
           break;
         }
       }
       else if ([clazz isEqual:OrgOssPdfreporterSqlIBlob_class_()]) {
-        objValue = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getBlobWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
-        if ([((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+        objValue = [resultSet_ getBlobWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
+        if ([resultSet_ wasNull]) {
           objValue = nil;
         }
       }
@@ -204,7 +204,7 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJRResultSetDataSource)
         }
       }
       else {
-        objValue = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getObjectWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
+        objValue = [resultSet_ getObjectWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
       }
     }
     @catch (JavaLangException *e) {
@@ -218,8 +218,8 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterEngineJRResultSetDataSource)
 withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
   id objValue = nil;
   id<OrgOssPdfreporterSqlIDate> value = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getDateWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
-  if (![((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
-    objValue = [((id<OrgOssPdfreporterSqlIDate>) nil_chk(value)) getDate];
+  if (![resultSet_ wasNull] && value != nil) {
+    objValue = [value getDate];
   }
   return objValue;
 }
@@ -228,7 +228,7 @@ withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
     withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
   id objValue = nil;
   id<OrgOssPdfreporterSqlITimestamp> value = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getTimestampWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
-  if (![((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+  if (![resultSet_ wasNull]) {
     objValue = new_JavaUtilDate_initWithLong_([((id<OrgOssPdfreporterSqlITimestamp>) nil_chk(value)) getMilliseconds]);
   }
   return objValue;
@@ -238,7 +238,7 @@ withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
 withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
   id objValue = nil;
   id<OrgOssPdfreporterSqlITime> value = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getTimeWithInt:[((JavaLangInteger *) nil_chk(columnIndex)) intValue]];
-  if (![((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+  if (![resultSet_ wasNull]) {
     objValue = [((id<OrgOssPdfreporterSqlITime>) nil_chk(value)) getDate];
   }
   return objValue;
@@ -280,8 +280,8 @@ withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
   switch ([columnType ordinal]) {
     case OrgOssPdfreporterSqlSqlType_Enum_BLOB:
     {
-      id<OrgOssPdfreporterSqlIBlob> blob = [((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) getBlobWithInt:[columnIndex intValue]];
-      if (![((id<OrgOssPdfreporterSqlIResultSet>) nil_chk(resultSet_)) wasNull]) {
+      id<OrgOssPdfreporterSqlIBlob> blob = [resultSet_ getBlobWithInt:[columnIndex intValue]];
+      if (![resultSet_ wasNull]) {
         bytes = [((id<OrgOssPdfreporterSqlIBlob>) nil_chk(blob)) getBytes];
       }
       break;
@@ -302,10 +302,10 @@ withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
 
 - (JavaUtilCalendar *)getFieldCalendarWithOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
   if ([((id<JavaUtilMap>) nil_chk(fieldCalendars_)) containsKeyWithId:field]) {
-    return [((id<JavaUtilMap>) nil_chk(fieldCalendars_)) getWithId:field];
+    return [fieldCalendars_ getWithId:field];
   }
   JavaUtilCalendar *calendar = [self createFieldCalendarWithOrgOssPdfreporterEngineJRField:field];
-  (void) [((id<JavaUtilMap>) nil_chk(fieldCalendars_)) putWithId:field withId:calendar];
+  (void) [fieldCalendars_ putWithId:field withId:calendar];
   return calendar;
 }
 
@@ -356,12 +356,12 @@ withOrgOssPdfreporterEngineJRField:(id<OrgOssPdfreporterEngineJRField>)field {
     { "logger", "logger", 0x1a, "Ljava.util.logging.Logger;", &OrgOssPdfreporterEngineJRResultSetDataSource_logger, NULL, .constantValue.asLong = 0 },
     { "INDEXED_COLUMN_PREFIX", "INDEXED_COLUMN_PREFIX", 0x1a, "Ljava.lang.String;", &OrgOssPdfreporterEngineJRResultSetDataSource_INDEXED_COLUMN_PREFIX, NULL, .constantValue.asLong = 0 },
     { "INDEXED_COLUMN_PREFIX_LENGTH", "INDEXED_COLUMN_PREFIX_LENGTH", 0x1a, "I", &OrgOssPdfreporterEngineJRResultSetDataSource_INDEXED_COLUMN_PREFIX_LENGTH, NULL, .constantValue.asLong = 0 },
-    { "jasperReportsContext_", NULL, 0x2, "Lorg.oss.pdfreporter.engine.JasperReportsContext;", NULL, NULL, .constantValue.asLong = 0 },
-    { "resultSet_", NULL, 0x2, "Lorg.oss.pdfreporter.sql.IResultSet;", NULL, NULL, .constantValue.asLong = 0 },
-    { "columnIndexMap_", NULL, 0x2, "Ljava.util.Map;", NULL, "Ljava/util/Map<Ljava/lang/String;Ljava/lang/Integer;>;", .constantValue.asLong = 0 },
+    { "jasperReportsContext_", NULL, 0x12, "Lorg.oss.pdfreporter.engine.JasperReportsContext;", NULL, NULL, .constantValue.asLong = 0 },
+    { "resultSet_", NULL, 0x12, "Lorg.oss.pdfreporter.sql.IResultSet;", NULL, NULL, .constantValue.asLong = 0 },
+    { "columnIndexMap_", NULL, 0x12, "Ljava.util.Map;", NULL, "Ljava/util/Map<Ljava/lang/String;Ljava/lang/Integer;>;", .constantValue.asLong = 0 },
     { "timeZone_", NULL, 0x2, "Ljava.util.TimeZone;", NULL, NULL, .constantValue.asLong = 0 },
     { "timeZoneOverride_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
-    { "fieldCalendars_", NULL, 0x2, "Ljava.util.Map;", NULL, "Ljava/util/Map<Lorg/oss/pdfreporter/engine/JRField;Ljava/util/Calendar;>;", .constantValue.asLong = 0 },
+    { "fieldCalendars_", NULL, 0x12, "Ljava.util.Map;", NULL, "Ljava/util/Map<Lorg/oss/pdfreporter/engine/JRField;Ljava/util/Calendar;>;", .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _OrgOssPdfreporterEngineJRResultSetDataSource = { 2, "JRResultSetDataSource", "org.oss.pdfreporter.engine", NULL, 0x1, 14, methods, 9, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterEngineJRResultSetDataSource;
@@ -418,7 +418,7 @@ JavaLangInteger *OrgOssPdfreporterEngineJRResultSetDataSource_getColumnIndexWith
     @catch (OrgOssPdfreporterSqlSQLException *e) {
       @throw new_OrgOssPdfreporterEngineJRException_initWithNSString_withNSException_(@"Unable to retrieve result set metadata.", e);
     }
-    (void) [((id<JavaUtilMap>) nil_chk(self->columnIndexMap_)) putWithId:fieldName withId:columnIndex];
+    (void) [self->columnIndexMap_ putWithId:fieldName withId:columnIndex];
   }
   return columnIndex;
 }

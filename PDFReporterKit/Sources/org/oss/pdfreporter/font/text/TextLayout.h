@@ -44,6 +44,8 @@
 
 - (jboolean)isLeftToRight;
 
+- (NSString *)description;
+
 #pragma mark Package-Private
 
 - (instancetype)initWithOrgOssPdfreporterTextParagraph:(OrgOssPdfreporterTextParagraph *)paragraph

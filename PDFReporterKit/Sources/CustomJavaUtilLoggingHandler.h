@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "java/util/logging/handler.h"
+#include "java/util/logging/Handler.h"
 
 @interface CustomJavaUtilLoggingHandler : JavaUtilLoggingHandler
 

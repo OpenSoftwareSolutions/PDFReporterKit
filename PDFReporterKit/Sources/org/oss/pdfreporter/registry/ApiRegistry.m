@@ -6,6 +6,9 @@
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
 #include "java/lang/RuntimeException.h"
+#include "org/oss/pdfreporter/compilers/factory/ICompilerFactory.h"
+#include "org/oss/pdfreporter/compilers/javascript/factory/IJavaScriptFactory.h"
+#include "org/oss/pdfreporter/compilers/javascript/interpreter/factory/IJavaScriptInterpreterFactory.h"
 #include "org/oss/pdfreporter/font/factory/IFontFactory.h"
 #include "org/oss/pdfreporter/geometry/factory/IGeometryFactory.h"
 #include "org/oss/pdfreporter/image/factory/IImageFactory.h"
@@ -73,6 +76,21 @@ inline id<OrgOssPdfreporterTextFormatFactoryIFormatFactory> OrgOssPdfreporterReg
 static id<OrgOssPdfreporterTextFormatFactoryIFormatFactory> OrgOssPdfreporterRegistryApiRegistry_standardFormatFactory;
 J2OBJC_STATIC_FIELD_OBJ(OrgOssPdfreporterRegistryApiRegistry, standardFormatFactory, id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>)
 
+inline id<OrgOssPdfreporterCompilersFactoryICompilerFactory> OrgOssPdfreporterRegistryApiRegistry_get_compilerFactory();
+inline id<OrgOssPdfreporterCompilersFactoryICompilerFactory> OrgOssPdfreporterRegistryApiRegistry_set_compilerFactory(id<OrgOssPdfreporterCompilersFactoryICompilerFactory> value);
+static id<OrgOssPdfreporterCompilersFactoryICompilerFactory> OrgOssPdfreporterRegistryApiRegistry_compilerFactory;
+J2OBJC_STATIC_FIELD_OBJ(OrgOssPdfreporterRegistryApiRegistry, compilerFactory, id<OrgOssPdfreporterCompilersFactoryICompilerFactory>)
+
+inline id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory> OrgOssPdfreporterRegistryApiRegistry_get_javascriptFactory();
+inline id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory> OrgOssPdfreporterRegistryApiRegistry_set_javascriptFactory(id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory> value);
+static id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory> OrgOssPdfreporterRegistryApiRegistry_javascriptFactory;
+J2OBJC_STATIC_FIELD_OBJ(OrgOssPdfreporterRegistryApiRegistry, javascriptFactory, id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory>)
+
+inline id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory> OrgOssPdfreporterRegistryApiRegistry_get_javascriptInterpreterFactory();
+inline id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory> OrgOssPdfreporterRegistryApiRegistry_set_javascriptInterpreterFactory(id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory> value);
+static id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory> OrgOssPdfreporterRegistryApiRegistry_javascriptInterpreterFactory;
+J2OBJC_STATIC_FIELD_OBJ(OrgOssPdfreporterRegistryApiRegistry, javascriptInterpreterFactory, id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory>)
+
 __attribute__((unused)) static void OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(id factory);
 
 J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterRegistryApiRegistry)
@@ -139,6 +157,30 @@ J2OBJC_INITIALIZED_DEFN(OrgOssPdfreporterRegistryApiRegistry)
   OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterSqlFactoryISqlFactory_(sqlFactory);
 }
 
++ (id<OrgOssPdfreporterCompilersFactoryICompilerFactory>)getCompilerFactory {
+  return OrgOssPdfreporterRegistryApiRegistry_getCompilerFactory();
+}
+
++ (void)register__WithOrgOssPdfreporterCompilersFactoryICompilerFactory:(id<OrgOssPdfreporterCompilersFactoryICompilerFactory>)compilerFactory {
+  OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterCompilersFactoryICompilerFactory_(compilerFactory);
+}
+
++ (id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory>)getJavascriptFactory {
+  return OrgOssPdfreporterRegistryApiRegistry_getJavascriptFactory();
+}
+
++ (void)register__WithOrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory:(id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory>)javascriptFactory {
+  OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory_(javascriptFactory);
+}
+
++ (id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory>)getJavaScriptInterpreterFactory {
+  return OrgOssPdfreporterRegistryApiRegistry_getJavaScriptInterpreterFactory();
+}
+
++ (void)register__WithOrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory:(id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory>)javascriptInterpreterFactory {
+  OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory_(javascriptInterpreterFactory);
+}
+
 + (void)register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType:(OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType *)type
                              withOrgOssPdfreporterTextFormatFactoryIFormatFactory:(id<OrgOssPdfreporterTextFormatFactoryIFormatFactory>)factory {
   OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType_withOrgOssPdfreporterTextFormatFactoryIFormatFactory_(type, factory);
@@ -185,6 +227,12 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "register__WithOrgOssPdfreporterGeometryFactoryIGeometryFactory:", "register", "V", 0x9, NULL, NULL },
     { "getSqlFactory", NULL, "Lorg.oss.pdfreporter.sql.factory.ISqlFactory;", 0x9, NULL, NULL },
     { "register__WithOrgOssPdfreporterSqlFactoryISqlFactory:", "register", "V", 0x9, NULL, NULL },
+    { "getCompilerFactory", NULL, "Lorg.oss.pdfreporter.compilers.factory.ICompilerFactory;", 0x9, NULL, NULL },
+    { "register__WithOrgOssPdfreporterCompilersFactoryICompilerFactory:", "register", "V", 0x9, NULL, NULL },
+    { "getJavascriptFactory", NULL, "Lorg.oss.pdfreporter.compilers.javascript.factory.IJavaScriptFactory;", 0x9, NULL, NULL },
+    { "register__WithOrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory:", "register", "V", 0x9, NULL, NULL },
+    { "getJavaScriptInterpreterFactory", NULL, "Lorg.oss.pdfreporter.compilers.javascript.interpreter.factory.IJavaScriptInterpreterFactory;", 0x9, NULL, NULL },
+    { "register__WithOrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory:", "register", "V", 0x9, NULL, NULL },
     { "register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType:withOrgOssPdfreporterTextFormatFactoryIFormatFactory:", "register", "V", 0x9, NULL, NULL },
     { "getIFormatFactoryWithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType:", "getIFormatFactory", "Lorg.oss.pdfreporter.text.format.factory.IFormatFactory;", 0x9, NULL, NULL },
     { "init", "ApiRegistry", NULL, 0x1, NULL, NULL },
@@ -200,8 +248,11 @@ J2OBJC_IGNORE_DESIGNATED_END
     { "defaultFormatFactory", "defaultFormatFactory", 0xa, "Lorg.oss.pdfreporter.text.format.factory.IFormatFactory;", &OrgOssPdfreporterRegistryApiRegistry_defaultFormatFactory, NULL, .constantValue.asLong = 0 },
     { "simpleFormatFactory", "simpleFormatFactory", 0xa, "Lorg.oss.pdfreporter.text.format.factory.IFormatFactory;", &OrgOssPdfreporterRegistryApiRegistry_simpleFormatFactory, NULL, .constantValue.asLong = 0 },
     { "standardFormatFactory", "standardFormatFactory", 0xa, "Lorg.oss.pdfreporter.text.format.factory.IFormatFactory;", &OrgOssPdfreporterRegistryApiRegistry_standardFormatFactory, NULL, .constantValue.asLong = 0 },
+    { "compilerFactory", "compilerFactory", 0xa, "Lorg.oss.pdfreporter.compilers.factory.ICompilerFactory;", &OrgOssPdfreporterRegistryApiRegistry_compilerFactory, NULL, .constantValue.asLong = 0 },
+    { "javascriptFactory", "javascriptFactory", 0xa, "Lorg.oss.pdfreporter.compilers.javascript.factory.IJavaScriptFactory;", &OrgOssPdfreporterRegistryApiRegistry_javascriptFactory, NULL, .constantValue.asLong = 0 },
+    { "javascriptInterpreterFactory", "javascriptInterpreterFactory", 0xa, "Lorg.oss.pdfreporter.compilers.javascript.interpreter.factory.IJavaScriptInterpreterFactory;", &OrgOssPdfreporterRegistryApiRegistry_javascriptInterpreterFactory, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _OrgOssPdfreporterRegistryApiRegistry = { 2, "ApiRegistry", "org.oss.pdfreporter.registry", NULL, 0x1, 18, methods, 10, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _OrgOssPdfreporterRegistryApiRegistry = { 2, "ApiRegistry", "org.oss.pdfreporter.registry", NULL, 0x1, 24, methods, 13, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_OrgOssPdfreporterRegistryApiRegistry;
 }
 
@@ -218,6 +269,9 @@ void OrgOssPdfreporterRegistryApiRegistry_initSession() {
   OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(OrgOssPdfreporterRegistryApiRegistry_sqlFactory);
   OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(OrgOssPdfreporterRegistryApiRegistry_jsonDataSourceFactory);
   OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(OrgOssPdfreporterRegistryApiRegistry_fontFactory);
+  OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(OrgOssPdfreporterRegistryApiRegistry_compilerFactory);
+  OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(OrgOssPdfreporterRegistryApiRegistry_javascriptFactory);
+  OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(OrgOssPdfreporterRegistryApiRegistry_javascriptInterpreterFactory);
 }
 
 void OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(id factory) {
@@ -317,6 +371,48 @@ void OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterSqlFact
   OrgOssPdfreporterRegistryApiRegistry_initialize();
   OrgOssPdfreporterRegistryApiRegistry_sqlFactory = sqlFactory;
   OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(sqlFactory);
+}
+
+id<OrgOssPdfreporterCompilersFactoryICompilerFactory> OrgOssPdfreporterRegistryApiRegistry_getCompilerFactory() {
+  OrgOssPdfreporterRegistryApiRegistry_initialize();
+  if (OrgOssPdfreporterRegistryApiRegistry_compilerFactory != nil) {
+    return OrgOssPdfreporterRegistryApiRegistry_compilerFactory;
+  }
+  @throw new_JavaLangRuntimeException_initWithNSString_(@"No ICompilerFactory registred.");
+}
+
+void OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterCompilersFactoryICompilerFactory_(id<OrgOssPdfreporterCompilersFactoryICompilerFactory> compilerFactory) {
+  OrgOssPdfreporterRegistryApiRegistry_initialize();
+  OrgOssPdfreporterRegistryApiRegistry_compilerFactory = compilerFactory;
+  OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(compilerFactory);
+}
+
+id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory> OrgOssPdfreporterRegistryApiRegistry_getJavascriptFactory() {
+  OrgOssPdfreporterRegistryApiRegistry_initialize();
+  if (OrgOssPdfreporterRegistryApiRegistry_javascriptFactory != nil) {
+    return OrgOssPdfreporterRegistryApiRegistry_javascriptFactory;
+  }
+  @throw new_JavaLangRuntimeException_initWithNSString_(@"No IJavascriptFactory registred.");
+}
+
+void OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory_(id<OrgOssPdfreporterCompilersJavascriptFactoryIJavaScriptFactory> javascriptFactory) {
+  OrgOssPdfreporterRegistryApiRegistry_initialize();
+  OrgOssPdfreporterRegistryApiRegistry_javascriptFactory = javascriptFactory;
+  OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(javascriptFactory);
+}
+
+id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory> OrgOssPdfreporterRegistryApiRegistry_getJavaScriptInterpreterFactory() {
+  OrgOssPdfreporterRegistryApiRegistry_initialize();
+  if (OrgOssPdfreporterRegistryApiRegistry_javascriptInterpreterFactory != nil) {
+    return OrgOssPdfreporterRegistryApiRegistry_javascriptInterpreterFactory;
+  }
+  @throw new_JavaLangRuntimeException_initWithNSString_(@"No IJavaScriptInterpreterFactory registred.");
+}
+
+void OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory_(id<OrgOssPdfreporterCompilersJavascriptInterpreterFactoryIJavaScriptInterpreterFactory> javascriptInterpreterFactory) {
+  OrgOssPdfreporterRegistryApiRegistry_initialize();
+  OrgOssPdfreporterRegistryApiRegistry_javascriptInterpreterFactory = javascriptInterpreterFactory;
+  OrgOssPdfreporterRegistryApiRegistry_setSessionWithId_(javascriptInterpreterFactory);
 }
 
 void OrgOssPdfreporterRegistryApiRegistry_register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType_withOrgOssPdfreporterTextFormatFactoryIFormatFactory_(OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatType *type, id<OrgOssPdfreporterTextFormatFactoryIFormatFactory> factory) {

@@ -156,6 +156,8 @@
 
 + (NSString *)LANGUAGE_JSHUNTINGYARD;
 
++ (NSString *)LANGUAGE_JAVASCIPT;
+
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(OrgOssPdfreporterEngineJRReport)
@@ -174,6 +176,11 @@ inline NSString *OrgOssPdfreporterEngineJRReport_get_LANGUAGE_JSHUNTINGYARD();
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JSHUNTINGYARD;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterEngineJRReport, LANGUAGE_JSHUNTINGYARD, NSString *)
+
+inline NSString *OrgOssPdfreporterEngineJRReport_get_LANGUAGE_JAVASCIPT();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineJRReport_LANGUAGE_JAVASCIPT;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterEngineJRReport, LANGUAGE_JAVASCIPT, NSString *)
 
 J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineJRReport)
 

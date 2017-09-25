@@ -46,6 +46,8 @@
 
 + (NSString *)PROPERTY_MEASURE_SIMPLE_TEXTS;
 
++ (NSString *)PROPERTY_IGNORE_MAX_HEIGHT;
+
 #pragma mark Public
 
 - (instancetype)initWithOrgOssPdfreporterEngineJasperReportsContext:(id<OrgOssPdfreporterEngineJasperReportsContext>)jasperReportsContext
@@ -57,6 +59,8 @@
                                                                                             withInt:(jint)remainingTextStart
                                                                                             withInt:(jint)availableStretchHeight
                                                                                         withBoolean:(jboolean)canOverflow;
+
+- (NSString *)description;
 
 #pragma mark Protected
 
@@ -92,6 +96,11 @@ inline NSString *OrgOssPdfreporterEngineFillTextMeasurer_get_PROPERTY_MEASURE_SI
 /*! INTERNAL ONLY - Use accessor function from above. */
 FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_MEASURE_SIMPLE_TEXTS;
 J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterEngineFillTextMeasurer, PROPERTY_MEASURE_SIMPLE_TEXTS, NSString *)
+
+inline NSString *OrgOssPdfreporterEngineFillTextMeasurer_get_PROPERTY_IGNORE_MAX_HEIGHT();
+/*! INTERNAL ONLY - Use accessor function from above. */
+FOUNDATION_EXPORT NSString *OrgOssPdfreporterEngineFillTextMeasurer_PROPERTY_IGNORE_MAX_HEIGHT;
+J2OBJC_STATIC_FIELD_OBJ_FINAL(OrgOssPdfreporterEngineFillTextMeasurer, PROPERTY_IGNORE_MAX_HEIGHT, NSString *)
 
 FOUNDATION_EXPORT void OrgOssPdfreporterEngineFillTextMeasurer_initWithOrgOssPdfreporterEngineJasperReportsContext_withOrgOssPdfreporterEngineJRCommonText_(OrgOssPdfreporterEngineFillTextMeasurer *self, id<OrgOssPdfreporterEngineJasperReportsContext> jasperReportsContext, id<OrgOssPdfreporterEngineJRCommonText> textElement);
 
@@ -185,6 +194,8 @@ J2OBJC_TYPE_LITERAL_HEADER(OrgOssPdfreporterEngineFillTabSegment)
 - (NSString *)getTextSuffix;
 
 - (jboolean)isLeftToRight;
+
+- (NSString *)description;
 
 #pragma mark Protected
 

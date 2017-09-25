@@ -80,6 +80,8 @@
 
 + (OrgOssPdfreporterEngineJasperCompileManager *)getInstanceWithOrgOssPdfreporterEngineJasperReportsContext:(id<OrgOssPdfreporterEngineJasperReportsContext>)jasperReportsContext;
 
+- (void)initialize__WithOrgOssPdfreporterEngineFillJREvaluator:(OrgOssPdfreporterEngineFillJREvaluator *)evaluator OBJC_METHOD_FAMILY_NONE;
+
 + (OrgOssPdfreporterEngineFillJREvaluator *)loadEvaluatorWithOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)jasperReport;
 
 + (OrgOssPdfreporterEngineFillJREvaluator *)loadEvaluatorWithOrgOssPdfreporterEngineJasperReport:(OrgOssPdfreporterEngineJasperReport *)jasperReport

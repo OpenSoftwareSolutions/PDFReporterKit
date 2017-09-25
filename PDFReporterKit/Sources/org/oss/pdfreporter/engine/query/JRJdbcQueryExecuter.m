@@ -4,16 +4,19 @@
 //
 
 #include "IOSClass.h"
+#include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "java/io/IOException.h"
 #include "java/lang/Boolean.h"
 #include "java/lang/Byte.h"
+#include "java/lang/Deprecated.h"
 #include "java/lang/Double.h"
 #include "java/lang/Exception.h"
 #include "java/lang/Float.h"
 #include "java/lang/Integer.h"
 #include "java/lang/Long.h"
 #include "java/lang/Short.h"
+#include "java/lang/annotation/Annotation.h"
 #include "java/lang/reflect/Array.h"
 #include "java/math/BigDecimal.h"
 #include "java/util/Calendar.h"
@@ -416,6 +419,14 @@ withOrgOssPdfreporterEngineJRPropertiesHolder:(id<OrgOssPdfreporterEngineJRPrope
   else if ([OrgOssPdfreporterSqlIDate_class_() isAssignableFrom:parameterType]) {
     [((id<OrgOssPdfreporterSqlIPreparedStatement>) nil_chk(statement_)) setNullWithInt:parameterIndex withOrgOssPdfreporterSqlSqlType:JreLoadEnum(OrgOssPdfreporterSqlSqlType, DATE)];
   }
+  else {
+    if (parameterValue == nil) {
+      [((id<OrgOssPdfreporterSqlIPreparedStatement>) nil_chk(statement_)) setNullWithInt:parameterIndex withOrgOssPdfreporterSqlSqlType:JreLoadEnum(OrgOssPdfreporterSqlSqlType, OBJECT)];
+    }
+    else {
+      [((id<OrgOssPdfreporterSqlIPreparedStatement>) nil_chk(statement_)) setStringWithInt:parameterIndex withNSString:[parameterValue description]];
+    }
+  }
 }
 
 - (JavaUtilCalendar *)getParameterCalendarWithOrgOssPdfreporterEngineJRPropertiesHolder:(id<OrgOssPdfreporterEngineJRPropertiesHolder>)properties {
@@ -478,6 +489,10 @@ withOrgOssPdfreporterEngineJRPropertiesHolder:(id<OrgOssPdfreporterEngineJRPrope
   }
 }
 
++ (IOSObjectArray *)__annotations_initWithOrgOssPdfreporterEngineJRDataset_withJavaUtilMap_ {
+  return [IOSObjectArray newArrayWithObjects:(id[]){ create_JavaLangDeprecated() } count:1 type:JavaLangAnnotationAnnotation_class_()];
+}
+
 + (void)initialize {
   if (self == [OrgOssPdfreporterEngineQueryJRJdbcQueryExecuter class]) {
     OrgOssPdfreporterEngineQueryJRJdbcQueryExecuter_logger = JavaUtilLoggingLogger_getLoggerWithNSString_([OrgOssPdfreporterEngineQueryJRJdbcQueryExecuter_class_() getName]);
@@ -530,7 +545,7 @@ withOrgOssPdfreporterEngineJRPropertiesHolder:(id<OrgOssPdfreporterEngineJRPrope
     { "connection_", NULL, 0x4, "Lorg.oss.pdfreporter.sql.IConnection;", NULL, NULL, .constantValue.asLong = 0 },
     { "statement_", NULL, 0x4, "Lorg.oss.pdfreporter.sql.IPreparedStatement;", NULL, NULL, .constantValue.asLong = 0 },
     { "resultSet_", NULL, 0x4, "Lorg.oss.pdfreporter.sql.IResultSet;", NULL, NULL, .constantValue.asLong = 0 },
-    { "isCachedRowSet_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "isCachedRowSet_", NULL, 0x12, "Z", NULL, NULL, .constantValue.asLong = 0 },
     { "timeZone_", NULL, 0x2, "Ljava.util.TimeZone;", NULL, NULL, .constantValue.asLong = 0 },
     { "timeZoneOverride_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
   };
